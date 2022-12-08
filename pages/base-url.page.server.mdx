@@ -1,0 +1,70 @@
+import { RepoLink } from '@brillout/docpress'
+import { ImportMeta } from '@brillout/docpress'
+
+> **What is the Base URL?** Changing the Base URL (aka Public Path) is about changing the URL root.
+> For example, instead of deploying our app to `https://example.org/*` (the Base URL is `/`) we can change the Base URL to `/some-base/` and deploy it to `https://example.org/some-base/*` instead.
+
+To change the Base URL we:
+
+1. Set [`vite.config.js#base`](https://vitejs.dev/config/shared-options.html#base).
+   ```js
+   // vite.config.js
+   export default {
+     base: '/some-base/'
+   }
+   ```
+1. Use [<ImportMeta prop='env.BASE_URL' />](https://vitejs.dev/guide/build.html#public-base-path) to construct a `<Link>` component that prepends the Base URL. Example: <RepoLink path='/examples/base-url/components/Link.jsx' />.
+1. Use <ImportMeta prop='env.BASE_URL' /> for referencing static assets living in [`public/`](/static-directory#public). Example: <RepoLink path='/examples/base-url/renderer/_default.page.server.jsx' />.
+
+Example:
+ - <RepoLink path='/examples/base-url/' />.
+
+
+## CDN
+
+We can deploy our static assets to a CDN using the `baseAssets` configuration.
+
+```js
+// vite.config.js
+
+import { ssr } from 'vite-plugin-ssr/plugin'
+
+export default {
+  plugins: [
+    ssr({
+      baseAssets: 'https://cdn.example.org/my-website-assets/'
+    })
+  ]
+}
+```
+
+Example:
+ - <RepoLink path='/examples/base-url-cdn/' />.
+
+> We can use `process.env.BASE_ASSETS` and <ImportMeta prop='env.BASE_ASSETS' /> to access the base value in our code.
+
+## CDN + Server
+
+We can do both:
+ - Deploy our static assets to a CDN using the `baseAssets` configuration.
+ - Change the Base URL of our server using the `baseServer` configuration.
+
+```js
+// vite.config.js
+
+import { ssr } from 'vite-plugin-ssr/plugin'
+
+export default {
+  plugins: [
+    ssr({
+      baseAssets: 'https://cdn.example.org/my-website-assets/',
+      baseServer: '/some-base/'
+    })
+  ]
+}
+```
+
+Example:
+ - <RepoLink path='/examples/base-url-server/' />.
+
+> We can use `process.env.BASE_ASSETS`/`process.env.BASE_SERVER` and <ImportMeta prop='env.BASE_ASSETS' /> / <ImportMeta prop='env.BASE_SERVER' /> to access the base values in our code.
