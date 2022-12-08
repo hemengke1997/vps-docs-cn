@@ -54,7 +54,7 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name="dizzy" /> Simple
+              <Emoji name="dizzy" /> 简单的
             </>
           ),
           desc: (
