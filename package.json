@@ -32,5 +32,6 @@
         }
       }
     }
-  }
+  },
+  "packageManager": "pnpm@7.9.5"
 }
