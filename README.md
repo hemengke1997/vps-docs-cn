@@ -1,6 +1,6 @@
 # vite-plugin-ssr 中文文档
 
-*类似Next.js/Nuxt，但是只做一件事并把它做到最好的vite插件*
+*类似Next.js/Nuxt的vite插件，但只做一件事并把它做到最好*
 
 介绍 & 文档: [cn.vite-plugin-ssr.com](https://cn.vite-plugin-ssr.com)
 <br/>

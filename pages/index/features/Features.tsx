@@ -116,15 +116,15 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='mechanical-arm' /> Full-fledged
+              <Emoji name='mechanical-arm' /> 成熟
             </>
           ),
           desc: (
             <>
               <p>
-                <b>Filesystem Routing</b>, <b>Data fetching</b>,{" "}
-                <b>Pre-rendering</b>, <b>Layouts</b>, <b>HMR</b>, <b>i18n</b>,{" "}
-                <b>Link Prefetching</b>, <b>HTML Streaming</b>.
+                <b>文件系统路由</b>, <b>数据获取</b>,{" "}
+                <b>预渲染</b>, <b>Layouts</b>, <b>HMR</b>, <b>i18n</b>,{" "}
+                <b>Link 预请求</b>, <b>HTML Streaming</b>.
               </p>
               <p>
                 <b>Client Routing</b> (fast page navigation) or{" "}
