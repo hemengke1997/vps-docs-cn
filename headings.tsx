@@ -166,7 +166,7 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 2,
-    title: '添加到已有项目',
+    title: '添加到已有应用',
     url: '/add'
   },
   {

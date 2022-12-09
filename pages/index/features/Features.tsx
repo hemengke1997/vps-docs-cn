@@ -67,7 +67,7 @@ function Features() {
               </p>
               <p>
                 <code>vite-plugin-ssr</code>{" "}
-                和你的UI框架（React/Vue/...）之间结构清晰，使得你的应用容易理解
+                和你的UI框架（React/Vue/...）之间分割清晰，使得你的应用容易理解
               </p>
             </>
           ),
@@ -122,18 +122,19 @@ function Features() {
           desc: (
             <>
               <p>
-                <b>文件系统路由</b>, <b>数据获取</b>,{" "}
-                <b>预渲染</b>, <b>Layouts</b>, <b>HMR</b>, <b>i18n</b>,{" "}
-                <b>Link 预请求</b>, <b>HTML Streaming</b>.
+                <b>文件系统路由</b>, <b>数据获取</b>， <b>预渲染</b>，{" "}
+                <b>Layouts</b>， <b>HMR</b>， <b>i18n</b>， <b>Link 预请求</b>，{" "}
+                <b>HTML 流式渲染</b>
               </p>
               <p>
-                <b>Client Routing</b> (fast page navigation) or{" "}
-                <b>Server Routing</b> (simple architecture).
+                <b>客户端路由</b> （页面导航快） 或 <b>服务端路由</b>{" "}
+                （架构简单）
               </p>
               <p>
-                All render modes: <b>SSR</b>, <b>SPA</b>, <b>MPA</b>, <b>SSG</b>
-                , <b>HTML-only</b>. Each page can use a different mode.
+                所有渲染方式: <b>SSR</b>， <b>SPA</b>， <b>MPA</b>， <b>SSG</b>
+                ， <b>HTML-only</b>
               </p>
+              <p>每个页面可以使用不同的渲染方式</p>
             </>
           ),
           learnMore: <FullFleged />,
@@ -141,22 +142,21 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='earth' /> Deploy anywhere
+              <Emoji name='earth' /> 随处部署
             </>
           ),
           desc: (
             <>
               <p>
-                <b>Deploy anywhere</b> (Vercel Serverless/Edge/ISR, Cloudflare
-                Workers, AWS EC2/Lambda, Firebase, Google Cloud, ...).
+                <b>随处部署</b> （Vercel Serverless/Edge/ISR，Cloudflare
+                Workers，AWS EC2/Lambda，Firebase，Google Cloud， ...）
               </p>
               <p>
-                Pre-render your app and deploy it to <b>any static host</b>{" "}
-                (Netlify, GitHub Pages, Cloudflare Pages, ...).
+                预渲染应用并把它部署到 <b>任意静态主机</b>（Netlify, GitHub
+                Pages, Cloudflare Pages, ...）
               </p>
               <p>
-                Fits <b>Cloudflare Workers</b>'s small worker size requirement
-                like a glove.
+                像手套一样适合 <b>Cloudflare Workers</b> 的小型worker尺寸要求
               </p>
             </>
           ),
@@ -165,16 +165,15 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='gem-stone' /> Rock-solid
+              <Emoji name='gem-stone' /> 坚如磐石
             </>
           ),
           desc: (
             <>
               <p>
-                The source code of <code>vite-plugin-ssr</code> has{" "}
-                <b>no known bug</b>, every release is assailed against a heavy
-                suite of <b>automated tests</b>, and it's{" "}
-                <b>used in production</b> by many comp&shy;anies.
+                <code>vite-plugin-ssr</code> 源码 <b>无已知bug</b>
+                ，每次发布都经过大量<b>自动化测试</b>，并且被多家公司{" "}
+                <b>用于生产环境</b>
               </p>
             </>
           ),
@@ -182,62 +181,56 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='rocket' /> Scalable
+              <Emoji name='rocket' /> 规模化
             </>
           ),
           desc: (
             <>
               <p>
-                <b>DX that scales</b> to hundreds of kLOCs: HMR & dev start that
-                stays fast, powered by Vite <ViteLogo />.
+                可扩展至数百 kLOC 的 开发者体验：由 Vite 提供支持的 HMR
+                和快速启动开发
+                <ViteLogo />
               </p>
               <p>
-                <b>Architectural flexibility that scales</b> from small hobby
-                projects to large-scale enterprise projects.
+                <b>可扩展的灵活性架构</b> 从小型业余爱好项目扩展到大型企业项目
               </p>
             </>
           ),
           learnMore: (
             <>
-              <h3>Lazy-transpiling</h3>
+              <h3>懒编译</h3>
               <p>
-                One of Vite's foundational novelty is lazy-transpiled
-                development: instead of transpiling your entire codebase before
-                starting developing, Vite transpiles only loaded code.
+                Vite 的基础创新之一是懒编译开发：Vite
+                不是在开始开发之前编译整个代码库，而是只编译加载的代码
               </p>
               <p>
-                For example, if you define 100 pages and then open a page in the
-                browser, then only the code for that one page is transpiled
-                while the code for all other 99 pages is left untouched.
+                例如，如果您定义了 100
+                个页面，然后在浏览器中打开一个页面，那么只有该页面的代码会被编译，而所有其他
+                99 个页面的代码将保持不变
               </p>
               <p>
-                Thanks to lazy-transpiling, you can scale to a (very) large
-                codebase while keeping fast HMR & development start.
+                多亏了懒编译，你可以扩展到（非常）大的代码库，同时保持快速的 HMR
+                和开发启动。
               </p>
-              <h3>No black box</h3>
+              <h3>无黑盒</h3>
+              <p>在规模上，Next.js/Nuxt 的黑盒性质让人受到痛苦的限制</p>
               <p>
-                At scale, Next.js/Nuxt's black-box nature become painfully
-                limiting.
-              </p>
-              <p>
-                In contrast, <code>vite-plugin-ssr</code> is transparent: you
-                keep control over both the server- and browser-side.
+                相比之下，<code>vite-plugin-ssr</code> 是透明的：
+                你可以同时控制服务器端和浏览器端
               </p>
               <p>
-                As you scale, you usually need increasingly custom SSR
-                integrations; <code>vite-plugin-ssr</code>'s flexibility
-                accommodates such needs.
+                随着规模增大，你通常需要越来越多的自定义 SSR 集成；{" "}
+                <code>vite-plugin-ssr</code>的灵活性可以满足这种需求
               </p>
               <h3>
-                Vite + SSR + Scale = <Emoji name='red-heart' />
+                Vite + SSR + 规模化 = <Emoji name='red-heart' />
               </h3>
               <p>
-                At (very) large scale, you can progressively replace{" "}
-                <code>vite-plugin-ssr</code> with Vite's native SSR API which is
-                lower-level and highly flexible. If you're Netflix and
-                perfecting UX leads to a substantial revenue increase, then{" "}
-                <code>vite-plugin-ssr</code> and Vite's native SSR API are what
-                you are looking for.
+                在规模（非常）大的情况下, 你可以渐进式地把
+                <code>vite-plugin-ssr</code>
+                替换为low-level和高度灵活的Vite的原生SSR。 如果你是 Netflix
+                并且完善 UX 可以带来可观的收入增长，那么
+                <code>vite-plugin-ssr</code> 和 Vite 的原生 SSR API 就是你要找的
               </p>
               <TweetsAboutScability />
             </>
@@ -247,40 +240,35 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='high-voltage' /> Fast
+              <Emoji name='high-voltage' /> 快速
             </>
           ),
           desc: (
             <>
               <p>
-                State-of-the-art performance with <b>Code Splitting</b>,{" "}
-                <b>Client Routing</b>, <b>Link Prefetching</b>, and{" "}
-                <b>Fast Cold Starts</b>.
+                通过<b>代码分割</b>，<b>客户端路由</b>，<b>Link 预请求</b>和
+                <b>快速冷启动</b>来实现最先进的性能
               </p>
-              <p>Lighthouse Score: 100%.</p>
+              <p>Lighthouse 得分: 100%</p>
             </>
           ),
           isSecondaryFeature: true,
           learnMore: (
             <>
-              <h3>Code Splitting</h3>
+              <h3>代码分割</h3>
               <p>
-                The browser-side of each page loads only the code it needs,
-                while sharing common chunks between pages for optimal
-                cacheability. Powered by Rollup <RollupLogo />.
+                每个页面的浏览器端只加载它需要的代码，同时在页面之间共享公共代码块以实现最佳缓存能力。
+                由Rollup提供支持。<RollupLogo />
               </p>
-              <h3>Client Routing</h3>
+              <h3>客户端路由</h3>
               <p>
-                Upon page navigation, instead of loading and rendering the next
-                page on both the server-side and browser-side, the next page is
-                loaded & rendered only on the browser-side.
+                在页面导航时，不是在服务器端和浏览器端加载和渲染下一个页面，而是仅在浏览器端加载和渲染下一个页面
               </p>
-              <h3>Link Prefetching</h3>
-              <p>You can preload links for instantaneous page navigation.</p>
-              <h3>Fast Cold Starts</h3>
+              <h3>Link 预请求</h3>
+              <p>你可以为即时页面导航预加载链接</p>
+              <h3>快速冷启动</h3>
               <p>
-                On the server-side, pages are as well lazy-loaded: adding pages
-                doesn't increase the cold start of your (serverless) deployment.
+                在服务器端，页面也是懒加载的：添加页面不会增加（serverless）部署的冷启动
               </p>
             </>
           ),
@@ -288,19 +276,19 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='sparkling-heart' /> Fun
+              <Emoji name='sparkling-heart' /> 有趣
             </>
           ),
           desc: (
             <>
               <p>
-                <code>vite-plugin-ssr</code> is simple, clear, and robust: no
-                magic, no unexpected behavior, no conflation, no bugs (known in{" "}
-                <code>vite-plugin-ssr</code>'s source code).
+                <code>vite-plugin-ssr</code> 简单， 清晰， 健壮:
+                没有魔法，没有意外行为，没有混淆，没有bug（
+                <code>vite-plugin-ssr</code>源码）
               </p>
               <p>
-                With <code>vite-plugin-ssr</code>,{" "}
-                <b>you are under control; it's addictively fun</b>.
+                使用 <code>vite-plugin-ssr</code>，{" "}
+                <b>一切尽在掌控；这是令人上瘾的乐趣</b>
               </p>
             </>
           ),
@@ -309,21 +297,19 @@ function Features() {
         {
           title: (
             <>
-              <VikeLogo /> Build Your Own Framework
+              <VikeLogo /> 构建你自己的框架
             </>
           ),
           desc: (
             <>
               <p>
-                Use <code>vite-plugin-ssr</code> to{" "}
-                <a href='https://vike.land/'>Build Your Own Framework</a>.
-                Hundreds of lines of code are enough to build your own Next.js /
-                Nuxt.
+                使用 <code>vite-plugin-ssr</code> 来
+                <a href='https://vike.land/'>构建你自己的框架</a>
+                。数百行代码足以构建你自己的 Next.js / Nuxt
               </p>
               <p>
-                Build <b>internal company frameworks</b> to scale your teams, or{" "}
-                <b>enhance your product</b> with a bespoke framework to delight
-                your users, or just <b>keep architectural control</b>.
+                构建 <b>公司内部框架</b> 来扩展你的团队，或者使用定制框架
+                <b>增强你的产品</b>以取悦你的用户，再或者只是<b>保持掌控架构</b>
               </p>
             </>
           ),
@@ -332,20 +318,19 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='red-heart' /> Craftsmanship
+              <Emoji name='red-heart' /> 工匠精神
             </>
           ),
           desc: (
             <>
               <p>
-                Crafted with <b>attention to details</b> and{" "}
-                <b>care for simplicity</b>.
+                精心制作，<b>注重细节</b>，<b>注重简单</b>
               </p>
               <p>
-                <b>Upsteam contributions</b> to Vite and others.
+                上游对<b>Vite贡献</b>
               </p>
               <p>
-                GitHub and Discord <b>conversations are welcome</b>.
+                欢迎来GitHub 和 Discord<b>对话</b>
               </p>
             </>
           ),
@@ -354,14 +339,13 @@ function Features() {
         {
           title: (
             <>
-              <Emoji name='lab' /> Cutting Edge
+              <Emoji name='lab' /> 前沿
             </>
           ),
           desc: (
             <>
               <p>
-                We regularly participate in RFCs and we are usually{" "}
-                <b>among the first to support the latest</b> techniques.
+                我们定期参与RFC，而且我们通常<b>最先支持最新技术</b>
               </p>
             </>
           ),

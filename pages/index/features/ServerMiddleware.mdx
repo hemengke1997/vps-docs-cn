@@ -1,10 +1,10 @@
 ```js
 import { renderPage } from 'vite-plugin-ssr'
 
-// `app` can be any server framework such as Express.js/Fastify/Koa/Hapi/...
+// `app` 可以是任何的服务端框架，比如 Express.js/Fastify/Koa/Hapi/...
 app.get('*', async (req, res) => {
-  // `renderPage()` can also be used in serverless environments such as
-  // Cloudflare Workers and Vercel
+  // `renderPage()` 也可用于 serverless 环境，比如
+  // Cloudflare Workers 和 Vercel
   const { httpResponse } = await renderPage({ urlOriginal: req.url })
   res.send(httpResponse.body)
 })
