@@ -32,7 +32,7 @@ function Title() {
   return <code style={{ display: 'inline-block', padding: '0.17em 0.6em', borderRadius: 5 }}>vite-plugin-ssr</code>
 }
 function Tagline() {
-  return <p id="header-tagline">Like Next.js/Nuxt but as do-one-thing-do-it-well Vite plugin.</p>
+  return <p id="header-tagline">类似Next.js/Nuxt，但是只做一件事并把它做到最好的vite插件</p>
 }
 
 function LeftSide() {
@@ -59,7 +59,7 @@ function RightSide() {
   return (
     <div id="header-right-side" style={{ marginLeft: 40 }}>
       <CallToActionDescription style={{ marginTop: 0 }}>
-        Scaffold a new Vite + <code>vite-plugin-ssr</code> app
+        初始化Vite + <code>vite-plugin-ssr</code> 应用
       </CallToActionDescription>
       <ScaffoldCallToAction />
       <div style={{ width: 1, height: 1, margin: 12 }} />
@@ -72,7 +72,7 @@ function TourCallToAction({ style }: { style?: React.CSSProperties }) {
   return (
     <div style={style}>
       <CallToActionDescription>
-        Explore how it's like to use <code style={{ whiteSpace: 'nowrap' }}>vite-plugin-ssr</code>
+        探索如何使用 <code style={{ whiteSpace: 'nowrap' }}>vite-plugin-ssr</code>
       </CallToActionDescription>
       <div
         style={{
@@ -83,8 +83,8 @@ function TourCallToAction({ style }: { style?: React.CSSProperties }) {
           height: 50
         }}
       >
-        <CallToAction href="/vue-tour" text="Vue Tour" icon={iconVue} />
-        <CallToAction href="/react-tour" text="React Tour" icon={iconReact} />
+        <CallToAction href="/vue-tour" text="Vue 教程" icon={iconVue} />
+        <CallToAction href="/react-tour" text="React 教程" icon={iconReact} />
       </div>
     </div>
   )

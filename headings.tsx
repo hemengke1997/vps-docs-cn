@@ -128,12 +128,12 @@ const headingsWithoutLink: HeadingWithoutLink[] = [
 const headings: HeadingDefinition[] = [
   {
     level: 1,
-    title: 'Overview',
+    title: '概览',
     titleEmoji: 'compass'
   },
   {
     level: 2,
-    title: 'Introduction',
+    title: '介绍',
     titleDocument: 'vite-plugin-ssr',
     url: '/'
   },
@@ -146,61 +146,61 @@ const headings: HeadingDefinition[] = [
   */
   {
     level: 2,
-    title: 'Vue Tour',
+    title: 'Vue 教程',
     url: '/vue-tour'
   },
   {
     level: 2,
-    title: 'React Tour',
+    title: 'React 教程',
     url: '/react-tour'
   },
   {
     level: 1,
-    title: 'Get Started',
+    title: '开始',
     titleEmoji: 'seedling'
   },
   {
     level: 2,
-    title: 'Scaffold new app',
+    title: '脚手架初始化',
     url: '/scaffold'
   },
   {
     level: 2,
-    title: 'Add to existing app',
+    title: '添加到已有项目',
     url: '/add'
   },
   {
     level: 1,
-    title: 'Guides',
+    title: '引导',
     titleEmoji: 'books'
   },
   {
     level: 4,
-    title: 'Basics'
+    title: '基础'
   },
   {
     level: 2,
-    title: 'Routing',
+    title: '路由',
     url: '/routing'
   },
   {
     level: 2,
-    title: 'Data Fetching',
+    title: '数据获取',
     url: '/data-fetching'
   },
   {
     level: 2,
-    title: 'Pre-rendering (SSG)',
+    title: '预渲染 (SSG)',
     url: '/pre-rendering'
   },
   {
     level: 2,
-    title: 'Access `pageContext` anywhere',
+    title: '随处访问 `pageContext`',
     url: '/pageContext-anywhere'
   },
   {
     level: 4,
-    title: 'More'
+    title: '进阶'
   },
   {
     level: 2,
@@ -209,7 +209,7 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 2,
-    title: 'Static Directory (`public/`)',
+    title: '静态文件目录 (`public/`)',
     url: '/static-directory'
   },
   {

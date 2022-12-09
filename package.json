@@ -33,5 +33,8 @@
       }
     }
   },
-  "packageManager": "pnpm@7.9.5"
+  "packageManager": "pnpm@7.9.5",
+  "devDependencies": {
+    "vite": "^3.2.5"
+  }
 }

@@ -1,12 +1,12 @@
-With `vite-plugin-ssr`, you control how your pages are rendered:
+在 `vite-plugin-ssr`中，你可以掌控页面如何渲染：
 
 ```jsx
 // /pages/about.page.js
 // Environment: Browser & Node.js
 
-// vite-plugin-ssr uses Filesystem Routing: the file `/pages/about.page.js` matches the URL `/about`.
+// vite-plugin-ssr 使用文件系统路由: `/pages/about.page.js` 文件匹配 `/about`路由.
 
-// `Page` can be anything you want — typically a React/Vue/Svelte/... component.
+// `Page` 可以是任何代码 — 通常来说是一个 React/Vue/Svelte/... 组件
 export function Page() {
   return <>
     <h1>About</h1>
@@ -19,10 +19,10 @@ export function Page() {
 // Environment: Node.js
 
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-// This can be any UI framework (React, Vue, Svelte, ...)
+// 任意UI框架 (React, Vue, Svelte, ...)
 import { renderToHtml } from 'my-favorite-ui-framework'
 
-// You control how `Page` is rendered to HTML
+// 你可以掌控 `Page` 如何渲染成 HTML
 export async function render({ Page }) {
   const pageHtml = await renderToHtml(Page)
   const title = 'My first vite-plugin-ssr app'
@@ -43,10 +43,10 @@ export async function render({ Page }) {
 
 import { hydrateDom } from 'my-favorite-ui-framework'
 
-// You control how `Page` is hydrated
+// 你可以掌控 `Page` 如何注水
 export async function render({ Page }) {
   await hydrateDom(Page)
 }
 ```
 
-This level control means you can use and integrate any tool you want.
+如此级别的掌控能力意味着你可以继承任何工具
