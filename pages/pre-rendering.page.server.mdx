@@ -1,76 +1,87 @@
-import { RepoLink, Link } from '@brillout/docpress'
+import { RepoLink, Link } from "@brillout/docpress";
 
-## What is pre-rendering?
+{/* ## What is pre-rendering? */}
+{/* ## 什么是预渲染 */}
 
-Pre-rendering means to render the HTML of our pages at build-time (when we run `$ vite build`).
+预渲染指的是构建时渲染页面 HTML（运行 `$vite build` 时）
 
-If we don't use pre-rendering, then the HTML of our pages is rendered at request-time (when the user navigates to a page).
+如果不使用预渲染，那么页面 HTML 会在请求时渲染（当用户页面导航时）
 
-When using pre-rendering, we don't need a Node.js server: our app consists only of static assets (HTML, JS, CSS, images, ...)
-that we can deploy to so-called "static hosts" such as <Link href="/github-pages" text="GitHub Pages" />, [Cloudflare Pages](/cloudflare-pages), or [Netlify](/netlify).
+使用预渲染的话，我们不需要 Node.js 服务：我们的应用程序仅包含静态文件（HTML、JS、CSS、images 等），我们可以将其部署到“静态主机”上，比如： <Link href="/github-pages" text="GitHub Pages" />， [Cloudflare Pages](/cloudflare-pages)， 或 [Netlify](/netlify)
 
-If we don't use pre-rendering, then we need a Node.js production server (or a Node.js-like environment such as <Link href="/cloudflare-workers" text="Cloudflare Workers" /> or <Link href="/vercel" text="Vercel" />) in order to be able to dynamically render our pages' HTML at request-time.
+如果不使用预渲染，那么我们需要一个 Node.js 生产环境服务，（或类 Node.js 环境，如：<Link href="/cloudflare-workers" text="Cloudflare Workers" /> 或 <Link href="/vercel" text="Vercel" />），以便在请求时动态渲染页面 HTML
 
 > Tools that pre-render pages are also known as "SSG" (Static-Site Generators).
+> 预渲染页面也被称为 “SSG” （静态站点生成器）
 
-## How to pre-render
+{/* ## 如何预渲染 */}
 
-We opt into pre-rendering by setting the global config `prerender`:
+我们可以通过全局配置 `prerender` 设置预渲染：
 
 ```js
 // vite.config.js
 
-import { ssr } from 'vite-plugin-ssr/plugin'
+import { ssr } from "vite-plugin-ssr/plugin";
 
 export default {
-  plugins: [
-    ssr({ prerender: true })
-  ]
-}
+  plugins: [ssr({ prerender: true })],
+};
 ```
 
-Pre-render configuration: <Link href="/prerender-config" />.
+预渲染配置： <Link href="/prerender-config" />.
 
-Once enabled, our pages' HTML are rendered when we run `$ vite build` and the generated HTML files are available at `dist/client/`.
+开启预渲染后，执行 `$ vite build` 时页面渲染成 HTML。生成的 HTML 文件在 `dist/client` 目录下
 
-For a page with a parameterized route (e.g. `/movie/@movieId`), we have to use the [`prerender()` hook](/prerender) in order to provide the list of URLs that are to be pre-rendered. The `prerender()` hook can also be used to accelerate the pre-rendering process.
+对于具有参数化路由的页面（例如：`/movie/@movieId`），我们必须使用 [`prerender()` 钩子](/prerender) 指定需要预渲染的 URL 列表。`prerender()` 钩子也可用于加速预渲染
 
-By default, all pages are pre-rendered. To pre-render only some pages, we can use the <Link href="/prerender-config#partial" text={<><code>partial</code> option</>} /> with <Link href="/doNotPrerender" text={<code>.page.server.js#doNotPrerender</code>} />.
+默认情况下，所有页面都是预渲染的。如果想只预渲染部分页面，我们可以使用 <Link href="/prerender-config#partial" text={<><code>partial</code> option</>} /> 配合 <Link href="/doNotPrerender" text={<code>.page.server.js#doNotPrerender</code>} />
 
-If we pre-render all our pages, then we can use Vite's CLI instead of a server (`$ vite dev`, `$ vite build`, and `$ vite preview`). See linked examples below.
+如果预渲染所有页面，那么我们可以使用 Vite 的 CLI 代替服务（`$ vite dev`, `$ vite build`, 和 `$ vite preview`）。请参考以下的示例链接
 
-We can programmatically invoke the pre-rendering process, see <Link href="/prerender-programmatic" />.
+我们可以编程式调用预渲染，具体请参阅 <Link href="/prerender-programmatic" />
 
-React Example:
- - <RepoLink path='/examples/react-full/vite.config.ts' /> (see setting <code>prerender</code> option to `true`)
- - <RepoLink path='/examples/react-full/pages/hello/index.page.server.ts' /> (see <code>prerender()</code> hook)
- - <RepoLink path='/examples/react-full/pages/star-wars/index/index.page.server.ts' /> (see <code>prerender()</code> hook)
- - <RepoLink path='/examples/react-full/package.json' /> (see Vite CLI usage)
+React 例子：
 
-Vue Example:
- - <RepoLink path='/examples/vue-full/vite.config.ts' /> (see setting <code>prerender</code> option to `true`)
- - <RepoLink path='/examples/vue-full/pages/hello/index.page.server.ts' /> (see <code>prerender()</code> hook)
- - <RepoLink path='/examples/vue-full/pages/star-wars/index/index.page.server.ts' /> (see <code>prerender()</code> hook)
- - <RepoLink path='/examples/vue-full/package.json' /> (see Vite CLI usage)
+- <RepoLink path='/examples/react-full/vite.config.ts' /> （参考设置 <code>
+    prerender
+  </code> 为 `true`）
+- <RepoLink path='/examples/react-full/pages/hello/index.page.server.ts' /> （参考
+  <code>prerender()</code> 钩子）
+- <RepoLink path='/examples/react-full/pages/star-wars/index/index.page.server.ts' /> （参考 <code>
+    prerender()
+  </code> 钩子）
+- <RepoLink path='/examples/react-full/package.json' /> （参考 Vite CLI 用法）
 
+Vue 例子：
 
-## SSG vs SSR
+- <RepoLink path='/examples/vue-full/vite.config.ts' /> （参考设置 <code>
+    prerender
+  </code> 为 `true`）
+- <RepoLink path='/examples/vue-full/pages/hello/index.page.server.ts' />
+  （参考
+  <code>prerender()</code> 钩子）
+- <RepoLink path='/examples/vue-full/pages/star-wars/index/index.page.server.ts' />
+  （参考
+  <code>prerender()</code> 钩子）
+- <RepoLink path='/examples/vue-full/package.json' /> （参考 Vite CLI 用法）
 
-The only difference between SSG and SSR is when the pages' HTML is rendered:
-- SSG: our pages' HTML are rendered at build-time (when we call the `$ vite build` command)
-- SSR: our pages' HTML are rendered at request-time (when the user goes to our website and `renderPage()` is called)
+{/* ## SSG vs SSR */}
 
-> Client-side code is loaded & executed in the user's browser and is therefore always executed at request-time.
+SSG 和 SSR 之间唯一的区别是渲染 HTML 的时间点
 
+- SSG：页面在构建时渲染（调用 `$ vite build` 命令时）
+- SSR：页面在请求时渲染（用户进入网页和调用 `renderPage()` 时）
 
-## Should I pre-render?
+> 客户端代码在用户浏览器中加载执行，始终在请求时执行
 
-In a nutshell: we should use pre-rendering whenever we can.
+{/* ## 我应该使用预渲染吗？ */}
 
-Because pre-rendering removes the need for a Node.js server which makes deployment an order of magnitude easier. It's also significantly more performant as HTML isn't re-generated on every request.
+简言之：我们应该尽可能使用预渲染
 
-The problem is that pre-rendering cannot be used for every kind of website. So the question boils down to: can I use pre-rendering?
+预渲染不需要 Node.js 服务，这使得部署更简单。其性能也明显更好，因为 HTML 不会在每次请求时重新生成
 
-Pre-rendering cannot be used for websites that have highly dynamic content. For example, a social site such as [Hacker News](https://news.ycombinator.com/) or [Reddit](https://www.reddit.com/): the content changes every time a user posts a new link or writes a new comment. We cannot use pre-rendering because: a) the pre-rendered HTML is stuck at build-time, and b) we cannot re-build the entire website if there is new content every second.
+预渲染不能用户所有类型的网站。所以问题来了：我应该使用预渲染吗？
 
-Pre-rendering works for websites with content that changes only occasionally, e.g. a few times a day. For example, `https://vite-plugin-ssr.com` is updated only occasionally, and the entire `https://vite-plugin-ssr.com` website can be re-built every time the `vite-plugin-ssr` maintainers change its content. Pre-rendering enables the deployment of `https://vite-plugin-ssr.com` to <Link href="/github-pages" text="GitHub Pages" /> which is an order of magnitude easier (and more performant) than using a Node.js production server.
+预渲染不能用于内容高度动态的网站，例如：[Hacker News](https://news.ycombinator.com/) 或 [Reddit](https://www.reddit.com/)：用户每次发布链接或撰写评论时，内容都会发生改变。这种情况下我们不能使用预渲染：a) 预渲染的 HTML 卡在构建时，b) 如果每秒都有新内容，我们无法重新构建整个网站
+
+预渲染适用于内容偶尔改变的网站，一天更新几次那种。比如：`https://vite-plugin-ssr.com` 只是偶尔更新，每次 `vite-plugin-ssr` 维护者改变内容的时候，整个 `https://vite-plugin-ssr.com` 都重新构建。预渲染支持把 `https://vite-plugin-ssr.com` 部署到 Github Pages，这比使用 Node.js 生产服务更容易（并且性能更高）一个数量级。

@@ -1,6 +1,6 @@
 import { ScaffoldCallToActionTour } from './index/ScaffoldCallToAction'
 
-{/* ## Routing */}
+{/* ## 路由 */}
 
 跟 Next.js 类似
 我们通过创建一个 `.page.jsx` 文件来定义一个新页面
@@ -45,7 +45,7 @@ export default pageContext => pageContext.urlPathname === '/';
 ```
 
 
-{/* ## Render Control */}
+{/* ## 控制渲染 */}
 
 跟 Next.js 不同的是，我们可以控制如何页面渲染
 
@@ -96,7 +96,7 @@ async function render(pageContext) {
 }
 ```
 
-这种级别的控制使我们 _轻松自然_ 地集成我们想要的任何工具（Vuex, GraphQL, Service Worker, ...）
+这种级别的控制使我们 _轻松自然_ 地集成我们想要的任何工具（Redux, GraphQL, Service Worker, Preact, ...）
 
 页面文件后缀有四种：
 
@@ -114,7 +114,7 @@ async function render(pageContext) {
 `_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 Vue）覆盖 `render()` 钩子
 
 
-{/* ## Data Fetching */}
+{/* ## 数据获取 */}
 
 现在我们来看看如何获取数据
 

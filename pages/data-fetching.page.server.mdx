@@ -1,56 +1,57 @@
-import { RepoLink, Link } from '@brillout/docpress'
+import { RepoLink, Link } from "@brillout/docpress";
 
-> We recommend taking the <Link text="React Tour" href="/react-tour" /> or <Link text="Vue Tour" href="/vue-tour" /> before reading this guide.
-> The tour explains what the files `/renderer/_default.page.*` are about.
+> 阅读此引导之前，我们推荐先看看 <Link text="React 教程" href="/react-tour" /> 或 <Link text="Vue 教程" href="/vue-tour" />。
+> 教程里解释了什么是 `/renderer/_default.page.*` 文件
 
-## `onBeforeRender()`
+{/* ## `onBeforeRender()` */}
 
-The usual way to fetch data is to use a `onBeforeRender()` hook.
+获取数据常用的方法是使用 `onBeforeRender()` 钩子函数
 
 ```js
 // /pages/movies.page.server.js
 // Environment: Node.js
 
-import fetch from 'node-fetch'
+import fetch from "node-fetch";
 
-export { onBeforeRender }
+export { onBeforeRender };
 
 async function onBeforeRender(pageContext) {
-  // `.page.server.js` files always run in Node.js; we could use SQL/ORM queries here.
-  const response = await fetch('https://movies.example.org/api')
-  let movies = await response.json()
+  // `.page.server.js` 文件总是运行在 Node.js 环境中；在这里我们可以使用 SQL/ORM 查询
+  const response = await fetch("https://movies.example.org/api");
+  let movies = await response.json();
 
-  // `movies` will be serialized and passed to the browser; we select only the data we
-  // need in order to minimize what is sent to the browser.
-  movies = movies.map(({ title, release_date }) => ({title, release_date}))
+  // `movies` 会被序列化之后传递到浏览器端
+  // 为了最小化传递给浏览器端的数据，我们把需要的数据筛选出来
+  movies = movies.map(({ title, release_date }) => ({ title, release_date }));
 
-  // We make `movies` available as `pageContext.pageProps.movies`
-  const pageProps = { movies }
+  // 把 `movies` 传递到 `pageContext.pageProps` 中
+  const pageProps = { movies };
   return {
     pageContext: {
-      pageProps
-    }
-  }
+      pageProps,
+    },
+  };
 }
 ```
+
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml, createElement } from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml, createElement } from "some-ui-framework";
 
-// We tell `vite-plugin-ssr` to make `pageContext.pageProps` available in the browser.
-export const passToClient = ['pageProps']
+// 告诉 `vite-plugin-ssr` 把 `pageContext.pageProps` 传递到浏览器端
+export const passToClient = ["pageProps"];
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  const { Page, pageProps } = pageContext
+  const { Page, pageProps } = pageContext;
   const pageHtml = await renderToHtml(
-    // We pass `pageProps` to `Page`
+    // 把 `pageProps` 传给 `Page`
     createElement(Page, pageProps)
-  )
+  );
   /* JSX:
   const pageHtml = await renderToHtml(<Page {...pageProps} />)
   */
@@ -59,116 +60,114 @@ async function render(pageContext) {
     <div id='view-root'>
       ${dangerouslySkipEscape(pageHtml)}
     </div>
-  </html>`
+  </html>`;
 }
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-export { render }
+export { render };
 
-import { hydrateDom, createElement } from 'some-ui-framework'
+import { hydrateDom, createElement } from "some-ui-framework";
 
 async function render(pageContext) {
-  // `Page` is also available in the browser
-  const { Page } = pageContext
-  // Thanks to `passToClient = ['pageProps']` our `pageContext.pageProps` is
-  // available here in the browser.
-  const { Page, pageProps } = pageContext
+  // `Page` 也可以在浏览器中使用了
+  const { Page } = pageContext;
+  // 多亏了 `passToClient = ['pageProps']`，`pageContext.pageProps` 被传递到了浏览器端（客户端）
+  const { Page, pageProps } = pageContext;
   await hydrateDom(
-    // We pass `pageProps` to `Page`
+    // 把 `pageProps` 传给 `Page`
     createElement(Page, pageProps),
-    document.getElementById('view-root')
-  )
+    document.getElementById("view-root")
+  );
   /* JSX:
   await hydrateDom(<Page {...pageProps} />, document.getElementById('view-root'))
   */
 }
 ```
+
 ```js
 // /pages/movies.page.js
 // Environment: Browser, Node.js
 
-export { Page }
+export { Page };
 
-// In the `render()` functions above, we pass `pageContext.pageProps` to `Page`
+// 在上面的 `render()` 函数中，我们将 `pageContext.pageProps` 传递给了 `Page`
 function Page(pageProps) {
-  const { movies } = pageProps
+  const { movies } = pageProps;
   // ...
 }
 ```
 
-> Note that `vite-plugin-ssr` doesn't know anything about `pageProps`: it's just an object we create in order to conveniently pass all the page's props at once.
+> 需要注意的是，`vite-plugin-ssr` 并不知道 `pageProps` 是什么：它只是我们创建的一个普通对象，其目的是为了方便地一次性传递所有页面所需的 props
 
-## Custom Exports
+{/* ## Custom Exports */}
+{/* ## 自定义Exports */}
 
-For more convenience, instead of creating a new `onBeforeRender()` hook for each page, we can define `onBeforeRender()` only once in `/renderer/_default.page.server.js` while using a <Link text="Custom Export/Hook" href="/exports" />.
+为了使用更加方便，我们可以使用<Link text="Custom Export/Hook" href="/exports" />，然后在 `/renderer/_default.page.server.js` 定义一次 `onBeforeRender()`，而不必在每个页面都定义一个 `onBeforeRender()` 钩子
 
-For example:
+例如：
 
 ```js
 // /pages/user.page.js
-export const query = { modelName: 'User', select: ['firstName', 'lastName'] }
+export const query = { modelName: "User", select: ["firstName", "lastName"] };
 ```
 
 ```js
 // /pages/product.page.js
-export const query = { modelName: 'Product', select: ['name', 'price'] }
+export const query = { modelName: "Product", select: ["name", "price"] };
 ```
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-// We use a single global `onBeforeRender()` hook
-export { onBeforeRender }
+// 使用单个全局 `onBeforeRender()` 钩子
+export { onBeforeRender };
 
-import { runQuery } from 'some-sql-engine'
+import { runQuery } from "some-sql-engine";
 
 async function onBeforeRender(pageContext) {
-  // Our `query` export values are available at `pageContext.exports.query`
-  const { query } = pageContext.exports
-  const data = await runQuery(query)
-  const pageProps = { data }
-  return { pageContext: { pageProps } }
+  // 导出的 `query` 可在 `pageContext.exports.query` 中访问
+  const { query } = pageContext.exports;
+  const data = await runQuery(query);
+  const pageProps = { data };
+  return { pageContext: { pageProps } };
 }
 ```
 
+{/* ## Client Routing */}
+{/* ## 客户端路由 */}
 
-## Client Routing
-
+`.page.server.js` 文件仅在 Node.js 中加载执行；
+所以获取数据的代码始终在 Node.js 环境中执行。这样做很方便，因为它使得我们写获取数据的代码更容易了
 The `.page.server.js` files are loaded only in Node.js;
 our data fetching code is always executed in Node.js.
 This is convenient as it makes writing data fetching code easier.
 
-If we use [Client Routing](/clientRouting),
-then we have the option to define [`onBeforeRender()` in `.page.js`](/onBeforeRender-isomorphic) instead of `.page.server.js`. In that case, `onBeforeRender()` is not only called in Node.js but also in the browser (upon page navigation).
+如果我们使用[客户端路由](/clientRouting)，那我们可以选择在 [`.page.js` 中定义 `onBeforeRender()`](/onBeforeRender-isomorphic)。这种情况下，`onBeforeRender()` 在 Node.js 和 浏览器中（页面导航时）都会被调用
 
-In general, [we recommend defining `onBeforeRender()` in `.page.server.js`](/onBeforeRender-isomorphic#recommendation) (even when using Client Routing) but,
-if we want to minimize requests made to our Node.js server,
-then we can define `onBeforeRender()` in `.page.js` instead.
+通常，[我们建议在 `.page.server.js` 中定义 `onBeforeRender()`](/onBeforeRender-isomorphic#recommendation)（即使是客户端路由）。但是如果我们想要最小化对 Node.js 服务的请求压力，可以在 `.page.js` 中定义 `onBeforeRender()`
 
+{/* ## GraphQL */}
 
-## GraphQL
+使用 GraphQL 时，我们在组件级别定义 GraphQL queries/fragments，同时在单独全局的 `onBeforeRender()` 钩子中获取 GraphQL 数据
 
-When using GraphQL, we define GraphQL queries/fragments on a component-level, while we fetch the GraphQL data in a single global `onBeforeRender()` hook.
+通常而言，我们可以在 `vite-plugin-ssr` 中完全掌控渲染方式，也就是说集成 GraphQL 只需遵循官方的 SSR 指南
 
-In general, with `vite-plugin-ssr`, we have full control over rendering which means that integrating GraphQL is mostly only a matter of following the official SSR guide of the tool we want to use.
+- <Link href='/apollo-graphql' />
+- <Link href='/urql' />
+- <Link href='/relay' />
 
- - <Link href="/apollo-graphql" />
- - <Link href="/urql" />
- - <Link href="/relay" />
+{/* ## 状态管理 (Vuex/Redux...) */}
 
+使用全局状态管理方案（[Vuex](https://vuex.vuejs.org/), [Redux](https://redux.js.org/), [PullState](https://lostpebble.github.io/pullstate/), 等）时，我们的组件不会直接访问获取到的数据。相反，组件只访问 Store，获取到的数据仅确定 Store 的初始状态
 
-## Store (Vuex/Redux...)
+通常而言，我们可以在 `vite-plugin-ssr` 中完全掌控渲染方式，也就是说集成全局状态管理方案只需遵循官方的 SSR 指南
 
-When using a global store ([Vuex](https://vuex.vuejs.org/), [Redux](https://redux.js.org/), [PullState](https://lostpebble.github.io/pullstate/), ...), our components don't access the fetched data directly. Instead, our components only access the store, while the fetched data merely determines the initial state of the store.
-
-In general, with `vite-plugin-ssr`, we have full control over rendering which means that integrating a global store is mostly only a matter of following the official SSR guide of the tool we want to use.
-
- - <Link href="/redux" />
- - <Link href="/vuex" />
- - <Link href="/pinia" />
- - <Link href="/pullstate" />
-
+- <Link href='/redux' />
+- <Link href='/vuex' />
+- <Link href='/pinia' />
+- <Link href='/pullstate' />
