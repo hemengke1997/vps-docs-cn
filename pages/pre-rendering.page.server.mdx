@@ -7,7 +7,7 @@ import { RepoLink, Link } from "@brillout/docpress";
 
 如果不使用预渲染，那么页面 HTML 会在请求时渲染（当用户页面导航时）
 
-使用预渲染的话，我们不需要 Node.js 服务：我们的应用程序仅包含静态文件（HTML、JS、CSS、images 等），我们可以将其部署到“静态主机”上，比如： <Link href="/github-pages" text="GitHub Pages" />， [Cloudflare Pages](/cloudflare-pages)， 或 [Netlify](/netlify)
+使用预渲染的话，我们不需要 Node.js 服务：我们的应用程序仅包含静态文件（HTML、JS、CSS、images 等），我们可以将其部署到“静态host”上，比如： <Link href="/github-pages" text="GitHub Pages" />， [Cloudflare Pages](/cloudflare-pages)， 或 [Netlify](/netlify)
 
 如果不使用预渲染，那么我们需要一个 Node.js 生产环境服务，（或类 Node.js 环境，如：<Link href="/cloudflare-workers" text="Cloudflare Workers" /> 或 <Link href="/vercel" text="Vercel" />），以便在请求时动态渲染页面 HTML
 
@@ -32,7 +32,7 @@ export default {
 
 开启预渲染后，执行 `$ vite build` 时页面渲染成 HTML。生成的 HTML 文件在 `dist/client` 目录下
 
-对于具有参数化路由的页面（例如：`/movie/@movieId`），我们必须使用 [`prerender()` 钩子](/prerender) 指定需要预渲染的 URL 列表。`prerender()` 钩子也可用于加速预渲染
+对于具有参数化路由的页面（例如：`/movie/@movieId`），我们必须使用 [`prerender()` hook](/prerender) 指定需要预渲染的 URL 列表。`prerender()` hook也可用于加速预渲染
 
 默认情况下，所有页面都是预渲染的。如果想只预渲染部分页面，我们可以使用 <Link href="/prerender-config#partial" text={<><code>partial</code> option</>} /> 配合 <Link href="/doNotPrerender" text={<code>.page.server.js#doNotPrerender</code>} />
 
@@ -46,10 +46,10 @@ React 例子：
     prerender
   </code> 为 `true`）
 - <RepoLink path='/examples/react-full/pages/hello/index.page.server.ts' /> （参考
-  <code>prerender()</code> 钩子）
+  <code>prerender()</code> hook）
 - <RepoLink path='/examples/react-full/pages/star-wars/index/index.page.server.ts' /> （参考 <code>
     prerender()
-  </code> 钩子）
+  </code> hook）
 - <RepoLink path='/examples/react-full/package.json' /> （参考 Vite CLI 用法）
 
 Vue 例子：
@@ -59,10 +59,10 @@ Vue 例子：
   </code> 为 `true`）
 - <RepoLink path='/examples/vue-full/pages/hello/index.page.server.ts' />
   （参考
-  <code>prerender()</code> 钩子）
+  <code>prerender()</code> hook）
 - <RepoLink path='/examples/vue-full/pages/star-wars/index/index.page.server.ts' />
   （参考
-  <code>prerender()</code> 钩子）
+  <code>prerender()</code> hook）
 - <RepoLink path='/examples/vue-full/package.json' /> （参考 Vite CLI 用法）
 
 {/* ## SSG vs SSR */}

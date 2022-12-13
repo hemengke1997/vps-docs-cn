@@ -1,11 +1,11 @@
 import { RepoLink, Link } from "@brillout/docpress";
 
-> 阅读此引导之前，我们推荐先看看 <Link text="React 教程" href="/react-tour" /> 或 <Link text="Vue 教程" href="/vue-tour" />。
+> 阅读此指南之前，我们推荐先看看 <Link text="React 教程" href="/react-tour" /> 或 <Link text="Vue 教程" href="/vue-tour" />。
 > 教程里解释了什么是 `/renderer/_default.page.*` 文件
 
 {/* ## `onBeforeRender()` */}
 
-获取数据常用的方法是使用 `onBeforeRender()` 钩子函数
+获取数据常用的方法是使用 `onBeforeRender()` hook函数
 
 ```js
 // /pages/movies.page.server.js
@@ -106,7 +106,7 @@ function Page(pageProps) {
 {/* ## Custom Exports */}
 {/* ## 自定义Exports */}
 
-为了使用更加方便，我们可以使用<Link text="Custom Export/Hook" href="/exports" />，然后在 `/renderer/_default.page.server.js` 定义一次 `onBeforeRender()`，而不必在每个页面都定义一个 `onBeforeRender()` 钩子
+为了使用更加方便，我们可以使用<Link text="Custom Export/Hook" href="/exports" />，然后在 `/renderer/_default.page.server.js` 定义一次 `onBeforeRender()`，而不必在每个页面都定义一个 `onBeforeRender()` hook
 
 例如：
 
@@ -124,7 +124,7 @@ export const query = { modelName: "Product", select: ["name", "price"] };
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-// 使用单个全局 `onBeforeRender()` 钩子
+// 使用单个全局 `onBeforeRender()` hook
 export { onBeforeRender };
 
 import { runQuery } from "some-sql-engine";
@@ -153,7 +153,7 @@ This is convenient as it makes writing data fetching code easier.
 
 {/* ## GraphQL */}
 
-使用 GraphQL 时，我们在组件级别定义 GraphQL queries/fragments，同时在单独全局的 `onBeforeRender()` 钩子中获取 GraphQL 数据
+使用 GraphQL 时，我们在组件级别定义 GraphQL queries/fragments，同时在单独全局的 `onBeforeRender()` hook中获取 GraphQL 数据
 
 通常而言，我们可以在 `vite-plugin-ssr` 中完全掌控渲染方式，也就是说集成 GraphQL 只需遵循官方的 SSR 指南
 

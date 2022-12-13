@@ -113,7 +113,7 @@ async function render(pageContext) {
 实际上我们最后创建的两个文件是 `/renderer/_default.page.client.js` 和 `/renderer/_default.page.server.js`
 这意味着我们可以通过定义一个新的 `.page.vue` 文件来创建一个新的页面（`.page.route.js`文件是可选的）
 
-`_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 React）覆盖 `render()` 钩子
+`_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 React）覆盖 `render()` hook
 
 {/* ## 数据获取 */}
 
@@ -176,7 +176,7 @@ export async function onBeforeRender(pageContext) {
 export const passToClient = ["pageProps"];
 ```
 
-这就是教程的内容，实际上我们已经知道了大部分接口
+这就是教程的内容，实际上我们已经了解了大部分接口
 `vite-plugin-ssr` 不仅灵活，而且使用简单！
 
 <ScaffoldCallToActionTour />

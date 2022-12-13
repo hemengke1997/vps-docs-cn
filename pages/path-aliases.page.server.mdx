@@ -1,25 +1,25 @@
-import { RepoLink } from '@brillout/docpress'
+import { RepoLink } from "@brillout/docpress";
 
-Instead of using relative import paths,
-which are often cumbersome,
-we can use path aliases:
+我们可以使用路径别名来代替麻烦的相对路径导入
 
 ```diff
 - import { Counter } from '../../../../components/Counter'
 + import { Counter } from `#root/components/Counter`
 ```
 
-where `#root/` denotes our project's root directory.
+其中 `#root/` 表示我们项目的根目录
 
-We may need to define path aliases at up to three different places:
- - `vite.config.js#resolve.alias` (for files processed by Vite)
- - `package.json#imports` (for Node.js files not processed by Vite)
- - `tsconfig.json#compilerOptions.paths` (for TypeScript)
+我们可能需要在最多三个不同的地方定义路径别名：
+
+- `vite.config.js#resolve.alias` （用于 Vite 处理过的文件）
+- `package.json#imports` （用于 Vite 未处理的 Node.js 文件）
+- `tsconfig.json#compilerOptions.paths` （用于 Typescript 文件）
 
 Example:
- - <RepoLink path='/examples/path-aliases' />
 
-## Vite
+- <RepoLink path='/examples/path-aliases' />
+
+{/* ## Vite */}
 
 ```js
 // vite.config.js
@@ -27,46 +27,43 @@ Example:
 export default {
   resolve: {
     alias: {
-     "#root": __dirname,
-    }
-  }
-}
+      "#root": __dirname,
+    },
+  },
+};
 ```
 
-> Only applies for files that are processed by Vite;
-> some of our Node.js server files may not be processed by Vite,
-> see the [Node.js section](#node-js) below.
+> 仅适用于经过 Vite 处理过的文件；
+> 我们的一些 Node.js 服务文件可能无法被 Vite 处理；
+> 参考下面的 [Node.js section](#node-js)
 
-Docs: [vitejs.dev/config/#resolve-alias](https://vitejs.dev/config/#resolve-alias)
+Vite 文档： [vitejs.dev/config/#resolve-alias](https://vitejs.dev/config/#resolve-alias)
 
 Example: <RepoLink path='/examples/path-aliases/vite.config.ts' />
 
-## Node.js
+{/* ## Node.js */}
 
 ```json
 // package.json
 
 {
   "imports": {
-    "#root/*": "./*.js" // Or `./*.ts` if using TypeScript
+    "#root/*": "./*.js" // 或 `./*.ts`
   }
 }
 ```
 
-Docs: [nodejs.org/api/packages.html#subpath-patterns](https://nodejs.org/api/packages.html#subpath-patterns)
+Node.js 文档： [nodejs.org/api/packages.html#subpath-patterns](https://nodejs.org/api/packages.html#subpath-patterns)
 
 Example: <RepoLink path='/examples/path-aliases/package.json' />
 
-Vite's `vite.config.js#resolve.alias` only applies to files that are processed by Vite.
-(All following files and their imports: `*.page.js`, `*.page.server.js`,`*.page.client.js`, `*.page.route.js`.)
+Vite 的 `vite.config.js#resolve.alias` 只适用于 Vite 处理过的文件。（以下所有文件及其导入： `*.page.js`, `*.page.server.js`,`*.page.client.js`, `*.page.route.js`）
 
-Browser files are always processed by Vite,
-but this is not always the case for Node.js server files,
-for example <RepoLink path="/boilerplates/boilerplate-react/server/index.js" text="Express.js server code"/>.
+浏览器端文件始终会被 Vite 处理，但是 Node.js 服务器文件并不一定，例如 <RepoLink path="/boilerplates/boilerplate-react/server/index.js" text="Express.js server code"/>
 
-For these files we can use Node.js's built-in support `package.json#imports` or, alternatively, we can use one of many npm packages such as [`module-alias`](https://github.com/ilearnio/module-alias). (Example of using `module-alias`: [/examples/path-aliases (@c914dad)](https://github.com/brillout/vite-plugin-ssr/tree/c914dade5f0809ff330478c3531928055abdadef/examples/path-aliases).)
+对于这些文件，我们可以使用 Node.js 的内置支持 `package.json#imports` 或使用如 [`module-alias`](https://github.com/ilearnio/module-alias) 的 npm 包。（使用 `module-alias` 的示例：[/examples/path-aliases (@c914dad)](https://github.com/brillout/vite-plugin-ssr/tree/c914dade5f0809ff330478c3531928055abdadef/examples/path-aliases).）
 
-## TypeScript
+{/* ## TypeScript */}
 
 ```json
 // tsconfig.json
@@ -80,9 +77,8 @@ For these files we can use Node.js's built-in support `package.json#imports` or,
 }
 ```
 
-If we use TypeScript, then TypeScript needs to know about our path aliases.
+如果我们使用 Typescript，那么 Typescript 需要知道我们的路径别名
 
-Docs: [typescriptlang.org/tsconfig#paths](https://www.typescriptlang.org/tsconfig#paths)
+Typescript 文档：[typescriptlang.org/tsconfig#paths](https://www.typescriptlang.org/tsconfig#paths)
 
 Example: <RepoLink path='/examples/path-aliases/tsconfig.json' />
-

@@ -1,30 +1,29 @@
-## `public/`
+{/* ## `public/` */}
 
-Vite has built-in support for serving static assets living in the `public/` directory.
+Vite 内置了对 `public/` 目录文件的静态资源服务支持
 
-For example, if we save a file `public/robots.txt`, then it will be served as-is at `https://example.com/robots.txt`.
+例如，如果我们保存文件 `public/robots.txt`，那么它将在 `https://example.com/robots.txt` 中按原样提供
 
-Official docs: [Vite - The `public/` Directory](https://vitejs.dev/guide/assets.html#the-public-directory).
+官方文档：[Vite - `public/` 目录](https://vitejs.dev/guide/assets.html#the-public-directory).
 
-## `dist/client/`
+{/* ## `dist/client/` */}
 
-After running `$ vite build`, all static assets live in `dist/client/`.
+`$ vite build` 之后，所有的静态资源都在 `dist/client/` 中
 
 ```bash
-# The browser-side JavaScript bundle of our page `pages/hello-world.page.js`
+# 页面 `pages/hello-world.page.js` 打包后的浏览器端结果
 dist/client/assets/hello-world.b0c3b30b.js
-# Our file `public/robots.txt`
+# 文件 `public/robots.txt`
 dist/client/robots.txt
 ```
 
-Note how Vite:
- - Adds the content hash `b0c3b30b` for improved cachability.
- - Copies all files living under `public/` to `dist/client/`.
+注意 Vite：
 
-## Server static middleware
+- 添加 content hash `b0c3b30b` 增强缓存能力
+- 将 `public/` 下的所有文件复制到 `dist/client/`
 
-If we use a Node.js production server (i.e. we don't [pre-render](/pre-rendering) our app),
-we can alternatively use a server static middleware such as [`express.static()`](https://expressjs.com/en/starter/static-files.html).
+{/* ## Server static middleware */}
 
-We may want to do this if we have a lot of heavy static assets,
-in order to avoid Vite from copying all our large static assets over to `dist/client/` and thus slowing down our build time.
+如果我们使用 Node.js 服务器（即不[pre-render](/pre-rendering)应用程序），则可以选择服务静态中间件，例如 [`express.static()`](https://expressjs.com/en/starter/static-files.html)
+
+如果我们有很多大体积的静态文件，我们可能会使用 `public/` 目录，以避免 Vite 把所有大型静态资源复制到 `dist/client/` 从而减少构建时间

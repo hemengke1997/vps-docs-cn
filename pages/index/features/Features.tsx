@@ -152,7 +152,7 @@ function Features() {
                 Workers，AWS EC2/Lambda，Firebase，Google Cloud， ...）
               </p>
               <p>
-                预渲染应用并把它部署到 <b>任意静态主机</b>（Netlify, GitHub
+                预渲染应用并把它部署到 <b>任意静态host</b>（Netlify, GitHub
                 Pages, Cloudflare Pages, ...）
               </p>
               <p>
@@ -324,13 +324,13 @@ function Features() {
           desc: (
             <>
               <p>
-                精心制作，<b>注重细节</b>，<b>注重简单</b>
+                精心制作，<b>注重细节</b>，<b>追求简单</b>
               </p>
               <p>
-                上游对<b>Vite贡献</b>
+                对上游<b> Vite贡献</b>
               </p>
               <p>
-                欢迎来GitHub 和 Discord<b>对话</b>
+                欢迎来 GitHub 和 Discord <b>交流</b>
               </p>
             </>
           ),

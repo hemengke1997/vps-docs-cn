@@ -1,96 +1,96 @@
-import { Link, RepoLink, Note } from '@brillout/docpress'
+import { Link, RepoLink, Note } from "@brillout/docpress";
 
-For each page, we can choose a different render mode:
- - SPA
- - SSR
- - HTML-only
- - Pre-rendering (aka SSG)
+对于每个页面，我们可以选择不同的渲染模式：
 
-For example, we can render an admin panel as SPA while rendering marketing pages with SSR.
+- SPA
+- SSR
+- HTML-only
+- Pre-rendering (aka SSG)
 
-> What "SPA", "SSR", "HTML-only" and "SSG" mean, and which one should be used, is explained at <Link href="/SPA-vs-SSR" />.
+比如，我们可以使用 SPA 渲染管理员面板，而使用 SSR 渲染营销页面
 
-> The `vite-plugin-ssr` boilerplates do SSR by default, which is a sensible default that works for most apps.
+> "SPA", "SSR", "HTML-only" and "SSG" 的含义以及应该选择哪个，在 <Link href="/SPA-vs-SSR" /> 中讲解
 
+> `vite-plugin-ssr` 模板默认选择 SSR，这是适用于大多数应用程序的合理默认设置。
 
-## SPA
+{/* ## SPA */}
 
-Rendering a page as SPA means that the page is loaded and rendered only in the browser.
+SPA 意味着页面仅在浏览器中加载和渲染
 
-To achieve that:
- 1. We define `.page.client.js` instead of `.page.js`.
- 2. We adapt our `render()` hooks.
+为此：
 
+1.  定义 `.page.client.js` 替代 `.page.js`
+2.  调整 `render()` hook
 
 **1. `.page.js` => `.page.client.js`**
 
-By defining `/pages/about.page.client.js` instead of `/pages/about.page` we ensure that the page is loaded only in the browser.
+通过定义 `/pages/about.page.client.js` 替代 `/pages/about.page`，以确保页面仅在浏览器中加载
 
-Example:
- - React Example: <RepoLink path="/examples/render-modes/pages/spa/index.page.client.jsx" />
- - Vue Example: [GitHub > `AaronBeaudoin/vite-plugin-ssr-example` > `/pages/spa.page.client.vue`](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/spa.page.client.vue)
+例子：
 
+- React Example: <RepoLink path="/examples/render-modes/pages/spa/index.page.client.jsx" />
+- Vue Example: [GitHub > `AaronBeaudoin/vite-plugin-ssr-example` > `/pages/spa.page.client.vue`](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/spa.page.client.vue)
 
-**2. `render()` hooks (SPA only)**
+**2. `render()` hook （仅 SPA）**
 
-If we only have SPA pages, then we adapt our `render()` hooks like the folllowing.
+如果我们只有 SPA 页面，那么可以像下面一样调整 `render()` hook
 
-Client-side `render()` hook:
+客户端 `render()` hook：
 
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-import { renderToDom } from 'some-ui-framework'
+import { renderToDom } from "some-ui-framework";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  const { Page } = pageContext
-  // UI frameworks usually have two methods, such as `renderToDom()` and `hydrateDom()`.
-  // Note how we use `renderToDom()` and not `hydrateDom()`.
-  await renderToDom(document.getElementById('root'), Page)
+  const { Page } = pageContext;
+  // UI 框架通常会有 `renderToDom()` 和 `hydrateDom()` 两个方法
+  // 注意使用 `renderToDom()` 而非 `hydrateDom()`
+  await renderToDom(document.getElementById("root"), Page);
 }
 ```
 
-> See <Link href="/hydration" /> for understanding the difference between "rendering to the DOM" and "hydrating the DOM".
+> 参考 <Link href="/hydration" />，以理解 "rendering to the DOM" 和 "hydrating the DOM" 之间的不同
 
-We also adapt our server-side `render()` hook:
+也需调整服务端 `render()` hook：
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject } from 'vite-plugin-ssr'
+import { escapeInject } from "vite-plugin-ssr";
 
 export function render() {
-  // Note that `div#root` is empty
+  // 注意 `div#root` 是空的
   return escapeInject`<html>
     <body>
       <div id="root"></div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
-This is the key difference between SPA and SSR: in SPA `div#root` is empty, whereas with SSR `div#root` contains our Page's root component `pageContext.Page` rendererd to HTML.
+这是 SPA 和 SSR 之间主要的区别：在 SPA 中，`div#root` 是空的，而在 SSR 中，`div#root` 包含了渲染页面 HTML 的根组件 `pageContext.Page`
 
-This means that, with SPA, we use our server-side `render()` hook to generate HTML that is just an empty shell: the HTML doesn't contain the page's content.
+这意味着，针对 SPA，我们使用服务器端 `render()` hook 只是为了生成一个空的 HTML：HTML 不包含页面的内容
 
-For production, we usually want to <Link text="pre-render" href="/pre-rendering" /> the HTML of our SPA pages in order to remove the need for a production Node.js server.
+生产环境中，我们通常希望 <Link text="pre-render" href="/pre-rendering" /> SPA 页面的 HTML，以便消除生产环境对 Node.js 服务器的需求
 
-We can also use our server-side `render()` hook to render `<head>`:
+我们也可以使用服务端 `render()` hook 来渲染 `<head>`：
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject } from 'vite-plugin-ssr'
+import { escapeInject } from "vite-plugin-ssr";
 
 export function render(pageContext) {
-  const { title, description } = pageContext.exports.meta
-  // Even though we load and render our page's components only in the browser,
-  // we define our page's `<title>` and `<meta name="description">` on the server-side.
+  const { title, description } = pageContext.exports.meta;
+  // 尽管只在浏览器中加载和渲染页面组件，
+  // 我们也应在服务端定义页面的 `<title>` 和 `<meta name="description">`
   return escapeInject`<html>
     <head>
       <title>${title}</title>
@@ -99,134 +99,136 @@ export function render(pageContext) {
     <body>
       <div id="root"></div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
-> `pageContext.exports` is explained at <Link href="/exports" />.
+> <Link href='/exports' /> 中讲解了 `pageContext.exports`
 
 ```js
 // /pages/about.page.js
 export const meta = {
-  title: 'About | My App',
-  description: 'My App is ...'
-}
+  title: "About | My App",
+  description: "My App is ...",
+};
 ```
 
-Note how we define `pageContext.exports.meta` in `about.page.js` instead of `about.page.client.js`. That's because we need to be able to access `pageContext.exports.meta` from the server-side.
+请注意，我们在 `about.page.js` 中定义 `pageContext.exports.meta`，而不是 `about.page.client.js`。因为我们需要在服务端访问 `pageContext.exports.meta`
 
-This means that we define both `about.page.js` (defining meta data) and `about.page.client.js` (defining our page's root component `pageContext.Page`).
-
+也就是说，我们同时定义了 `about.page.js`（定义 meta 数据） 和 `about.page.client.js` （定义页面的根组件 `pageContext.Page`）
 
 **2. `render()` hooks (SPA + SSR)**
 
-If we have both SPA and SSR pages, then we adapt our `render()` hooks like this:
+如果同时存在 SPA 和 SSR，那么我们需要像以下调整 `render()` hook：
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml } from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml } from "some-ui-framework";
 
 export function render(pageContext) {
-  let pageHtml
+  let pageHtml;
   if (pageContext.Page) {
     // For SSR pages
-    pageHtml = renderToHtml(pageContext.Page)
+    pageHtml = renderToHtml(pageContext.Page);
   } else {
     // For SPA pages
-    pageHtml = ''
+    pageHtml = "";
   }
   return escapeInject`<html>
     <body>
       <div id="root">${dangerouslySkipEscape(pageHtml)}</div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
-> If we define a page's root component (`pageContext.Page`) in `.page.client.js` instead of `.page.js`, then `pageContext.Page` is only defined in the browser.
+> 如果我们在 `.page.client.js` 而不是 `.page.js` 中定义页面的根组件（`pageContext.Page`），那么 `pageContext.Page` 仅在浏览器中渲染
 
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-import { renderToDom, hydrateDom } from 'some-ui-framework'
+import { renderToDom, hydrateDom } from "some-ui-framework";
 
 export async function render(pageContext) {
-  const { Page } = pageContext
-  const root = document.getElementById('root')
+  const { Page } = pageContext;
+  const root = document.getElementById("root");
   if (
-    // We detect SPAs by using the fact that `innerHTML === ''` for the first render of an SPA
-    root.innerHTML === '' ||
-    // Upon Client Routing page navigation, vite-plugin-ssr sets `pageContext.isHydration`
-    // to `false`.
+    // 我们通过使用 `innerHTML === ''` 来探测SPA的首次渲染
+    root.innerHTML === "" ||
+    // 使用客户端路由导航时， vite-plugin-ssr 将 `pageContext.isHydration` 设置为 `false`
     !pageContext.isHydration
   ) {
-    // - SPA pages don't have any hydration steps: they need to be fully rendered.
-    // - Page navigation of SSR pages also need to be fully rendered (if we use Client Routing)
-    await renderToDom(root, Page)
+    // - SPA 页面没有 hydration 步骤：它们需要完全渲染
+    // - SSR 的页面导航也需要完全渲染（如果使用客户端路由）
+    await renderToDom(root, Page);
   } else {
-    // The first render of SSR pages is merely a hydration (instead of a full render)
-    await hydrateDom(root, Page)
+    // SSR 页面的第一次渲染只是 hydration（而不是完全渲染）
+    await hydrateDom(root, Page);
   }
 }
 ```
 
 React example: <Link href="/examples/render-modes/" />.
- - Server-side hook: <Link text="/renderer/_default.page.server.jsx" href="/examples/render-modes/renderer/_default.page.server.jsx" />
- - Client-side hook: <Link text="/renderer/_default.page.client.jsx" href="/examples/render-modes/renderer/_default.page.client.jsx" />
- - SPA page: <Link text="/pages/spa/index.page.client.jsx" href="/examples/render-modes/pages/spa/index.page.client.jsx" />
- - SSR page: <Link text="/pages/ssr/index.page.jsx" href="/examples/render-modes/pages/ssr/index.page.jsx" />
+
+- Server-side hook: <Link text="/renderer/_default.page.server.jsx" href="/examples/render-modes/renderer/_default.page.server.jsx" />
+- Client-side hook: <Link text="/renderer/_default.page.client.jsx" href="/examples/render-modes/renderer/_default.page.client.jsx" />
+- SPA page: <Link text="/pages/spa/index.page.client.jsx" href="/examples/render-modes/pages/spa/index.page.client.jsx" />
+- SSR page: <Link text="/pages/ssr/index.page.jsx" href="/examples/render-modes/pages/ssr/index.page.jsx" />
 
 Vue Example: [GitHub > `AaronBeaudoin/vite-plugin-ssr-example`](https://github.com/AaronBeaudoin/vite-plugin-ssr-example).
- - Server-side hook: [/pages/_default/_default.page.server.ts](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/_default/_default.page.server.ts)
- - Client-side hook: [/pages/_default/_default.page.client.ts](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/_default/_default.page.client.ts)
- - SPA page: [/pages/spa.page.client.vue](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/spa.page.client.vue)
- - SSR page: [/pages/ssr.page.vue](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/ssr.page.vue)
 
+- Server-side hook: [/pages/\_default/\_default.page.server.ts](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/_default/_default.page.server.ts)
+- Client-side hook: [/pages/\_default/\_default.page.client.ts](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/_default/_default.page.client.ts)
+- SPA page: [/pages/spa.page.client.vue](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/spa.page.client.vue)
+- SSR page: [/pages/ssr.page.vue](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/ssr.page.vue)
 
-## SSR
+{/* ## SSR */}
 
-The `vite-plugin-ssr` boilerplates and documentation use SSR by default.
+`vite-plugin-ssr` 模板和文档默认使用 SSR
 
-So, if we only have SSR pages, then there is nothing for us to do: we simply follow the boilerplates/docs.
+所以，如果我们的页面都是 SSR 渲染，那么我们只需：按照模板/文档简单操作
 
-If we want to have both SSR and SPA pages, then see [the SPA section](#spa).
+{/* 如果同时拥有 SSR 和 SPA 页面， 请参考 [the SPA section](#spa) */}
 
+{/* ## 预渲染 */}
 
-## Pre-rendering
+参考 <Link href="/pre-rendering" />.
 
-See <Link href="/pre-rendering" />.
+{/* ## HTML-only */}
 
+<Note type='warning'>
+  使用现代
+  UI框架（React/Vue/...）将页面渲染为纯HTML是一种新技术，应被视为实验性的
+</Note>
 
-## HTML-only
+将页面渲染为纯 HTML：
 
-<Note type="warning">Using modern UI frameworks (React/Vue/...) to render pages only to HTML is a novel technique and should be considered experimental.</Note>
-
-To render a page to HTML-only:
-
- 1. We define `.page.server.js` instead of `.page.js`.
- 1. (Optional) We define `.page.client.js` (e.g. to add minimal amount of JavaScript surgically injecting bits of interactivity).
- 1. We set <Link text={<code>includeAssetsImportedByServer</code>} href="/includeAssetsImportedByServer" /> to `true`.
-
+1.  定义 `.page.server.js` 替代 `.page.js`.
+1.  （可选） 定义 `.page.client.js` （例如： 添加极少的 JavaScript 注入交互性）
+1.  将 <Link text={<code>includeAssetsImportedByServer</code>} href="/includeAssetsImportedByServer" /> 设置为 `true`
 
 ```js
 // /pages/about.page.server.js
 // Environment: Node.js
 
-// Usually `Page` is defined in `*.page.js` but for HTML-only we
-// define `Page` in `*.page.server.js` instead.
-export { Page }
+// 通常在 `*.page.js` 中定义 `Page`，但对于 HTML-only
+// 我们在 `*.page.server.js` 中定义 `Page`
+export { Page };
 
 function Page() {
-  return <>
-    <h1>HTML-only page</h1>
-    <p>
-      This page is rendered only to HTML. (It's not loaded/rendered in the browser-side.)
-    </p>
-  </>
+  return (
+    <>
+      <h1>HTML-only page</h1>
+      <p>
+        This page is rendered only to HTML. (It's not loaded/rendered in the
+        browser-side.)
+      </p>
+    </>
+  );
 }
 ```
 
@@ -234,28 +236,29 @@ function Page() {
 // /pages/about.page.client.js
 // Environment: Browser
 
-// This file represents the entire browser-side JavaScript.
-// We can omit defining `.page.client.js` in which case the page has zero browser-side JavaScript.
+// 此文件代表了整个浏览器端的 JavaScript
+// 我们可以省略定义 `.page.client.js`，在这种情况下浏览器端就完全没有 JavaScript 了
 
-console.log("I'm the page's only browser-side JavaScript line.")
+console.log("I'm the page's only browser-side JavaScript line.");
 ```
 
 ```js
 // vite.config.js
 
-import { ssr } from 'vite-plugin-ssr/plugin'
+import { ssr } from "vite-plugin-ssr/plugin";
 
 export default {
   plugins: [
     ssr({
-      includeAssetsImportedByServer: true
-    })
-  ]
-}
+      includeAssetsImportedByServer: true,
+    }),
+  ],
+};
 ```
 
 Examples:
- - React Example (zero JavaScript): <RepoLink path="/examples/render-modes/pages/html-only/" />
- - React Example (minimal JavaScript): <RepoLink path="/examples/render-modes/pages/html-js/" />
- - Vue Example: [GitHub > `AaronBeaudoin/vite-plugin-ssr-example` > `/pages/html.page.server.vue`](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/html.page.server.vue)
- - [@brillout/docpress](https://github.com/brillout/docpress) which powers this website `https://vite-plugin-ssr.com` (this website uses the HTML-only technique).
+
+- React Example （零 JavaScript）: <RepoLink path="/examples/render-modes/pages/html-only/" />
+- React Example （极少 JavaScript）: <RepoLink path="/examples/render-modes/pages/html-js/" />
+- Vue Example: [GitHub > `AaronBeaudoin/vite-plugin-ssr-example` > `/pages/html.page.server.vue`](https://github.com/AaronBeaudoin/vite-plugin-ssr-example/blob/main/pages/html.page.server.vue)
+- [@brillout/docpress](https://github.com/brillout/docpress) 为网站 `https://vite-plugin-ssr.com` 提供支持（本网站使用 HTML-only 技术）

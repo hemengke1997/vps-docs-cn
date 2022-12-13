@@ -1,61 +1,59 @@
-A recurring problem when doing SSR are so-called *hydration mismatches*.
+SSR 经常出现的问题就是 _hydration mismatches_
 
-## Hydration mismatch
+{/* ## Hydration mismatch */}
 
-> We recommend having a clear understanding of what hydration is, see the [What is hydration?](/hydration) guide.
+> 要了解什么是 Hydration，请参考 [What is hydration?](/hydration) 指南
 
-A hydration mismatch is when the content rendered to HTML in Node.js is not the same than the content rendered in the browser.
+hydration mismatch 指的是 HTML 在 Node.js 和浏览器中渲染的内容不同
 
-Hydration mismatches
-can induce performance degradation
-and bugs and should therefore be avoided.
+Hydration mismatches 会导致性能下降和错误，因此应该避免
 
-## Example
+{/* ## Example */}
 
-Let's imagine we render the current date's milliseconds:
+假设我们渲染当前日期的毫秒数：
+
 ```jsx
-<span>{ new Date().getMilliseconds() }</span>
+<span>{new Date().getMilliseconds()}</span>
 ```
-This induces a hydration mismatch
-because the milliseconds rendered to HTML
-(e.g. `<span>123</span>`)
-won't match the milliseconds rendered on the browser-side
-(e.g. `<span>167</span>`).
 
+这会导致 hydration mismatch，因为在服务端渲染的毫秒数（例如 `<span>123</span>`）跟浏览器端渲染的毫秒数（例如 `<span>167</span>`）不匹配
 
-To prevent the hydration mismatch, we should ensure that the same milliseconds value is rendered.
-We can do that by using the [`onBeforeRender()` hook](/onBeforeRender).
+为了防止 hydration mismatch，我们应该确保渲染相同的毫秒值，我们可以通过 [`onBeforeRender()`](/onBeforeRender) 做到这一点
 
 ```js
-export { onBeforeRender }
+export { onBeforeRender };
 
 async function onBeforeRender() {
-  const milliseconds = new Date().getMilliseconds()
+  const milliseconds = new Date().getMilliseconds();
   return {
     pageContext: {
-      milliseconds
-    }
-  }
+      milliseconds,
+    },
+  };
 }
 ```
+
 ```jsx
-<span>{ pageContext.milliseconds }</span>
+<span>{pageContext.milliseconds}</span>
 ```
 
-What happens here is that `pageContext.milliseconds` will be set exactly once, so that the same milliseconds value will be rendered to HTML in Node.js and hydrated on the browser-side. (We use [`export passToClient = ['milliseconds']`](/passToClient) to pass `pageContext.milliseconds` to the browser.)
+这里发生的是：`pageContext.milliseconds` 会被设置一次，相同的毫秒值将在 Node.js 中渲染到 HTML 中，并在浏览器端 hydrate。（我们使用[`export passToClient = ['milliseconds']`](/passToClient) 将 `pageContext.milliseconds` 传递给浏览器端）
 
-## Common causes & solutions
+{/* ## Common causes & solutions */}
 
-Common causes:
- - **Rendered content is actually different**. Make sure that your components render the same content in Node.js as well as in the browser.
- - **Browser cache**: While developing, make sure to disable your browser's cache to ensure that your browser doesn't load cached & outdated JavaScript.
- - **Proxies**: If you use a proxy, make sure it doesn't apply problematic HTML transfomers. For example, if you use Cloudflare, you have to disable Cloudflare's automatic HTML minifier.
+常见原因：
 
-With React:
- - **Old React versions** are buggy around stiching text segments leading to `Warning: Text content did not match.`. Make sure to use the latest React version.
+- **渲染内容实际上不同**。确保你的组件在 Node.js 和浏览器中渲染相同的内容
+- **浏览器缓存**: 在开发阶段，请禁用浏览器缓存，以确保浏览器不会加载缓存和过时的 JavaScript
+- **代理**: 如果你使用代理，请确保它不会使用有问题的 HTML 转化器。例如，如果你使用 Cloudflare，则必须禁用 Cloudflare 的 HTML 自动压缩器
 
-## Suppress Hydration Mismatch
+React 中:
 
-There are situations when mismatches are inevitable. To suppress hydration mismatch warnings:
- - React: [StackOverflow - Is there any way to avoid "Text content did not match" warning in SSR with React?](https://stackoverflow.com/questions/53959948/is-there-any-way-to-avoid-text-content-did-not-match-warning-in-ssr-with-react/68438131)
- - Vue: [StackOverflow - [Vue][SSR] Suppress hydration mismatch warning](https://stackoverflow.com/questions/68438016/vuessr-suppress-hydration-mismatch-warning/68438108)
+- **老 React 版本** 在拼接文本段时存在错误，导致 `Warning: Text content did not match.`。确保使用最新的 React 版本
+
+{/* ## Suppress Hydration Mismatch */}
+
+在某些情况下，hydration mismatches 不可避免，阻止 hydration mismatch 警告：
+
+- React: [StackOverflow - Is there any way to avoid "Text content did not match" warning in SSR with React?](https://stackoverflow.com/questions/53959948/is-there-any-way-to-avoid-text-content-did-not-match-warning-in-ssr-with-react/68438131)
+- Vue: [StackOverflow - [Vue][SSR] Suppress hydration mismatch warning](https://stackoverflow.com/questions/68438016/vuessr-suppress-hydration-mismatch-warning/68438108)

@@ -1,6 +1,6 @@
-import { RepoLink, Link } from '@brillout/docpress'
+import { RepoLink, Link } from "@brillout/docpress";
 
-We can internationalize (i18n) a `vite-plugin-ssr` app by using a <Link text={<><code>onBeforeRoute()</code> hook</>} href="/onBeforeRoute" />.
+通过 <Link text={<><code>onBeforeRoute()</code> hook</>} href="/onBeforeRoute" /> 可以实现国际化（i18n）
 
 ```js
 // /renderer/_default.page.route.js
@@ -11,22 +11,22 @@ function onBeforeRoute(pageContext) {
   const { urlWithoutLocale, locale } = extractLocale(pageContext.urlOriginal)
   return {
     pageContext: {
-      // We make `locale` available as `pageContext.locale`
+      // 使 `locale` 在 `pageContext.locale` 中可用
       locale,
-      // We overwrite `pageContext.urlOriginal`
+      // 重写 `pageContext.urlOriginal`
       urlOriginal: urlWithoutLocale
     }
   }
 }
 
-// We can also use a library instead of implementing our own locale retrieval mechanism
+// 我们也可以使用库而不是实现我们自己的语言环境探测机制
 function extractLocale(url) {
-  // We determine the locale, for example:
+  // 确定语言环境，例如：
   //  extractLocale('/en-US/film/42').locale === 'en-US'
   //  extractLocale('/de-DE/film/42').locale === 'de-DE'
   const locale = /* ... */
 
-  // We remove the locale, for example:
+  // 移除语言，例如：
   //  extractLocale('/en-US/film/42').urlWithoutLocale === '/film/42'
   //  extractLocale('/de-DE/film/42').urlWithoutLocale === '/film/42'
   //  ...
@@ -36,60 +36,59 @@ function extractLocale(url) {
 }
 ```
 
-Upon rendering a page, `onBeforeRoute()` is the first hook that `vite-plugin-ssr` calls, which means that the rest of our app doesn't have to deal with localized URLs anymore and we can simply use `pageContext.locale` instead.
+在渲染页面时，`onBeforeRoute()` 是 `vite-plugin-ssr` 调用的第一个 hook，这意味着我们应用程序的其余部分不再需要处理本地化的 URL，我们可以简单地使用 `pageContext. locale` 代替
 
-> See <Link href="/pageContext-anywhere" /> for being able to access `pageContext.locale` in any React/Vue component.
+> 在所有 React/Vue 组件中访问 `pageContext.locale`，请参考 <Link href="/pageContext-anywhere" />
 
-This technique also works with:
+此技术还适用于：
 
-- `?lang=fr` query parameters
-- `domain.fr` domain TLDs
+- `?lang=fr` 查询参数
+- `domain.fr` 域名 TLDs
 - `Accept-Language: fr-FR` headers
-   > The `Accept-Language` header can be used for redirecting the user to the right localized URL (e.g. URL `/about` + Header `Accept-Language: de-DE` => redirect to `/de-DE/about`). Once the user is redirected to a localized URL, we can use the technique described above. We can perform the redirection by using our server (e.g. Express.js) independently of vite-plugin-ssr.
 
-   > Using the `Accept-Language` header to show different languages for the same URL is considered bad practice for both SEO and UX reasons. It's recommended to use `Accept-Language` only to redirect the user.
+  > `Accept-Language` header 可用于将用户重定向到正确的本地化后的 URL （例如 URL `/about` + Header `Accept-Language: de-DE` => 重定向到 `/de-DE/about`）。一旦用户被重定向到本地化后的 URL，我们就可以使用上述技术。我们可以独立于 vite-plugin-ssr 使用服务器重定向（如 Express.js）
 
+  > 出于 SEO 和 UX 的原因，使用 `Accpet-Language` header 为同一 URL 显示出不同的语言被认为是不好的做法。建议仅使用 `Accpet-Language` 来重定向用户
 
-## Example
+{/* ## Example */}
 
-See <RepoLink path='/examples/i18n/' />.
+参考 <RepoLink path='/examples/i18n/' />.
 
+{/* ## 预渲染 */}
 
-## Pre-rendering
-
-For <Link text="pre-rendering" href="/pre-rendering" /> we can use `onBeforePrerender()`.
+对于 <Link text="pre-rendering" href="/pre-rendering" />，我们可以使用 `onBeforePrerender()`
 
 ```js
 // _default.page.server.js
 
-export { onBeforePrerender }
+export { onBeforePrerender };
 
-const locales = ['en-US', 'de-DE', 'fr-FR']
+const locales = ["en-US", "de-DE", "fr-FR"];
 
 function onBeforePrerender(prerenderContext) {
-  const pageContexts = []
+  const pageContexts = [];
   prerenderContext.pageContexts.forEach((pageContext) => {
     pageContexts.push({
       ...pageContext,
-      locale: localeDefault
-    })
-    // We add the localized pages to the list of pages that are going to be pre-rendered
+      locale: localeDefault,
+    });
+    // 我们将本地化页面添加到将要预渲染的页面列表中
     locales
       .filter((locale) => locale !== localeDefault)
       .forEach((locale) => {
         pageContexts.push({
           ...pageContext,
           urlOriginal: `/${locale}${pageContext.urlOriginal}`,
-          locale
-        })
-      })
-  })
+          locale,
+        });
+      });
+  });
   return {
     prerenderContext: {
-      pageContexts
-    }
-  }
+      pageContexts,
+    },
+  };
 }
 ```
 
-See <RepoLink path='/examples/i18n/' /> for an example of using `onBeforePrerender()`.
+有关使用 `onBeforePrerender()` 的示例，请参考 <RepoLink path='/examples/i18n/' />
