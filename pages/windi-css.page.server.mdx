@@ -1,48 +1,49 @@
-import { Note } from '@brillout/docpress'
+import { Note } from "@brillout/docpress";
 
-\# # 131
+1. 安装：
 
-
-1. Install:
    ```shell
    npm install vite-plugin-windicss windicss
    ```
 
-2. Add `vite-plugin-windicss` to `vite.config.js`:
+2. 把 `vite-plugin-windicss` 添加到 `vite.config.js`：
+
    ```js
    // vite.config.js
 
-   import ssr from "vite-plugin-ssr/plugin"
-   import WindiCSS from "vite-plugin-windicss"
+   import ssr from "vite-plugin-ssr/plugin";
+   import WindiCSS from "vite-plugin-windicss";
 
    export default {
      plugins: [
        ssr(),
        WindiCSS({
          scan: {
-           // By default only `src/` is scanned
+           // 默认情况下只有 `src/` 目录下被扫描
            dirs: ["pages"],
-           // We only have to specify the file extensions we actually use.
-           fileExtensions: ["vue", "js", "ts", "jsx", "tsx"]
-         }
-       })
-     ]
-   }
+           // 我们只需要指定实际使用的文件扩展名
+           fileExtensions: ["vue", "js", "ts", "jsx", "tsx"],
+         },
+       }),
+     ],
+   };
    ```
 
-   <Note type="warning">Make sure that all your files are included in `scan.dirs`.</Note>
+   <Note type='warning'>确保你的所有文件都在 `scan.dirs` 中</Note>
 
-   > These options can also be defined in `windi.config.js`.
+   > 这些选项设置也可以定义在 `windi.config.js` 中
 
-3. Import `virtual:windi.css` in `_default.page.client.js`.
+3. 在 `_default.page.client.js` 中 import `virtual:windi.css`
+
    ```js
    // renderer/_default.page.client.js
 
-   import 'virtual:windi.css'
+   import "virtual:windi.css";
 
    // ...
    ```
 
-See also:
- - Example of using `vite-plugin-ssr` with Windi CSS: [github.com/brillout/vite-plugin-ssr_windi-css](https://github.com/brillout/vite-plugin-ssr_windi-css).
- - [WindiCSS Vite Guide](https://windicss.org/integrations/vite.html).
+另请参考：
+
+- 在 Windi CSS 中使用 `vite-plugin-ssr` 的例子：[github.com/brillout/vite-plugin-ssr_windi-css](https://github.com/brillout/vite-plugin-ssr_windi-css).
+- [WindiCSS Vite 指南](https://windicss.org/integrations/vite.html).

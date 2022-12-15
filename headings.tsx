@@ -322,7 +322,7 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 2,
-    title: "Active 链接",
+    title: "Active Links",
     url: "/active-links",
   },
   {
@@ -388,7 +388,8 @@ const headings: HeadingDefinition[] = [
     level: 2,
     title: "Cloudflare Workers",
     url: "/cloudflare-workers",
-    sectionTitles: ["Cloudflare Pages"],
+    // TODO
+    // sectionTitles: ["Cloudflare Pages"],
   },
   {
     level: 2,
@@ -432,7 +433,7 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 4,
-    title: "数据 fetch",
+    title: "数据获取",
   },
   {
     level: 2,
@@ -496,8 +497,8 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 2,
-    title: "Data Store",
-    titleInNav: "Other",
+    title: "状态管理",
+    titleInNav: "其他",
     url: "/store",
   },
   {
@@ -512,7 +513,7 @@ const headings: HeadingDefinition[] = [
   {
     level: 2,
     title: "鉴权",
-    titleInNav: "Other",
+    titleInNav: "其他",
     url: "/auth",
   },
   {
@@ -621,8 +622,8 @@ const headings: HeadingDefinition[] = [
   },
   {
     level: 2,
-    title: "Other 集成",
-    titleInNav: "Other",
+    title: "其他集成",
+    titleInNav: "其他",
     url: "/integration",
   },
   {

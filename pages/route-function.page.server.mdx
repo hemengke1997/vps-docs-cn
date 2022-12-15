@@ -1,187 +1,187 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-Route Functions give us full programmatic flexibility to implement advanced routing logic.
+路由函数为我们提供了编程灵活性来实现高级路由
 
 ```js
 // /pages/product/edit.page.route.js
 
-import partRegex from 'part-regex'
+import partRegex from "part-regex";
 
 export default (pageContext) => {
-  // Route guard
+  // 路由守卫
   if (!pageContext.user.isAdmin) {
-    return false
+    return false;
   }
 
-  // We can use RegExp and any library we want
+  // 我们可以使用 RegExp 和任何我们想用的库
   if (!partRegex`/product/${/[0-9]+/}/edit`.test(pageContext.urlPathname)) {
-    return false
+    return false;
   }
-  const id = pageContext.urlPathname.split('/')[2]
+  const id = pageContext.urlPathname.split("/")[2];
 
   return {
-    // We make `id` available as `pageContext.routeParams.id`
+    // 把 `id` 传到 `pageContext.routeParams.id` 中
     routeParams: { id },
-    // For routing conflicts
+    // 路由优先级
     precedence: 10,
-  }
-}
+  };
+};
 ```
 
-The `precedence` number is for resolving routing conflicts, see <Link href="/routing-precedence" />.
+`precedence` 数字用于解决路由冲突，详见：<Link href="/routing-precedence" />
 
-We can use any routing tool we want, such as:
- - [`resolveRoute()`](#resolveroute)
- - [partRegex](https://github.com/brillout/part-regex)
+我们可以使用任何路由工具，例如：
 
+- [`resolveRoute()`](#resolveroute)
+- [partRegex](https://github.com/brillout/part-regex)
 
-## `resolveRoute()`
+{/* ## `resolveRoute()` */}
 
-Route Functions can use vite-plugin-ssr's Route String resolver:
+路由函数可以使用 `vite-plugin-ssr` 内置的路由解析器
 
 ```js
 // /pages/product/edit.page.route.js
 
-import { resolveRoute } from 'vite-plugin-ssr/routing'
+import { resolveRoute } from "vite-plugin-ssr/routing";
 
 export default (pageContext) => {
   if (!pageContext.user.isAdmin) {
-    return false
+    return false;
   }
-  return resolveRoute('/product/@id/edit', pageContext.urlPathname)
-}
+  return resolveRoute("/product/@id/edit", pageContext.urlPathname);
+};
 ```
 
 ```js
 // /pages/product/index.page.route.js
 
-import { resolveRoute } from 'vite-plugin-ssr/routing'
+import { resolveRoute } from "vite-plugin-ssr/routing";
 
 export default (pageContext) => {
   {
-    const result = resolveRoute('/product/@id', pageContext.urlPathname)
+    const result = resolveRoute("/product/@id", pageContext.urlPathname);
     if (result.match) {
-      result.routeParams.view = 'overview'
-      return result
+      result.routeParams.view = "overview";
+      return result;
     }
   }
 
-  const result = resolveRoute('/product/@id/@view', pageContext.urlPathname)
-  if (!['reviews', 'pricing'].includes(result.routeParams.view)) {
-    return false
+  const result = resolveRoute("/product/@id/@view", pageContext.urlPathname);
+  if (!["reviews", "pricing"].includes(result.routeParams.view)) {
+    return false;
   }
-  return result
-}
+  return result;
+};
 ```
 
+{/* ## 始终运行 */}
 
-## Always Run
+每次渲染页面时（即每次[`renderPage()`](/renderPage)调用时），`vite-plugin-ssr` 都会执行 _所有_ 路由函数
 
-Everytime a page is rendered (i.e. upon each [`renderPage()`](/renderPage) call), `vite-plugin-ssr` executes *all* Route Functions.
+这是因为 `vite-plugin-ssr` 无法预测路由函数是否会返回一个高优先级数字来覆盖所有其他路由
 
-That's because `vite-plugin-ssr` cannot predict whether a Route Function will return a high precedence number overriding all other routes.
-
-For example:
+例如：
 
 ```js
 // /pages/login.page.route.js
 
-// Route Function to render the login page to non-authenticated users, regardless of the URL.
+// 将登录页面渲染给未鉴权的用户的路由函数，无论 URL 是什么
 
-export default pageContext => {
-  // Only render the login page to non-authenticated users
+export default (pageContext) => {
+  // 仅向未鉴权的用户渲染登录页面
   if (userIsLoggedIn(pageContext)) {
-    return false
+    return false;
   }
 
   return {
-    // We override all other routes by setting a high `precedence` value of `99`.
-    // This means that *all* URLs render the login page (if the user isn't authenticated).
-    precedence: 99
-  }
-}
+    // 我们通过设置 99 的高优先级来覆盖所有其他路由
+    // 这意味着 *所有* URL 都会渲染登录页面（如果用户未通过身份验证）
+    precedence: 99,
+  };
+};
 
 function userIsLoggedIn(pageContext) {
-  return pageContext.user !== null
+  return pageContext.user !== null;
 }
 ```
 
-This means that `vite-plugin-ssr` always has to execute this Route Function in order to resolve routing.
+这意味着 `vite-plugin-ssr` 总是必须执行这个路由函数来解析路由
 
-> This trick is further explained at [Guides > Page Redirection > Auth Redirection](/page-redirection#auth-redirection).
+> [Guides > Page Redirection > Auth Redirection](/page-redirection#auth-redirection) 中进一步解释了这个技巧
 
+{/* ## 异步 */}
 
-## Async
+异步路由函数可能会明显降低我们的应用程序的速度：正如我们在上一节中看到的那样，每次渲染页面时，我们所有页面的路由函数都会被调用并等待
 
-Async route functions may significantly slow down our app: as we have seen in the previous section, every time a page is rendered the Route Functions of all our pages are called and awaited for.
+这意味着缓慢的路由功能会减慢我们所有页面的速度
 
-This means that a slow Route Function will slow down all our pages.
-
-By default, async route functions are forbidden, but we can enable them by setting `iKnowThePerformanceRisksOfAsyncRouteFunctions`.
+默认情况下，异步路由功能是被禁止的，但我们可以通过设置 `iKnowThePerformanceRisksOfAsyncRouteFunctions` 来开启
 
 ```js
 // *.page.route.js
 
-export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true
+export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true;
 
-// We can now use an async Route Function
-export default async () => { /* ... */ }
+// 现在可以使用异步路由函数
+export default async () => {
+  /* ... */
+};
 ```
 
-Also, providing `pageContext` in route functions if forbidden (even for async route functions).
+此外，禁止在路由函数中返回 `pageContext`。（异步路由函数也是如此）
 
 ```js
 // *.page.route.js
 
-export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true
+export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true;
 
-// This is not possible and `vite-plugin-ssr` will complain
+// `vite-plugin-ssr` 会报错
 export default async () => {
   return {
     pageContext: {
       // Some additional `pageContext`
-    }
-  }
-}
+    },
+  };
+};
 ```
 
-Often, the motivation for using async route functions is to determine whether the URL exists:
+通常，使用异步路由函数的目的是确定 URL 是否存在：
 
 ```js
 // user.page.route.js
 
-export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true
+export const iKnowThePerformanceRisksOfAsyncRouteFunctions = true;
 
-export default async pageContext => {
-  const { url } = pageContext
+export default async (pageContext) => {
+  const { url } = pageContext;
 
   // Parse the URL
-  const urlParts = url.slice(1).split('/')
+  const urlParts = url.slice(1).split("/");
 
   // Only URLs that start with `/user/@userId`
-  if (urlParts[0] !== 'user') return false
-  const userId = urlParts[1]
-  if (!userId) return false
+  if (urlParts[0] !== "user") return false;
+  const userId = urlParts[1];
+  if (!userId) return false;
 
   // Only if there is a user matching `userId`
-  const user = await db.fetchUser(userId)
+  const user = await db.fetchUser(userId);
   if (!user) {
-    return false
+    return false;
   }
 
   return {
     routeParams: {
-      userId
+      userId,
     },
-    // `vite-plugin-ssr` complains
+    // `vite-plugin-ssr` 报错
     pageContext: {
-      user
-    }
-  }
-}
+      user,
+    },
+  };
+};
 ```
 
-Instead, we can `throw RenderErrorPage()` in our `onBeforeRender()` hook:
+相反，我们可以在 `onBeforeRender()` hook 中`throw RenderErrorPage()`：
 
 ```js
 // user.page.server.js
@@ -196,10 +196,10 @@ function onBeforeRender(pageContext) {
   const user = await db.fetchUser(userId)
 
   if (!user) {
-    // `vite-plugin-ssr` will render `_error.page.js`
+    // `vite-plugin-ssr` 会渲染 `_error.page.js`
     throw RenderErrorPage({
       pageContext: {
-        // We can provide some additional `pageContext` to use in `_error.page.js`
+        // 我们可以提供一些额外的 `pageContext` 在 `_error.page.js` 中使用
         errorInfo: `User ${userId} doesn't exist`
       }
     })
@@ -209,24 +209,24 @@ function onBeforeRender(pageContext) {
 }
 ```
 
-> `RenderErrorPage()` can only be used on the server-side. If you want to use it on the browser-side, then create a new Feature Request on GitHub.
+> `RenderErrorPage()` 只能在服务端使用。如果您想在浏览器端使用它，请在 GitHub 上创建一个 Feature Request
 
 ```js
 // user.page.route.js
 
-export default pageContext => {
-  const { url } = pageContext
+export default (pageContext) => {
+  const { url } = pageContext;
 
-  const urlParts = url.slice(1).split('/')
+  const urlParts = url.slice(1).split("/");
 
-  if (urlParts[0] !== 'user') return false
-  const userId = urlParts[1]
-  if (!userId) return false
+  if (urlParts[0] !== "user") return false;
+  const userId = urlParts[1];
+  if (!userId) return false;
 
   return {
     routeParams: {
-      userId
-    }
-  }
-}
+      userId,
+    },
+  };
+};
 ```

@@ -1,70 +1,73 @@
-import { RepoLink } from '@brillout/docpress'
-import { ImportMeta } from '@brillout/docpress'
+import { RepoLink } from "@brillout/docpress";
+import { ImportMeta } from "@brillout/docpress";
 
-> **What is the Base URL?** Changing the Base URL (aka Public Path) is about changing the URL root.
-> For example, instead of deploying our app to `https://example.org/*` (the Base URL is `/`) we can change the Base URL to `/some-base/` and deploy it to `https://example.org/some-base/*` instead.
+> **什么是 Base URL?** 更改 Base URL (也称为 Public Path) 也就是更改 URL root。
+> 例如，我们可以把 Base URL 改为 `/some-base/` 从而部署到 `https://example.org/some-base/*`
 
-To change the Base URL we:
+要更改 Base URL，我们：
 
-1. Set [`vite.config.js#base`](https://vitejs.dev/config/shared-options.html#base).
+1. 设置 [`vite.config.js#base`](https://vitejs.dev/config/shared-options.html#base).
    ```js
    // vite.config.js
    export default {
-     base: '/some-base/'
-   }
+     base: "/some-base/",
+   };
    ```
-1. Use [<ImportMeta prop='env.BASE_URL' />](https://vitejs.dev/guide/build.html#public-base-path) to construct a `<Link>` component that prepends the Base URL. Example: <RepoLink path='/examples/base-url/components/Link.jsx' />.
-1. Use <ImportMeta prop='env.BASE_URL' /> for referencing static assets living in [`public/`](/static-directory#public). Example: <RepoLink path='/examples/base-url/renderer/_default.page.server.jsx' />.
+2. 使用 [<ImportMeta prop='env.BASE_URL' />](https://vitejs.dev/guide/build.html#public-base-path) 来构造一个 `<Link>` 组件，把 BaseURL 添加为其前缀。 Example: <RepoLink path='/examples/base-url/components/Link.jsx' />.
+3. 使用 <ImportMeta prop='env.BASE_URL' /> 来引用 [`public/`](/static-directory#public) 中的静态资源。Example: <RepoLink path='/examples/base-url/renderer/_default.page.server.jsx' />.
 
-Example:
- - <RepoLink path='/examples/base-url/' />.
+Example：
 
+- <RepoLink path='/examples/base-url/' />
 
-## CDN
+{/* ## CDN */}
 
-We can deploy our static assets to a CDN using the `baseAssets` configuration.
-
-```js
-// vite.config.js
-
-import { ssr } from 'vite-plugin-ssr/plugin'
-
-export default {
-  plugins: [
-    ssr({
-      baseAssets: 'https://cdn.example.org/my-website-assets/'
-    })
-  ]
-}
-```
-
-Example:
- - <RepoLink path='/examples/base-url-cdn/' />.
-
-> We can use `process.env.BASE_ASSETS` and <ImportMeta prop='env.BASE_ASSETS' /> to access the base value in our code.
-
-## CDN + Server
-
-We can do both:
- - Deploy our static assets to a CDN using the `baseAssets` configuration.
- - Change the Base URL of our server using the `baseServer` configuration.
+我们可以使用 `baseAssets` 配置，将静态资源部署到 CDN
 
 ```js
 // vite.config.js
 
-import { ssr } from 'vite-plugin-ssr/plugin'
+import { ssr } from "vite-plugin-ssr/plugin";
 
 export default {
   plugins: [
     ssr({
-      baseAssets: 'https://cdn.example.org/my-website-assets/',
-      baseServer: '/some-base/'
-    })
-  ]
-}
+      baseAssets: "https://cdn.example.org/my-website-assets/",
+    }),
+  ],
+};
 ```
 
 Example:
- - <RepoLink path='/examples/base-url-server/' />.
 
-> We can use `process.env.BASE_ASSETS`/`process.env.BASE_SERVER` and <ImportMeta prop='env.BASE_ASSETS' /> / <ImportMeta prop='env.BASE_SERVER' /> to access the base values in our code.
+- <RepoLink path='/examples/base-url-cdn/' />
+
+> 我们可以在代码中使用 `process.env.BASE_ASSETS` 和 <ImportMeta prop='env.BASE_ASSETS' /> 访问 base 的值
+
+{/* ## CDN + Server */}
+
+我们可以同时：
+
+- 使用 `baseAssets` 配置将静态资源部署到 CDN
+- 使用 `baseAssets` 配置更改服务器的 Base URL
+
+```js
+// vite.config.js
+
+import { ssr } from "vite-plugin-ssr/plugin";
+
+export default {
+  plugins: [
+    ssr({
+      baseAssets: "https://cdn.example.org/my-website-assets/",
+      baseServer: "/some-base/",
+    }),
+  ],
+};
+```
+
+Example：
+
+- <RepoLink path='/examples/base-url-server/' />
+
+> 我们可以在代码中使用 `process.env.BASE_ASSETS`/`process.env.BASE_SERVER` 和 <ImportMeta prop='env.BASE_ASSETS' /> / <ImportMeta prop='env.BASE_SERVER' /> 访问 base 的值

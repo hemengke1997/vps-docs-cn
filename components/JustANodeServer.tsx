@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export { JustANodeServer }
+export { JustANodeServer };
 
 function JustANodeServer() {
   return (
     <p>
-      From an architectural point of view, a <code>vite-plugin-ssr</code> app is just a Node.js server.
+      从架构的角度来看， <code>vite-plugin-ssr</code> 应用只是个 Node.js 服务器
     </p>
-  )
+  );
 }

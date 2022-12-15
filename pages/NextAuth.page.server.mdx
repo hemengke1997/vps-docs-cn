@@ -1,53 +1,50 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-[NextAuth.js](https://next-auth.js.org/) can be used with Vite + `vite-plugin-ssr`.
+[NextAuth.js](https://next-auth.js.org/) 可以配合 Vite + `vite-plugin-ssr` 使用
 
-## Examples
+{/* ## Examples */}
 
- - [github.com/iMrDJAi/vps-nextauth-example](https://github.com/iMrDJAi/vps-nextauth-example)
- - [github.com/s-kris/vite-ssr-next-auth](https://github.com/s-kris/vite-ssr-next-auth)
+- [github.com/iMrDJAi/vps-nextauth-example](https://github.com/iMrDJAi/vps-nextauth-example)
+- [github.com/s-kris/vite-ssr-next-auth](https://github.com/s-kris/vite-ssr-next-auth)
 
-## `process.env.NEXTAUTH_URL`
+{/* ## `process.env.NEXTAUTH_URL` */}
 
-To access environment variables on the client-side, such as `process.env.NEXTAUTH_URL`, we can use
-[`vite.config.js#define`](https://vitejs.dev/config/#define)
-or
-[`vite.config.js#envPrefix`](https://vitejs.dev/config/#envprefix).
+要在客户端访问环境变量，例如 `process.env.NEXTAUTH_URL`，我们可以使用 [`vite.config.js#define`](https://vitejs.dev/config/#define) 或 [`vite.config.js#envPrefix`](https://vitejs.dev/config/#envprefix)
 
-> Don't add `NEXTAUTH_` to `envPrefix` as it would leak `NEXTAUTH_SECRET`.
+> 不要将 `NEXTAUTH_` 添加到 `envPrefix`，它会泄露 `NEXTAUTH_SECRET`
 
-See also:
-- [Vite > Config > Environment Variables](https://vitejs.dev/config/#environment-variables)
+另请参考：
 
-> We can use `process.env` as usual for server (e.g. Express.js) code. (Since server code is not processed by Vite.)
+- [Vite > Config > 环境变量](https://vitejs.dev/config/#environment-variables)
 
+> 我们可以像往常一样在服务器（例如 Express.js）代码使用 `process.env`。 （因为服务器代码不被 Vite 处理。）
 
-## Fetch polyfill for `getSession()`
+{/* ## `getSession()` 的 fetch polyfill */}
 
-In order to use NextAuth.js's [`getSession()`](https://next-auth.js.org/getting-started/client#getsession) on the server-side, we need to globally install a fetch polyfill.
+为了在服务器端使用 NextAuth.js 的 [`getSession()`](https://next-auth.js.org/getting-started/client#getsession)，我们需要全局安装一个 fetch polyfill。
 
-> A polyfill is not needed if we use `getSession()` only on the client-side, or if we use Node v18 which [natively supports `fetch()`](https://nodejs.org/en/blog/announcements/v18-release-announce/#fetch-experimental).
+> 如果我们只在客户端使用 `getSession()`，或者如果我们使用[原生支持 `fetch()`](https://nodejs.org/en/blog/announcements/v18-release-announce/#fetch-experimental) 的 Node v18，则不需要 polyfill。
 
-We can use [`node-fetch` to patch the global object](https://github.com/node-fetch/node-fetch#providing-global-access):
+我们可以使用 [`node-fetch` 来修补全局对象](https://github.com/node-fetch/node-fetch#providing-global-access)：
 
 ```js
 // server.js
 
-// Only install the polyfill on the server (e.g. Express.js). Browsers already implement
-// `fetch()` natively and it would be wasteful to load the polyfill on the browser-side.
+// 只在服务器上安装 polyfill（例如 Express.js）。
+// 浏览器已经实现了 `fetch()`，在浏览器端加载 polyfill 会很浪费。
 
-// Use node-fetch@2 instead of node-fetch@3 if your `package.json#type` is not `"module"`.
-// Or some other `fetch()` polyfill, e.g. `cross-fetch`.
-import fetch, { Headers, Request, Response } from 'node-fetch'
+// 如果你的 `package.json#type` 不是 `"module"`，请使用 node-fetch@2 而非 node-fetch@3。
+// 或者其他的 `fetch()` polyfill， 例如 `cross-fetch`
+import fetch, { Headers, Request, Response } from "node-fetch";
 
 if (!globalThis.fetch) {
-  globalThis.fetch = fetch
-  globalThis.Headers = Headers
-  globalThis.Request = Request
-  globalThis.Response = Response
+  globalThis.fetch = fetch;
+  globalThis.Headers = Headers;
+  globalThis.Request = Request;
+  globalThis.Response = Response;
 }
 ```
 
-## See Also
+{/* ## 另请参考 */}
 
-- <Link href="/auth" />
+- <Link href='/auth' />

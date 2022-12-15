@@ -1,43 +1,44 @@
-import { Note, Link } from '@brillout/docpress'
+import { Note, Link } from "@brillout/docpress";
 
-<Note type="warning">This documentation is work-in-progress. Reach out to the vite-plugin-ssr maintainer if you're interested in this.</Note>
+<Note type='warning'>
+  此文档正在完善中。如果你对此感兴趣，请联系 vite-plugin-ssr 的维护者
+</Note>
 
-With vite-plugin-ssr, you can create your own Next.js / Nuxt with only hundreds of lines of code.
+使用 vite-plugin-ssr，你只需数百行代码即可创建属于自己的 Next.js / Nuxt
 
-Vite-plugin-ssr frameworks use the same interface as regular vite-plugin-ssr apps: the only difference is that some page files (e.g. <Link text={<><code>/renderer/_default.page.server.js</code></>} href="/default-page" />) live in `app/node_modules/framework/` instead of `app/`.
+vite-plugin-ssr 框架使用跟普通 vite-plugin-ssr 应用一样的接口：唯一的区别是一些页面文件（例如 <Link text={<><code>/renderer/\_default.page.server.js</code></>} href="/default-page" /> 位于 `app/node_modules/framework/` 而非 `app/`
 
-Your framework can include more functionality beyond vite-plugin-ssr, such as a custom server, a CLI, deployment, etc.
+你的框架可以包含 vite-plugin-ssr 以外更多的功能，例如自定义服务器、CLI、部署等
 
+{/* ## 基础框架 */}
 
-## Basic framework
-
-A basic vite-plugin-ssr framework provides a renderer so that the user doesn't have to implement it:
+一个基础的 vite-plugin-ssr 框架提供了一个 renderer，因此用户不必实现它：
 
 ```bash
-# Renderer implemented by the framework
+# 由框架实现的renderer
 node_modules/framework/renderer/_default.page.server.js
 node_modules/framework/renderer/_default.page.client.js
 
-# User page files
+# 用户页面信息
 pages/index.page.js
 pages/about.page.js
 ```
 
-In other words, the framework takes care of the UI framework integration (React, Vue, ...) so that all the framework's users have left to do is to define UI components and `/pages/**/*.page.js` files.
+换句话说，此框架负责集成 UI 框架（React、Vue、...），因此该框架的用户要做的就是定义 UI 框架和 `/pages/**/*.page.js` 文件
 
-> **Progressively build your framework**. We recommend to build your framework progressively by first implementing a normal vite-plugin-ssr app without building any framework. Once you're satisfied with the architecture of your vite-plugin-ssr app, you can start creating your own framework by moving `renderer/` from `my-app/renderer/` to `my-app/node_modules/my-own-framework/renderer/`.
+> **渐进式构建框架**。我们建议先实现一个普通的 vite-plugin-ssr 应用而不构建任何框架，来渐进式的构建你的框架。若满意 vite-plugin-ssr 应用程序的架构，你就可以开始创建自己的框架了：将 `render/` 从 `my-app/renderer/` 移动到 `my-app/node_modules/my-own-framework/renderer/`
 
-> **Work-in-progress**: this page will include examples of basic vite-plugin-ssr frameworks.
+> **Work-in-progress**：此页面将包含一个基本的 vite-plugin-ssr 框架示例
 
+{/* ## All-included 框架 */}
 
-## All-included framework
-
-Essentially, a vite-plugin-ssr framework is a framework that includes page files (`.page.js`, `.page.server.js`, `.page.client.js`, and/or `.page.route.js`). Beyond that, there is nothing special about a vite-plugin-ssr framework and you can include anything you want to your framework, such as a custom server (e.g. Express.js), a database and ORM (e.g. SQLite + Prisma), deployment (e.g. Cloudflare Workers), error tracking (e.g. Sentry), a CLI, etc.
+本质上，一个 vite-plugin-ssr 框架是一个包含页面文件（`.page.js`, `.page.server.js`, `.page.client.js`, and/or `.page.route.js`）的框架。除此之外，vite-plugin-ssr 框架没有什么特别的。你可以在框架中包含任何你想要的，比如自定义服务（如 Express.js）、数据库和 ORM（如 SQLite + Prisma）、部署（如 Cloudflare Workers）、错误跟踪（如 Sentry）、CLI 等
 
 You can implement an [all-included framework](https://vike.land/#all-included) so that all your framework's users have left to do is: define UI components, and define data models (if your framework has a database).
+你可以实现一个 [all-included 框架](https://vike.land/#all-included)。这样留给你的框架用户要做的就是：定义 UI 组件、定义数据模型（如果框架有数据库）
 
-> **Work-in-progress**: this page will include examples of such frameworks.
+> **Work-in-progress**：此页面将包含此类框架的示例
 
-## More tools
+{/* ## 更多工具 */}
 
-See [Vike > Getting Started](https://vike.land/#getting-started) for more tools to build your own framework.
+参考 [Vike > 起步](https://vike.land/#getting-started) 了解更多用于构建你自己的框架的工具

@@ -1,77 +1,79 @@
-import { RepoLink, Link, Note } from '@brillout/docpress'
+import { RepoLink, Link, Note } from "@brillout/docpress";
 
+{/* ## Examples */}
 
-## Examples
+- React: <RepoLink path='/examples/cloudflare-workers-react/' />
+- React + SSR Streaming: <RepoLink path='/examples/cloudflare-workers-react-full/' />
+- Vue: <RepoLink path='/examples/cloudflare-workers-vue/' />
 
- - React: <RepoLink path='/examples/cloudflare-workers-react/' />
- - React + SSR Streaming: <RepoLink path='/examples/cloudflare-workers-react-full/' />
- - Vue: <RepoLink path='/examples/cloudflare-workers-vue/' />
-
-> The examples set `wrangler.toml#node_compat` to `true` which makes wrangler show a warning:
+> 这些示例将 `wrangler.toml#node_compat` 设置为 `true`，这使得 wrangler 显示警告：
+>
 > ```
 > [WARNING] Enabling node.js compatibility mode for built-ins and globals. This
 > is experimental and has serious tradeoffs.
-> ````
-> But we can safely ignore the warning (the only Node.js shims used are all robust). However, the Node.js shims add around `200KB`-`300KB` to your worker code, which is significant considering the `1MB` limit. There is work-in-progress to remove the need for Node.js shims, see [#445](https://github.com/brillout/vite-plugin-ssr/issues/445).
+> ```
+>
+> 但是我们可以安全地忽略警告（唯一使用的 Node.js shims 是健壮的）。但是，Node.js shims 会使 worker 代码增加约 `200KB`-`300KB`，考虑到 `1MB` 的限制，这非常重要。消除对 Node.js shims 的需求的工作正在进行中，请参阅：[#445](https://github.com/brillout/vite-plugin-ssr/issues/445)
 
+{/* ## Wrangler */}
 
-## Wrangler
+Cloudflare Workers 要求我们将整个 worker 代码打包到一个文件中
 
-Cloudflare Workers requires our entire worker code to be bundled into a single file.
+> Cloudflare 使用术语“worker code”来表示在其 edge 基础设施上运行的服务器代码。
 
-> Cloudflare uses the term "worker code" to denote server code that is run on its edge infrastructure.
+建议使用[Wrangler v2](https://github.com/cloudflare/wrangler2)（v2 底层使用[esbuild](https://esbuild.github.io/)）
 
-We recommend using [Wrangler v2](https://github.com/cloudflare/wrangler2) (the v2 uses [esbuild](https://esbuild.github.io/) under the hood).
+{/* ## vite-plugin-cloudflare */}
 
-
-## vite-plugin-cloudflare
-
-We can also use [vite-plugin-cloudflare](https://github.com/Aslemammad/vite-plugin-cloudflare) which enables us to simply use `$ vite build` and `$ vite dev` to build and develop our worker code (including HMR support!).
+我们还可以使用 [vite-plugin-cloudflare](https://github.com/Aslemammad/vite-plugin-cloudflare)，它使我们能够简单地使用 `$ vite build` 和 `$ vite dev` 来构建和开发我们的 worker code（包括 HMR 支持！）
 
 Example: [GitHub > `Aslemammad/vite-plugin-cloudflare` > `examples/vite-plugin-ssr/`](https://github.com/Aslemammad/vite-plugin-cloudflare/tree/main/examples/vite-plugin-ssr).
 
+{/* ## 扩展 1MB 限制 */}
 
-## Extend 1MB limit
+我们的 worker 包大小不应超过 1MB，但是我们可以请求 100MB 及以上的大小：
 
-The bundle size of our worker should not exceed 1MB, but we can request sizes of up to 100MB and beyond:
- - [Cloudflare Workers > Larger Scripts](https://www.cloudflare.com/larger-scripts-on-workers-early-access/)
- - [Cloudflare Workers > Limits > Worker Size](https://developers.cloudflare.com/workers/platform/limits/#worker-size)
+- [Cloudflare Workers > Larger Scripts](https://www.cloudflare.com/larger-scripts-on-workers-early-access/)
+- [Cloudflare Workers > Limits > Worker Size](https://developers.cloudflare.com/workers/platform/limits/#worker-size)
 
+{/* ## Cloudflare Pages */}
 
-## Cloudflare Pages
+我们还可以使用[Cloudflare Pages](https://developers.cloudflare.com/pages/) 来部署我们的 vite-plugin-ssr 应用程序
 
-We can also use [Cloudflare Pages](https://developers.cloudflare.com/pages/) to deploy our `vite-plugin-ssr` app.
+为了部署我们的 SSR worker，我们使用 [Cloudflare Pages Function](https://developers.cloudflare.com/pages/platform/functions/)
 
-To deploy our SSR worker, we use a [Cloudflare Pages Function](https://developers.cloudflare.com/pages/platform/functions/).
+<Note type='warning'>
+  Cloudflare Pages Functions
+  [处于beta阶段](https://developers.cloudflare.com/pages/platform/functions/).
+</Note>
 
-<Note type="warning">Cloudflare Pages Functions is [in beta](https://developers.cloudflare.com/pages/platform/functions/).</Note>
+Example：
 
-Example:
- - [github.com/Immortalin/vite-plugin-ssr-cloudflare-pages-demo](https://github.com/Immortalin/vite-plugin-ssr-cloudflare-pages-demo)
+- [github.com/Immortalin/vite-plugin-ssr-cloudflare-pages-demo](https://github.com/Immortalin/vite-plugin-ssr-cloudflare-pages-demo)
 
-See also:
- - [Wrangler 2.0 — a new developer experience for Cloudflare Workers](https://blog.cloudflare.com/wrangler-v2-beta/)
+另请参考：
 
+- [Wrangler 2.0 — a new developer experience for Cloudflare Workers](https://blog.cloudflare.com/wrangler-v2-beta/)
 
-## Development
+{/* ## 开发 */}
 
-For a significantly faster development experience, we recommend, whenever possible, using Vite's development server instead of wrangler (or an Express.js server).
+为了获得更快的开发体验，我们建议尽可能使用 Vite 的开发服务器而不是 wrangler（或 Express.js 服务）
 
 This means:
- - We skip `wrangler` / Cloudflare Workers altogether while developing our app.
- - We use `wrangler dev` to preview our worker.
- - We use `wrangler publish` to deploy our worker to Cloudflare Workers.
+这表示：
 
-See the setup of the [examples](#examples).
+- 在开发我们的应用程序时，我们完全跳过了 `wrangler` / Cloudflare Workers。
+- 我们使用 `wrangler dev` 来预览我们的 worker。
+- 我们使用 `wrangler publish` 将我们的 worker 部署到 Cloudflare Workers。
 
+  请参阅[示例](<(#examples)>)的设置。
 
-## Universal `fetch()`
+{/* ## 统一 `fetch()` */}
 
-When using Node.js for development and Cloudflare Workers for production, we may need a `fetch()` function that works in both environments.
+当使用 Node.js 进行开发并在生产环境中使用 Cloudflare Workers 时，我们可能需要一个可以在两种环境中工作的 `fetch()` 函数
 
-But libraries such as `node-fetch` or `cross-fetch` usually don't work with Cloudflare Workers.
+但是 `node-fetch` 或 `cross-fetch` 等库通常不适用于 Cloudflare Workers
 
-What we can do is to define a fetch function at `pageContext.fetch` that works in all environments.
-The trick is to add a different `fetch()` implementation to `pageContextInit` at <Link text={<code>renderPage(pageContextInit)</code>} href="/renderPage" />.
+我们可以做的是在 `pageContext.fetch` 中定义一个适用于所有环境的 fetch 函数。诀窍是在 <Link text={<code>renderPage(pageContextInit)</code>} href="/renderPage" /> 处向 `pageContextInit` 添加不同的 `fetch()` 实现
 
-Example: <RepoLink path='/examples/cloudflare-workers-react-full#universal-fetch' />.
+Example： <RepoLink path='/examples/cloudflare-workers-react-full#universal-fetch' />

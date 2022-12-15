@@ -1,20 +1,20 @@
-We can track errors by using `pageContext.errorWhileRendering`:
+通过 `pageContext.errorWhileRendering`，我们可以追踪错误：
 
 ```js
 // server.js
 
-const { renderPage } = require('vite-plugin-ssr')
+const { renderPage } = require("vite-plugin-ssr");
 
-app.get('*', async (req, res, next) => {
-  const pageContext = await renderPage({ urlOriginal: req.url })
+app.get("*", async (req, res, next) => {
+  const pageContext = await renderPage({ urlOriginal: req.url });
 
-  // An error occured during server-side rendering
+  // 服务端渲染时发生了错误
   if (pageContext.errorWhileRendering) {
-    myErrorTracker(pageContext.errorWhileRendering)
+    myErrorTracker(pageContext.errorWhileRendering);
   }
 
   // ...
-})
+});
 ```
 
-So that we can, for example, install the tracker code of a tracking service such as [Sentry](https://sentry.io/), [Bugsnag](https://www.bugsnag.com/), or [Rollbar](https://rollbar.com/).
+这样的话，我们就可以安装 [Sentry](https://sentry.io/)， [Bugsnag](https://www.bugsnag.com/)，或 [Rollbar](https://rollbar.com/) 等跟踪器

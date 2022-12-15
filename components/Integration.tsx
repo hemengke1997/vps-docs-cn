@@ -1,17 +1,17 @@
-export { Integration }
+export { Integration };
 
-import React from 'react'
-import { assert } from '@brillout/docpress'
-import { Invitation } from './Invitation'
+import React from "react";
+import { assert } from "@brillout/docpress";
+import { Invitation } from "./Invitation";
 
 function Integration({ toolTypeName }: { toolTypeName: string }) {
-  assert(toolTypeName)
+  assert(toolTypeName);
   return (
     <>
       <p>
-        In principle, you can use <code>vite-plugin-ssr</code> with any {toolTypeName}. However, if you are having
-        difficulties integrating {toolTypeName.startsWith('a') ? 'an' : 'a'} {toolTypeName}, <Invitation />.
+        原则上，你可以将 <code>vite-plugin-ssr</code> 与任何 {toolTypeName}{" "}
+        一起使用。但是，如果你在集成工具时遇到困难，请<Invitation />
       </p>
     </>
-  )
+  );
 }

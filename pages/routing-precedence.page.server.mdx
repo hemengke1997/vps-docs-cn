@@ -1,47 +1,49 @@
-If the route of two pages both match the same URL then we have a routing conflict: `vite-plugin-ssr` has to decide which of the two pages should be rendered for that URL.
+如果两个页面的路由都匹配同一个 URL，那么会发生路由冲突：`vite-plugin-ssr` 必须决定应该渲染哪个页面
 
-Upon Route String conflicts, `vite-plugin-ssr` chooses the first route from most specific to least specific. For example:
+路由字符串冲突时，`vite-plugin-ssr` 从最具体到最模糊中选择第一个路由。例如：
 
-1. `/about/team` (most specific: it matches only a single URL)
-1. `/about/@path` (less specific: it also matches `/about/company`, `/about/vision`, ...)
-1. `/about/*` (less specific: it also matches `/about/some/nested/path`)
-1. `/*` (least specific: it matches all URLs)
+1. `/about/team` (最具体：它只匹配单个路由)
+2. `/about/@path` (一般具体：它匹配 `/about/company`、 `/about/vision`， ...)
+3. `/about/*` (模糊： 它匹配 `/about/some/nested/path`)
+4. `/*` (最模糊：它匹配所有 URL)
 
-> More examples at [`resolvePrecedence/route-strings.spec.ts`](https://github.com/brillout/vite-plugin-ssr/blob/main/vite-plugin-ssr/shared/route/resolvePrecedence/route-strings.spec.ts).
+> 更多示例请参考 [`resolvePrecedence/route-strings.spec.ts`](https://github.com/brillout/vite-plugin-ssr/blob/main/vite-plugin-ssr/shared/route/resolvePrecedence/route-strings.spec.ts).
 
-Upon conflicts between Filesystem Routing, Route Strings and Route Functions, `vite-plugin-ssr` chooses the first route in following order:
+当文件系统路由、路由字符串和路由函数之间发生冲突时，`vite-plugin-ssr` 按以下顺序选择第一个路由
 
-1. Route Function, returned high positive `precedence` number (e.g. `99`)
-1. Route Function, returned low positive `precedence` number (e.g. `1`)
-1. Filesystem Routing
-1. Route String, static (i.e. without `@param` segment, e.g. `/about/company`)
-1. Route Function, returned no `precedence` number (or `0`)
-1. Route String, parameterized (i.e. with `@param` segement, e.g. `/product/@productId` or `/product/*`)
-1. Route Function, returned low negative `precedence` number (e.g. `-1`)
-1. Route Function, returned high negative `precedence` number (e.g. `-99`)
+1. 路由函数，返回高正优先级数（例如 99）
+2. 路由函数，返回低正优先级数（例如 1）
+3. 文件系统路由
+4. 路由字符串，静态（即没有 `@param`，例如 `/about/company`）
+5. 路由函数，返回无优先级数（或 0）
+6. 路由字符串，参数化 （即使用 `@param` 分段，例如 `/product/@productId` 或 `/product/*`）
+7. 路由函数，返回低负优先级数（例如 -1）
+8. 路由函数，返回高负优先级数（例如 -99）
 
 **Example (4) + (6) + (7)**:
 
 ```js
 // product/list.page.route.js
-export default '/product'
+export default "/product";
 ```
+
 ```js
 // product/item.page.route.js
-export default '/product/@productId'
+export default "/product/@productId";
 ```
+
 ```js
 // product/catch-all.page.route.js
-export default pageContext => {
-  if (!pageContext.urlPathname.startsWith('/product/')) return false
+export default (pageContext) => {
+  if (!pageContext.urlPathname.startsWith("/product/")) return false;
   return {
     precedence: -1,
     pageContext: {
       // E.g. redirect `/product/wrong/url` to `/product`
-      redirectTo: '/product'
-    }
-  }
-}
+      redirectTo: "/product",
+    },
+  };
+};
 ```
 
 ```
@@ -50,39 +52,44 @@ URL                           MATCHES                                    WINNER
 /product/42                   product/item.page.route.js      (6)        ⬅️
                               product/catch-all.page.route.js (7)
 ```
+
 ```
 URL                           MATCHES                                    WINNER
 ==================            ===================================        ======
 /product                      product/list.page.route.js      (4)        ⬅️
                               product/catch-all.page.route.js (7)
 ```
+
 ```
 URL                           MATCHES                                    WINNER
 ==================            ===================================        ======
 /product/wrong/url            product/catch-all.page.route.js (7)        ⬅️
 ```
 
-4: Route String, static (without `@param` segment, e.g. `/about/company`)  
-6: Route String, parameterized (with `@param` segements, e.g. `/product/@productId` or `/product/*`)  
-7: Route Function, returned low negative `precedence` number (e.g. `-1`)  
+4: 路由字符串，静态（即没有 `@param`，例如 `/about/company`）
+
+6: 路由字符串，参数化 （即使用 `@param` 分段，例如 `/product/@productId` 或 `/product/*`）
+
+7: 路由函数，返回低负优先级数（例如 -1）
 
 **Example (1) + (4)**:
 
 ```js
 // admin.page.route.js
-export default '/admin'
+export default "/admin";
 ```
+
 ```js
 // login.page.route.js
 
-export default pageContext => {
-  if( pageContext.user === null ) {
+export default (pageContext) => {
+  if (pageContext.user === null) {
     return {
-      precedence: 99
-    }
+      precedence: 99,
+    };
   }
-  return false
-}
+  return false;
+};
 ```
 
 ```
@@ -91,13 +98,15 @@ URL                   pageContext.user       MATCHES                       WINNE
 /admin                null                   login.page.route.js (1)       ⬅️
                                              admin.page.route.js (4)
 ```
+
 ```
 URL                   pageContext.user       MATCHES                       WINNER
 ======                ================       =======================       ======
 /admin                'brillout'             admin.page.route.js (4)       ⬅️
 ```
 
-1: Route Function, returned high positive `precedence` number  
-4: Route String, static (without `@param` segment, e.g. `/about/company`)  
+1: 路由函数，返回高正优先级数（例如 99）
 
-> More examples at [`resolvePrecedence/overall.spec.ts`](https://github.com/brillout/vite-plugin-ssr/blob/main/vite-plugin-ssr/shared/route/resolvePrecedence/overall.spec.ts).
+4: 路由字符串，静态（即没有 `@param`，例如 `/about/company`）
+
+> 更多示例请参考 [`resolvePrecedence/overall.spec.ts`](https://github.com/brillout/vite-plugin-ssr/blob/main/vite-plugin-ssr/shared/route/resolvePrecedence/overall.spec.ts).

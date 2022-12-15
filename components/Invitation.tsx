@@ -1,13 +1,13 @@
-export { Invitation }
+export { Invitation };
 
-import React from 'react'
-import { projectInfo } from '../utils/projectInfo'
+import React from "react";
+import { projectInfo } from "../utils/projectInfo";
 
 function Invitation() {
   return (
     <>
-      <a href={projectInfo.discordInvite}>join our Discord server</a> or{' '}
-      <a href={projectInfo.githubIssues}>open a new GitHub issue</a>
+      <a href={projectInfo.discordInvite}>加入 Discord 服务器</a> 或者{" "}
+      <a href={projectInfo.githubIssues}>创建 GitHub issue</a>
     </>
-  )
+  );
 }

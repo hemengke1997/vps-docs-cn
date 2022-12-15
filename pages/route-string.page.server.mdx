@@ -1,47 +1,43 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-For a page `/pages/film.page.js`, a Route String can be defined in a `/pages/film.page.route.js` adjacent file.
+对于页面 `/pages/film.page.js`，可以在 `/pages/film.page.route.js` 文件中定义其路由字符串
 
 ```js
 // /pages/film.page.route.js
 
-// Match URLs `/film/1`, `/film/2`, ...
-export default '/film/@filmId'
+// 匹配 URLs `/film/1`, `/film/2`, ...
+export default "/film/@filmId";
 ```
 
-The value of `filmId` is available at `pageContext.routeParams.filmId`.
+`filmId` 的值在 `pageContext.routeParams.filmId` 中可用
 
-## Multiple Parameters
+{/* ## 多参数 */}
 
-We can define multiple parameters.
+我们可以定义多个参数
 
 ```js
 // /pages/film.page.route.js
 
-// Parameters available at:
+// 参数在以下可用：
 //  - `pageContext.routeParams.year`
 //  - `pageContext.routeParams.slug`
-export default '/news/@year/@slug'
+export default "/news/@year/@slug";
 ```
 
+{/* ## Catch-All */}
 
-## Catch-All
+我们可以使用路由字符串实现 [catch-all 路由](/catch-all)
 
-We can use Route Strings to implement [catch-all routes](/catch-all).
+{/* ## 优先级 */}
 
+当路由字符串冲突时，`vite-plugin-ssr` 选择优先级最高的路由
 
-## Precedence
+请参考 <Link href="/routing-precedence" />
 
-Upon Route String conflicts, `vite-plugin-ssr` chooses the first route from most specific to least specific.
+{/* ## 转义符 `@` */}
 
-See <Link href="/routing-precedence" />.
+特殊字符 `@` 无法转义，请使用 [路由函数](/route-function) 代替
 
+{/* ## 更多 */}
 
-## Escape `@`
-
-The special character `@` cannot be escaped, use a [Route Function](/route-function) instead.
-
-
-## More
-
-For more advanced routing, we can use [Route Functions](/route-function) which are fundamentally more powerful than Route Strings.
+对于更高级的路由，我们可以使用 [路由函数](/route-function)，它比路由字符串更强大

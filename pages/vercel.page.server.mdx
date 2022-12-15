@@ -1,51 +1,53 @@
-import { Link, Note } from '@brillout/docpress'
+import { Link, Note } from "@brillout/docpress";
 
-We can deploy `vite-plugin-ssr` to [Vercel](https://vercel.com) simply by using a Vercel API Route, or we can use `vite-plugin-vercel` if we want advanced Vercel features such as ISR and Edge Middleware.
+我们可以简单地通过使用 Vercel API Routes 将 `vite-plugin-ssr` 部署到 [Vercel](https://vercel.com)，如果想要高级 Vercel 功能（例如 ISR 和 Edge 中间件），我们可以使用 `vite-plugin-vercel`。
 
+{/* ## API Routes */}
 
-## API Route
+我们可以简单地通过创建 Vercel API Route `api/ssr.js` 服务端渲染应用程序，将我们的 `vite-plugin-ssr` 应用程序部署到 Vercel
 
-We can deploy our `vite-plugin-ssr` app to Vercel simply by creating a Vercel API Route `api/ssr.js` that server-side renders our app.
+Example：[github.com/brillout/vite-plugin-ssr_vercel](https://github.com/brillout/vite-plugin-ssr_vercel).
 
-Example: [github.com/brillout/vite-plugin-ssr_vercel](https://github.com/brillout/vite-plugin-ssr_vercel).
+<Note type='warning'>
+  确保在你的 Vercel dashboard 中正确设置 `OUTPUT DIRECTORY`，请参考示例中的
+  `readme.md` 说明
+</Note>
 
-<Note type="warning">Make sure to properly set `OUTPUT DIRECTORY` in your Vercel dashboard, see the example's `readme.md` instructions.</Note>
+> 使用 Vercel API Routes 是部署到 Vercel 的一种可靠方式，因为 API Routes 是 Vercel 的核心功能：它会一直存在，最重要的是，它非常稳定。 （而 Vercel 的 Build Output API 不断更新，偶尔会发生重大变化。）一旦我们设置了服务器端渲染 API Routes，我们就可以期待它在可预见的未来发挥作用
 
-> Using a Vercel API Route is a sturdy way to deploy to Vercel as API Routes is a core Vercel feature: it's here to stay and, most importantly, stable. (Whereas Vercel's Build Output API is a moving target with occasional breaking changes.) Once we setup our server-side rendering API Route, we can expect it to work for the foreseeable future.
+{/* ## vite-plugin-vercel */}
 
+[`vite-plugin-vercel`](https://github.com/magne4000/vite-plugin-vercel) 为所有 Vercel 功能提供零配置支持，包括 [Incremental Static Regeneration (ISR)](https://vercel.com/docs/concepts/incremental-static-regeneration/overview) 和 Edge 中间件
 
-## vite-plugin-vercel
+如果我们<Link text="只预渲染我们的页面的一部分" href="/prerender-config#partial" />，我们也可以使用 `vite-plugin-vercel` 来静态部署我们的预渲染页面，同时动态地提供我们的非预渲染页面
 
-[`vite-plugin-vercel`](https://github.com/magne4000/vite-plugin-vercel) enables zero-configuration support for all Vercel features, including [Incremental Static Regeneration (ISR)](https://vercel.com/docs/concepts/incremental-static-regeneration/overview) and Edge Middleware.
+> 请参考 `vite-plugin-ssr` + `vite-plugin-vercel` 安装说明：[`vite-plugin-vercel` > Usage with vite-plugin-ssr](https://github.com/magne4000/vite-plugin-vercel#usage-with-vite-plugin-ssr).
 
-If we <Link text="pre-render our pages only partially" href="/prerender-config#partial" />, we can also use `vite-plugin-vercel` to statically deploy our pre-rendered pages while dynamically serving our non-prerendered pages.
+> `vite-plugin-vercel` 底层使用 Vercel 的 [Build Output API](https://vercel.com/docs/build-output-api/v3)
 
-> See `vite-plugin-ssr` + `vite-plugin-vercel` installation instructions at [`vite-plugin-vercel` > Usage with vite-plugin-ssr](https://github.com/magne4000/vite-plugin-vercel#usage-with-vite-plugin-ssr).
+{/* ## Build Output API */}
 
-> Under the hood, `vite-plugin-vercel` uses Vercel's [Build Output API](https://vercel.com/docs/build-output-api/v3).
-
-
-## Build Output API
-
-For maximum flexibility and configuration options, we can also directly use the [Build Output API](https://vercel.com/docs/build-output-api/v3).
+为了获得最大的灵活性和配置选项，我们还可以直接使用 Build Output API](https://vercel.com/docs/build-output-api/v3)
 
 Example: [github.com/brillout/vite-plugin-ssr_vercel_build-output-api](https://github.com/brillout/vite-plugin-ssr_vercel_build-output-api).
 
+{/* ## 数据 APIs (GraphQL, RESTful, RPC) */}
 
-## Data APIs (GraphQL, RESTful, RPC)
+Vercel API Routes 仅适用于 Vercel 的平台；我们不能在本地运行它们。
 
-Vercel API Routes only work on Vercel's platform; we cannot run them locally.
+这意味着我们需要两次集成我们的数据层：
 
-This means that we need to integrate our data layer twice:
- 1. Using Vercel's API Routes, for Vercel deployment.
- 1. Using a local server (e.g. Express.js), for development.
+1.  使用 Vercel 的 API Routes，用于 Vercel 部署
+2.  使用本地服务器（例如 Express.js）进行开发
 
-This is usally easy to achieve as most data layer tools integrate using a single HTTP endpoint. For example:
- - [GraphQL](https://graphql.org/) integrates over a single HTTP endpoint `/graphql`.
- - [Telefunc](https://telefunc.com/) integrates over a single HTTP endpoint `/_telefunc`.
+这通常很容易实现，因为大部分数据层工具使用 single HTTP endpoint 进行集成。例如：
 
-In other words, we add a data layer by:
- - Creating a new Vercel API Route, integrating that single endpoint.
- - Creating a new route to our local development server (e.g. Express.js), integrating that single endpoint.
+- [GraphQL](https://graphql.org/) 集成 single HTTP endpoint `/graphql`.
+- [Telefunc](https://telefunc.com/) 集成 single HTTP endpoint `/_telefunc`.
 
-> When using SSR, we recommend using [RPC instead of GraphQL](https://telefunc.com/RPC-vs-GraphQL-REST), which most of time leads to a drastic simplification and increased development speed.
+换言之，我们通过以下方式添加数据层：
+
+- 创建新的 Vercel API Route， 集成 single endpoint
+- 创建到我们本地开发服务器（例如 Express.js）的新路由，集成 single endpoint
+
+> 使用 SSR 时，我们建议使用 [RPC 而不是 GraphQL](https://telefunc.com/RPC-vs-GraphQL-REST)，这在大多数情况下会极大地简化应用并提高开发速度

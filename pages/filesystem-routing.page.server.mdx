@@ -1,4 +1,4 @@
-By default `vite-plugin-ssr` does Filesystem Routing: the URL of a page is determined based on where its `.page.js` file is located.
+默认情况下，`vite-plugin-ssr` 执行文件系统路由：页面的 URL 是根据其 `.page.js` 文件所在的位置确定的
 
 ```bash
 FILESYSTEM                        URL
@@ -11,12 +11,13 @@ pages/HELLO.page.js               /HELLO
 pages/movie/@id.page.js           /movie/1, /movie/2, /movie/3, ...
 ```
 
-Filesystem Routing ignores all the following directories:
- - `index/`
- - `pages/`
- - `src/`
+文件系统路由忽略以下所有目录：
 
-For example:
+- `index/`
+- `pages/`
+- `src/`
+
+例如：
 
 ```
 FILESYSTEM                                         URL
@@ -24,7 +25,7 @@ src/pages/jobs/index.page.js                       /jobs
 pages/pages/src/src/index/pages/about.page.js      /about
 ```
 
-This allows us to have a [domain-driven file structure](/file-structure#domain-driven) such as:
+这让我们拥有 [域名驱动的文件结构](/file-structure#domain-driven)，例如：
 
 ```
 FILESYSTEM                        URL
@@ -34,6 +35,6 @@ todo/pages/list.page.js           /todo/list
 todo/pages/create.page.js         /todo/create
 ```
 
-We can change the URL root of Filesystem Routing by using [`_default.page.route.js#filesystemRoutingRoot`](/filesystemRoutingRoot).
+我们可以使用 [`_default.page.route.js#filesystemRoutingRoot`](/filesystemRoutingRoot) 更改文件系统路由的 URL 根
 
-For more advanced routing, see [Route Strings](/route-string) and [Route Functions](route-function).
+有关高级路由，请参阅 [路由字符串](/route-string) 和 [路由函数](route-function)

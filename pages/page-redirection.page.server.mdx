@@ -1,57 +1,55 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-> Vite-plugin-ssr has no built-in redirect mechanism. 
-> Instead, the control that vite-plugin-ssr provides
-> can be used to implement a redirect mechanism. 
+> vite-plugin-ssr 没有内置的重定向机制。
+> 不过可以使用 vite-plugin-ssr 提供的控件来实现重定向
 
-## Auth Redirection
+{/* ## 鉴权重定向 */}
 
-URL redirections are often about protecting URLs from unauthenticated users:
-if a user is not authenticated and goes to `/admin` then we redirect the user to `/login`.
+URL 重定向通常是为了保护 URL 免受未鉴权的用户的访问：
+如果用户未通过鉴权并进入“/admin”，那么我们将用户重定向到“/login”。
 
-With vite-plugin-ssr, instead of doing a URL redirection, we can use a Route Function:
+在 vite-plugin-ssr 中，我们可以使用路由函数代替 URL 重定向：
 
 ```js
 // /pages/login.page.route.js
 
-// Route Function to render the login page to non-authenticated users, regardless of the URL.
+// 将登录页面渲染给未鉴权的用户的路由函数，无论 URL 是什么
 
-export default pageContext => {
-  // Only render the login page to non-authenticated users
+export default (pageContext) => {
+  // 仅向未鉴权的用户渲染登录页面
   if (userIsLoggedIn(pageContext)) {
-    return false
+    return false;
   }
 
   return {
-    // We use a high precedence number of `99` to override all other routes.
-    // This means that non-authenticated users always see the login page,
-    // regardless of the URL.
-    precedence: 99
-  }
-}
+    // 我们通过设置 99 的高优先级来覆盖所有其他路由
+    // 这意味着无论 URL 是什么，未鉴权的用户始终会看到登录页面
+    precedence: 99,
+  };
+};
 
 function userIsLoggedIn(pageContext) {
-  return pageContext.user !== null
+  return pageContext.user !== null;
 }
 ```
 
-See <Link href="/route-function#precedence" />.
+请参考 <Link href="/route-function#precedence" />
 
-After the user successfully logs in, we reload the page with `window.location.reload()` (<Link href="/server-routing"  noBreadcrumb={true} />) or <Link text={<code>navigate(window.location.pathname)</code>} href="/navigate" /> (<Link href="/client-routing" noBreadcrumb={true} />).
+用户登录成功后，我们使用 `window.location.reload()` （服务端路由） 或 <Link text={<code>navigate(window.location.pathname)</code>} href="/navigate" /> （客户端路由） 重新加载页面
 
-This approach preserves the URL during the entire login flow:
- 1. Unauthenticated user goes to URL `/admin` and sees the Login Page. (URL is `/admin`.)
- 2. User fills the sign-in form and successfully logs in. (URL is still `/admin`.)
- 3. Page is reloaded and the user now sees the Admin Page. (URL is still `/admin`.)
+这种方法在整个登录流程中保留 URL：
 
-The original intention of the user is preserved and there is no need for some complex URL restoration mechanism.
+1.  未经鉴权的用户进入 `/admin` 然后看到登录页面（URL 是 `/admin`）
+2.  用户填写登录表单并成功登录（URL 还是 `/admin`）
+3.  页面重新加载，用户现在可以看到管理页面（URL 仍然是 `/admin`）
 
-Instead of using this approach, we can also use the more traditional approach of performing a page redirection. See sections below.
+不需要复杂的 URL 恢复机制，便把用户的初衷保留了下来
 
+除了这种方法，我们还可以使用更传统的方式来重定向页面。请参阅以下部分
 
-## Server-side
+{/* ## 服务端 */}
 
-We can perform a URL redirection by using `pageContext`:
+我们可以使用 `pageContext` 执行 URL 重定向：
 
 ```js
 // /renderer/_default.page.server.js
@@ -62,70 +60,73 @@ export function render() {
     return {
       documentHtml: null,
       pageContext: {
-        redirectTo: '/some/url'
-      }
-    }
+        redirectTo: "/some/url",
+      },
+    };
   }
 
   // The usual stuff
   // ...
 }
 ```
+
 ```js
 // server.js
 
-app.get('*', async (req, res, next) => {
-  const pageContextInit = { urlOriginal: req.url }
-  const pageContext = await renderPage(pageContextInit)
+app.get("*", async (req, res, next) => {
+  const pageContextInit = { urlOriginal: req.url };
+  const pageContext = await renderPage(pageContextInit);
   if (pageContext.redirectTo) {
-    res.redirect(307, '/movie/add')
+    res.redirect(307, "/movie/add");
   } else if (!pageContext.httpResponse) {
-    return next()
+    return next();
   } else {
-    const { body, statusCode, contentType } = pageContext.httpResponse
-    res.status(statusCode).type(contentType).send(body)
+    const { body, statusCode, contentType } = pageContext.httpResponse;
+    res.status(statusCode).type(contentType).send(body);
   }
-})
+});
 ```
 
-We can also trigger a page redirection from a page:
+还可以从页面触发重定向：
 
 ```js
 // movie.page.route.js
-export default "/star-wars/@movieId"
+export default "/star-wars/@movieId";
 ```
+
 ```js
 // movie.page.server.js
 
-export { onBeforeRender }
+export { onBeforeRender };
 
 async function onBeforeRender(pageContext) {
-  const movie = await fetchMovie(pageContext.routeParams.movieId)
-  // If the user goes to `/movie/42` but there is no movie with ID `42` then
-  // we redirect the user to `/movie/add` so he can add a new movie.
+  const movie = await fetchMovie(pageContext.routeParams.movieId);
+  // 如果用户进入 `/movie/42` 但没有 ID 为 `42`的电影
+  // 那就把用户重定向到 `movie/add` 以便他可以添加新电影
   if (movie === null) {
     return {
       pageContext: {
-        redirectTo: '/movie/add'
-      }
-    }
+        redirectTo: "/movie/add",
+      },
+    };
   }
 }
 ```
+
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-export { render }
+export { render };
 
 function render(pageContext) {
-  const { redirectTo } = pageContext
+  const { redirectTo } = pageContext;
   if (redirectTo) {
     return {
       pageContext: {
-        redirectTo
-      }
-    }
+        redirectTo,
+      },
+    };
   }
 
   // The usual stuff
@@ -133,17 +134,18 @@ function render(pageContext) {
 }
 ```
 
-## Client-side
+{/* ## 客户端 */}
 
-If we use <Link href="/client-routing" noBreadcrumb={true} />, then we can also redirect on the client-side.
+如果我们使用客户端路由，也可在客户端重定向
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-// We make `pageContext.redirectTo` available to the browser for client-side redirection
-export const passToClient = [/*...*/, 'redirectTo']
+// 让浏览器可以使用 `pageContext.redirectTo` 进行客户端重定向
+export const passToClient = [, /*...*/ "redirectTo"];
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
@@ -151,10 +153,10 @@ export const passToClient = [/*...*/, 'redirectTo']
 import { navigate } from "vite-plugin-ssr/client/router";
 
 export function render(pageContext) {
-  const { redirectTo } = pageContext
+  const { redirectTo } = pageContext;
   if (redirectTo) {
-    navigate(redirectTo)
-    return
+    navigate(redirectTo);
+    return;
   }
 
   // The usual stuff
@@ -162,10 +164,10 @@ export function render(pageContext) {
 }
 ```
 
-## Hydration Mismatch
+{/* ## Hydration Mismatch */}
 
-If we use Client Routing we may end up with a [hydration mismatch](/hydration-mismatch).
+如果我们使用客户端路由，可能会遇到 [hydration mismatch](/hydration-mismatch)
 
-To remove the hydration mismatch, we may need to redirect on both the client-side and server-side.
+为了消除 hydration mismatch，我们可能需要在客户端和服务端都进行重定向
 
-There are situations when server-side redirection is not an option and we can only redirect on the client-side. In such case we can [suppress the hydration mismatch warning](/hydration-mismatch#suppress-hydration-mismatch). Alternatively, we can also first hydrate the original page (before redirecting) and then redirect and render the new page.
+有些情况下我们只能在客户端重定向。这种情况下，我们可以 [阻止 hydration mismatch 警告](/hydration-mismatch#suppress-hydration-mismatch)。或者，我们也可以对原始页面 hydrate（重定向之前），然后再重定向并渲染新页面

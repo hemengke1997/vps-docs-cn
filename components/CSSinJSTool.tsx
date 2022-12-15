@@ -1,16 +1,16 @@
-export { CSSinJSTool }
+export { CSSinJSTool };
 
-import React from 'react'
+import React from "react";
 
 function CSSinJSTool({ prefix }: { prefix: string }) {
   return (
     <>
-      <p>{prefix} collect the page's styles while server-side rendering the page to HTML.</p>
+      <p>{prefix}在服务器端将页面渲染为 HTML 时收集页面的样式</p>
 
       <p>
-        This enables us to add the styles to the HTML so that the browser loads the styles before loading the
-        JavaScript.
+        这使我们能够将样式添加到 HTML，以便浏览器在加载 JavaScript
+        之前加载样式
       </p>
     </>
-  )
+  );
 }

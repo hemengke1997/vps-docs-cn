@@ -168,9 +168,9 @@ async function render(pageContext) {
 
   const pipe = renderToStreamPipe(Page);
 
-  // If `pipe(writable)` expects `writable` to be a Writable Node.js Stream
+  // 如果 `pipe(writable)` 期望 `writable` 是一个可写的 Node.js Stream
   stampPipe(pipe, "web-stream");
-  // If `pipe(writable)` expects `writable` to be a Writable Web Stream
+  // 如果 `pipe(writable)` 期望 `writable` 是一个可写的 Web Stream
   stampPipe(pipe, "node-stream");
 
   return escapeInject`<!DOCTYPE html>
@@ -189,11 +189,11 @@ For Node.js:
 
 const pageContext = await renderPage(pageContextInit);
 const { httpResponse } = pageContext;
-// We can use `httpResponse.pipe()` as usual
+// 像平常一样使用 `httpResponse.pipe()`
 httpResponse.pipe(res);
 ```
 
-For Edge platforms that need a readable stream, such as Cloudflare Workers, we can use `new TransformStream()`:
+对于像 Cloudflare Worker 这种需要可读流的 Edge 平台，我们可以使用 `new TransformStream()`：
 
 ```js
 // worker.js
@@ -203,7 +203,7 @@ httpResponse.pipe(writable);
 const resp = new Response(readable);
 ```
 
-For some UI frameworks, such as Vue, we need a pipe wrapper:
+对于像 Vue 这样的 UI 框架，我们需要一个管道包装器
 
 ```js
 // renderer/_deault.page.server.js
@@ -214,7 +214,7 @@ import { stampPipe, escapeInject } from "vite-plugin-ssr";
 export function render(pageContext) {
   const { Page } = pageContext;
 
-  // We use a pipe wrapper so that `pipePageToWritable()` can access `Page`
+  // 为了 `pipePageToWritable()` 可以访问 `Page`，我们使用管道包装器
   const pipeWrapper = (writable) => {
     pipePageToWritable(Page, writable);
   };
@@ -229,13 +229,13 @@ export function render(pageContext) {
 }
 ```
 
-See <RepoLink path='/examples/cloudflare-workers-vue' /> for an example of using a pipe wrapper with Vue's `pipeToWebWritable()`/`pipeToNodeWritable()`, and using `new TransformStream()` for Cloudflare Workers.
+有关将管道包装器与 Vue 的 `pipeToWebWritable()`/`pipeToNodeWritable()`一起使用以及在 Cloudflare Workers 中使用 `new TransformStream()` 的例子，请参考 <RepoLink path='/examples/cloudflare-workers-vue' />
 
 {/* ## Initial data after streaming */}
 
-Some data fetching tools, such as <Link href="/relay" text="Relay">Relay</Link>, provide the initial data only after the stream as ended.
+一些数据获取工具，例如 <Link href="/relay" text="Relay">Relay</Link>，仅在流结束后才提供初始数据
 
-In such situations, we can return a `pageContext` promise in our `render()` hook:
+这种情况，我们可以在 `render()` hook 中返回 `pageContext` promise：
 
 ```js
 // renderer/_deault.page.server.js
@@ -262,7 +262,7 @@ async function render(pageContext) {
 
   const pageContextPromise = (async () => {
     return {
-      // Some `initialData` provided after the stream has ended
+      // 流结束后才被提供的 `initialData`
       initialData,
     };
   })();
