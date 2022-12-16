@@ -1,6 +1,6 @@
 import { Link } from '@brillout/docpress'
 
-Set to `true` to disable the automatic chaining of all build steps.
+设置为 `true` 以禁用自动链接所有构建步骤
 
 ```js
 // vite.config.js
@@ -8,26 +8,27 @@ Set to `true` to disable the automatic chaining of all build steps.
 import { ssr } from 'vite-plugin-ssr/plugin'
 
 export default {
-  plugins: [
-    ssr({
-      disableAutoFullBuild: true
-    })
-  ]
+	plugins: [
+		ssr({
+			disableAutoFullBuild: true,
+		}),
+	],
 }
 ```
 
-Running `$ vite build` executes three build steps:
- 1. Client-side build (`dist/client/`).
- 1. Server-side build (`dist/server/`).
- 1. Pre-rendering (if <Link text="pre-rendering is enabled" href="/pre-rendering" />).
+运行 `$ vite build` 执行了以下三个步骤：
 
-When setting `disableAutoFullBuild` to `true` then only step `1` is executed. To run the full build, we then have to:
+1.  客户端构建 (`dist/client/`)
+2.  服务端构建 (`dist/server/`)
+3.  预渲染（如果开启了 <Link text="预渲染" href="/pre-rendering" />）
 
- - Run `$ vite build`, to build the client-side (`dist/client/`).
- - Run `$ vite build --ssr`, to build the server-side (`dist/server/`).
- - Run the pre-rendering programmatically, see <Link href="/prerender-programmatic" />.
+将 `disableAutoFullBuild` 设置为 `true` 时，仅执行第 `1` 步。 要运行完整构建，我们必须：
 
-> We use `disableAutoFullBuild` when we want fine grain programmatic control over the build process.
+- 运行 `$ vite build`，构建客户端（`dist/client/`）
+- 运行 `$ vite build --ssr`，构建服务端（`dist/server/`）
+- 以编程方式运行预渲染， 请参考 <Link href="/prerender-programmatic" />
 
-> If our goal is to <Link text="programmatically run pre-rendering" href="/prerender-programmatic" /> then,
-> instead, we can set <Link text={<code>prerender.disableAutoRun</code>} href="/prerender-config#disableautorun" /> to `true` as it merely disables the automatic run of step `3`.
+> 当我们想要对构建过程进行细粒度编程控制时，则使用 `disableAutoFullBuild`
+
+> 如果我们的目标是 <Link text="以编程方式预渲染" href="/prerender-programmatic" />
+> 那么我们可以将 <Link text={<code>prerender.disableAutoRun</code>} href="/prerender-config#disableautorun" /> 设置为 `true`，因为它只会禁用步骤 `3` 的自动运行
