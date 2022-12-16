@@ -1,34 +1,36 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-There are no [gRPC](https://github.com/grpc) client for the browser.
-(Protocol Buffers does not support the browser.)
+浏览器没有 [gRPC](https://github.com/grpc) 客户端。
+（Protocol Buffers 不支持浏览器。）
 
-This means we cannot call gRPC enpdoints directly from the browser;
-we always need to call gRPC enpdoints from our Node.js server.
+这意味着我们不能直接从浏览器调用 gRPC enpdoints；我们需要从 Node.js 服务器调用 gRPC enpdoints。
 
-For fetching data,
-we can simply use a <Link text={<code>onBeforeRender()</code>} href="/data-fetching" /> hook,
-since `onBeforeRender()` hooks are called in Node.js.
+为了获取数据，我们可以简单地使用 <Link text={<code>onBeforeRender()</code>} href="/data-fetching" /> hook，因为 `onBeforeRender()` hook 在 Node.js 中被调用。
 
 For mutating data:
-1. We create a new HTTP endpoint. For example, if we use [Express.js](https://github.com/expressjs/express):
+对于突变数据：
+
+1. 我们创建一个新的 HTTP endpoint。例如，如果我们使用 [Express.js](https://github.com/expressjs/express)：
+
    ```js
    // Environment: Node.js
 
-   import express from 'express'
+   import express from "express";
 
-   const app = express()
-   app.use(express.json()) // Parse the HTTP request body as JSON
+   const app = express();
+   app.use(express.json()); // Parse the HTTP request body as JSON
 
-   app.post('/mutations/updateText', (req, res) => {
-     const { text } = req.body
+   app.post("/mutations/updateText", (req, res) => {
+     const { text } = req.body;
      // We can call gRPC enpdoints here
-   })
+   });
    ```
-2. We then call our HTTP endpoint from the browser.
+
+2. 然后我们在浏览器端调用 HTTP endpoint
+
    ```jsx
    // Environment: Browser
 
-   const body = JSON.stringify({ text: 'Some new text' })
-   await fetch('/mutations/updateText', { body })
+   const body = JSON.stringify({ text: "Some new text" });
+   await fetch("/mutations/updateText", { body });
    ```

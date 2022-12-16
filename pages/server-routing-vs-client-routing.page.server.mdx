@@ -1,67 +1,69 @@
-import { ServerRouting, ClientRouting } from '../components'
-import { Link } from '@brillout/docpress'
+import { ServerRouting, ClientRouting } from "../components";
+import { Link } from "@brillout/docpress";
 
-`vite-plugin-ssr` has first-class support for both Server-side Routing and Client-side Routing.
+`vite-plugin-ssr` 对服务端路由和客户端路由都有一流的支持
 
-## Server Routing
+{/* ## 服务端路由 */}
 
 <ServerRouting />
 
-## Client Routing
+{/* ## 客户端路由 */}
 
 <ClientRouting />
 
-We further discuss these use cases below.
+我们在下面进一步讨论使用场景
 
-## Which one to choose?
+{/* ## 如何选择？ */}
 
-By default, we recommend Server Routing because it leads to a simpler app architecture.
+默认情况下，我们推荐服务器路由，因为它使得应用程序架构更简单
 
-> While frameworks such as Next.js and Nuxt make Client Routing seem easy at first,
-> it always comes with inherent complexity that makes developing Next.js/Nuxt apps more complex and slower at scale.
+> 虽然 Next.js 和 Nuxt 等框架让客户端路由最开始看起来很简单，
+> 但它总是伴随着固有的复杂性，这使得开发 Next.js / Nuxt 应用变得复杂且扩展速度慢
 
-In general, there are two things to consider:
- - There is a trade off between simplicity and performance.
- - If we need to preserve client-side state across navigation (e.g. Music Players and Nested Layouts), then we have no choice than to use Client-side Routing.
+一般来说，需要考虑两件事：
 
-That said, which one to use really depends on the use case.
+- 简单和性能之间的权衡
+- 如果我们需要在导航中保留客户端状态（例如音乐播放器和嵌套布局），只能选择客户端路由
 
-#### Simple Websites
+换言之，使用哪种路由方式，取决于用例场景
 
-Apps with a simple architecture, such as portfolio or marketing websites, can afford the added complexity of Client Routing.
-Client-side Routing can be worth it for having smooth page navigations giving such website a polished touch.
+{/* #### 简单网页 */}
 
-#### MVPs
+架构简单的应用程序，例如作品集、营销网站，可以接受客户端路由带来的复杂性。
+客户端路由是值得的，因为它具有流畅的页面导航，为此类网站提供了舒适的触感
 
-As a startup that wants to deliver an MVP as quickly as possible, Server Routing is a sensible default choice. A simple app architecture leads to higher development speed which in turn leads to more features for our users.
+{/* #### MVPs */}
 
-Recommendation: Server-side Routing.
+作为一家希望尽快交付的 MVP 初创公司，服务器路由是一个明智的选择。
+简单的应用程序架构可以提高开发速度，从而为我们的用户带来更多功能
 
-#### Highly polished apps
+推荐：服务端路由
 
-For example Netflix's web app: Netflix pushes for delightful user experiences, and has the budget and man-power to do it. For entertainment apps, the highly polished user experience can be worth the added complexity.
+{/* #### 高度完善的应用 */}
 
-Recommendation: Client-side Routing.
+例如 Netflix 的 web 应用：Netflix 致力于提供令人愉悦的用户体验，并且有足够的预算和人力来做这件事。 对于娱乐应用程序，高度完善的用户体验值得增加复杂性
 
-#### Client-side state preserved across navigation
+推荐：客户端路由
 
-For example, on music players such as Spotify, the currently listened song should not be interrupted when the user navigates to a new page. Server Routing cannot preserve client-side state; we need Client Routing.
+{/* #### 跨导航保留客户端状态 */}
 
-Requirement: Client-side Routing.
+例如，在 Spotify 等音乐播放器上，当前正在收听的歌曲不应在用户导航到新页面时中断。服务器路由无法保留客户端状态；我们需要客户端路由
 
-#### Nested Layouts
+必须：客户端路由
 
-Similarly to the previous section, when using <Link text="Nested Layouts" href="/layouts#nested-layouts" />, the state of the outer page is preserved, which means we cannot implement Nested Layouts using Server Routing.
+{/* #### 嵌套布局 */}
 
-Requirement: Client-side Routing.
+与之前章节类似，当使用 <Link text="Nested Layouts" href="/layouts#nested-layouts" /> 时，外层页面的状态被保留，这意味着我们不能使用服务端路由实现嵌套路由
 
-#### Third-party API
+必须：客户端路由
 
-For example, if we use Shopify's or Facebook's GraphQL API,
-then Client Routing enables page navigation without doing any request to our Node.js server:
-when the user navigates to a new page,
-the user's browser directly communicates with the Shopify/Facebook GraphQL API and our Node.js server is not involved at all.
+{/* #### 第三方 API */}
 
-The Shopify/Facebook GraphQL API may geographically live significantly closer to our user than our Node.js server; we may want to involve our Node.js server rather less than often.
+例如，如果我们使用 Shopify 或 Facebook 的 GraphQL API，
+客户端路由页面导航不向我们的 Node.js 服务器发出任何请求：
+当用户导航到新页面时，
+用户的浏览器直接与 Shopify/Facebook GraphQL API 通信，而我们的 Node.js 服务器不参与
 
-Recommendation: Client-side Routing.
+Shopify/Facebook GraphQL API 在地理上可能比我们的 Node.js 服务器离我们的用户更近；我们可能希望减少我们的 Node.js 服务器的参与
+
+推荐：客户端路由

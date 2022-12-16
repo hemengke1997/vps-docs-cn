@@ -1,30 +1,30 @@
-## vite-plugin-ssr
+{/* ## vite-plugin-ssr */}
 
-To use `vite-plugin-ssr`'s debug logs:
+使用 `vite-plugin-ssr` 的调试日志：
 
 ```shell
-# Inspect the routing
+# 检查路由
 DEBUG=vps:routing npm run dev
-# Inspect what `.page.js` files are found and how they are treated
+#检查找到了哪些 `.page.js` 文件及其处理方式
 DEBUG=vps:pageFiles npm run dev
-# Inspect HTTP Streaming
+# 检查 HTTP Streaming
 DEBUG=vps:stream npm run dev
 ```
 
-> These debug logs allow you to understand how `vite-plugin-ssr` thinks of your app. For example, to figure out why your app is `404`'ing, you can use `vps:routing` and `vps:pageFiles`.
+> 这些调试日志让你了解 `vite-plugin-ssr` 如何处理应用程序。例如，要找出 404 的原因，可以使用 `vps:routing` 和 `vps:pageFiles`
 
-There are also `vps:glob` / `vps:extractAssets` / `vps:extractExportNames` but these are meant for vite-plugin-ssr maintainers.
+还有 `vps:glob` / `vps:extractAssets` / `vps:extractExportNames`，不过这些是为 `vite-plugin-ssr` 的维护者准备的
 
-> If you want more debug logs, add a comment at [#249](https://github.com/brillout/vite-plugin-ssr/issues/249).
+> 如果你想要更多的调试信息，请在 [#249](https://github.com/brillout/vite-plugin-ssr/issues/249) 添加评论
 
-## Vite
+{/* ## Vite */}
 
-To enable Vite's debug logs, set the environment variable `DEBUG` to `vite:*`.
+把环境变量 `DEBUG` 设置为 `vite:*` 来开启 Vite 的调试日志
 
 ```shell
 $ DEBUG=vite:* npm run dev
 ```
 
-In case you stumbled upon a Vite bug, we recommend to directly inspect Vite's built source code at `node_modules/vite/`, for example by injecting `console.log()` calls to bisect down the bug.
+如果你发现了 Vite 的 bug，我们建议你直接在 `node_modules/vite/` 中检查 Vite 的源码，例如通过注入 `console.log()` ，使用二分法排查 bug
 
-> It may sound scary to dig into Vite's source code, but it's actually often a faster (and a more interesting ;-)) way to find the root cause of problems. Vite's source code is well written and pleasurable to read. It also get's you closer to actually being able to fix the problem and, if you open a Vite PR, feel free to reach out to the `vite-plugin-ssr` maintainers to get your PR merged quicker.
+> 深入研究 Vite 的源码听起来可能很吓人，但实际上它是一种更快（也更有趣）的找到问题根源的方法。Vite 的源码优雅易读。它让你更接近问题所在。如果你开了 Vite 的 PR，随时联系 `vite-plugin-ssr` 的维护者，他们会让你的 PR 更快得到合并

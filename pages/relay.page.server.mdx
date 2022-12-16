@@ -1,19 +1,25 @@
-import { Link } from '@brillout/docpress'
-import { DataArchitecture } from '../components'
+import { Link } from "@brillout/docpress";
+import { DataArchitecture } from "../components";
 
 <DataArchitecture
-  toolName={'Relay'}
-  toolLink={'https://relay.dev/'}
+  toolName={"Relay"}
+  toolLink={"https://relay.dev/"}
   isGeneric={false}
-  toolType="data-fetching"
-  toolDocs={<a href="https://github.com/facebook/relay/issues/3468#issuecomment-824872147">Relay - #3468: SSR docs</a>}
+  toolType='data-fetching'
+  toolDocs={
+    <a href='https://github.com/facebook/relay/issues/3468#issuecomment-824872147'>
+      Relay - #3468: SSR docs
+    </a>
+  }
 />
 
-## React Streaming
+{/* ## React Streaming */}
 
-For using Relay with React Streaming, see:
- - <Link href="/stream#initial-data-after-streaming" />
- - [Relay - #3762 React 18 docs](https://github.com/facebook/relay/issues/3762)
+使用 Relay 搭配 React Streaming，请参考：
 
-Example of a deep Relay integration with React 18's new SSR Suspense Render-as-you-Fetch architecture:
- - [Vilay](https://github.com/XiNiHa/vilay)
+- <Link href='/stream#initial-data-after-streaming' />
+- [Relay - #3762 React 18 docs](https://github.com/facebook/relay/issues/3762)
+
+Relay 与 React 18 的新 SSR Suspense Render-as-you-Fetch 架构的深度集成示例：
+
+- [Vilay](https://github.com/XiNiHa/vilay)

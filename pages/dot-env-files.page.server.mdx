@@ -1,15 +1,17 @@
-import { RepoLink } from '@brillout/docpress'
-import { ImportMeta } from '@brillout/docpress'
+import { RepoLink } from "@brillout/docpress";
+import { ImportMeta } from "@brillout/docpress";
 
-Vite automatically makes environment variables defined in `.env` files available at <ImportMeta prop='env' />, see [Vite's docs about `.env` files](https://vitejs.dev/guide/env-and-mode.html#env-files).
+Vite 自动把 `.env` 文件中定义的环境变量赋值到 <ImportMeta prop='env' /> 中，请参阅 [Vite 关于 `.env` 文件的文档](https://vitejs.dev/guide/env-and-mode.html#env-files)
 
-Note that:
- - It only works for environment variables that are prefixed with `VITE_` (for security reasons).
- - It only works for files processed by Vite. (All following files and their imports: `*.page.js`, `*.page.server.js`, `*.page.client.js`, `*.page.route.js`.)
-   For files not processed by Vite (e.g. <RepoLink path="/boilerplates/boilerplate-react/server/index.js" text="Express.js server code"/>) we can use a Node.js tool such as [`dotenv`](https://github.com/motdotla/dotenv) (all browser files are always processed by Vite):
-   ```js
-   // server.js
-   if (!isProduction) {
-     require('dotenv').config() // npm install dotenv
-   }
-   ```
+请注意：
+
+- 它仅适用于以 `VITE_` 为前缀的环境变量（出于安全原因）
+- 它仅适用于 Vite 处理过的文件。（以下所有文件及其导入：`*.page.js`, `*.page.server.js`, `*.page.client.js`, `*.page.route.js`）
+  对于未经 Vite 处理的文件（例如 <RepoLink path="/boilerplates/boilerplate-react/server/index.js" text="Express.js server code"/>），我们可以使用如[`dotenv`](https://github.com/motdotla/dotenv) 的 Node.js 库（所有浏览器文件始终被 Vite 处理）：
+
+  ```js
+  // server.js
+  if (!isProduction) {
+    require("dotenv").config(); // npm install dotenv
+  }
+  ```

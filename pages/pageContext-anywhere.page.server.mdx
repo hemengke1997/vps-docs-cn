@@ -1,32 +1,27 @@
 import { RepoLink, Link } from '@brillout/docpress'
 
-By default `pageContext` is available:
- - only on the server-side, and
- - only at the root (Vue/React/...) component `Page`.
+默认情况下，`pageContext` 可用于：
+ - 仅在服务端
+ - 仅在根组件 `Page` （Vue/React/...） 
 
-But we can make `pageContext` available anywhere.
+但是我们可以让 `pageContext` 在任何地方都可使用
 
-## Browser-side
+{/* ## Browser-side */}
 
-To make `pageContext` available in the browser, we use [`passToClient`](/passToClient).
+为了使 `pageContext` 在浏览器环境中可用，我们可以使用 [`passToClient`](/passToClient)
 
-## React
+{/* ## React */}
 
-We can use [React Context](https://reactjs.org/docs/context.html)
-to make `pageContext` accessible from any React component.
+通过 [React Context](https://reactjs.org/docs/context.html) 让所有React组件都可使用 `pageContext`
 
-Example:
- - <RepoLink path='/boilerplates/boilerplate-react/renderer/usePageContext.jsx' /> (hook <code>usePageContext()</code> implementation)
- - <RepoLink path='/boilerplates/boilerplate-react/renderer/Link.jsx' /> (using <code>usePageContext()</code> to access <code>pageContext</code> from any React component)
- - <RepoLink path='/boilerplates/boilerplate-react/renderer/PageShell.jsx' /> (<code>{'<PageContextProvider>'}</code> integration)
+例子：
+ - <RepoLink path='/boilerplates/boilerplate-react/renderer/usePageContext.jsx' /> （实现 <code>usePageContext()</code>）
+ - <RepoLink path='/boilerplates/boilerplate-react/renderer/Link.jsx' /> （通过 <code>usePageContext()</code> 让所有React组件都可使用 <code>pageContext</code>）
+ - <RepoLink path='/boilerplates/boilerplate-react/renderer/PageShell.jsx' /> （集成 <code>{'<PageContextProvider>'}</code>）
 
-## Vue 3 - Composition API
+{/* ## Vue 3 - Composition API */}
 
-We can use
-[`app.provide()`](https://v3.vuejs.org/api/application-api.html#provide)
-with
-[`inject()`](https://v3.vuejs.org/api/composition-api.html#provide-inject)
-to make `pageContext` accessible from any Vue component.
+通过 [`app.provide()`](https://v3.vuejs.org/api/application-api.html#provide) 和 [`inject()`](https://v3.vuejs.org/api/composition-api.html#provide-inject) 让所有Vue组件都可使用 `pageContext`
 
 ```js
 // app.js
@@ -48,7 +43,7 @@ const pageContext = inject('pageContext')
 </script>
 ```
 
-We can also implement a `usePageContext()` hook:
+我们也可以实现 `usePageContext` hook：
 
 ```js
 // usePageContext.js
@@ -79,17 +74,17 @@ const pageContext = usePageContext()
 </script>
 ```
 
-Example:
- - <RepoLink path='/boilerplates/boilerplate-vue/renderer/usePageContext.js' /> (<code>usePageContext()</code> implementation)
- - <RepoLink path='/boilerplates/boilerplate-vue/renderer/Link.vue' /> (using <code>usePageContext()</code> to access <code>pageContext</code> from any Vue component)
- - <RepoLink path='/boilerplates/boilerplate-vue/renderer/app.js' /> (<code>setPageContext(app, pageContext)</code>)
+例子：
+ - <RepoLink path='/boilerplates/boilerplate-vue/renderer/usePageContext.js' /> （实现 <code>usePageContext()</code>）
+ - <RepoLink path='/boilerplates/boilerplate-vue/renderer/Link.vue' /> （通过 <code>usePageContext()</code> 让所有Vue组件都可使用 <code>pageContext</code>）
+ - <RepoLink path='/boilerplates/boilerplate-vue/renderer/app.js' /> （<code>setPageContext(app, pageContext)</code>）
 
-If we use <Link href="/client-routing" noBreadcrumb={true} />, we need to make `pageContext` reactive:
+如果使用 <Link href="/client-routing" noBreadcrumb={true} />，我们需要使 `pageContext` 响应式：
  - <RepoLink path='/examples/vue-full/renderer/app.ts' />
 
-## Vue 3 - `globalProperties`
+{/* ## Vue 3 - `globalProperties` */}
 
-Alternatively, we can make `pageContext` available to all Vue components by using [app.config.globalProperties](https://v3.vuejs.org/api/application-config.html#globalproperties).
+或者，我们可以使用 [app.config.globalProperties](https://v3.vuejs.org/api/application-config.html#globalproperties) 使所有 Vue 组件都可访问 pageContext
 
 ```js
 // app.js
@@ -112,15 +107,14 @@ const pageContext = getCurrentInstance().appContext.config.globalProperties.$pag
 </script>
 ```
 
-Example:
+例子：
  - [/boilerplates/boilerplate-vue/renderer/app.js (@abff8de)](https://github.com/brillout/vite-plugin-ssr/blob/abff8debc4c7cd6ab11e99e757379e5237a6c18c/boilerplates/boilerplate-vue/renderer/app.js#L26)
-   (`app.config.globalProperties.$pageContext = pageContext`)
- - [/boilerplates/boilerplate-vue/renderer/Link.vue (@abff8de)](https://github.com/brillout/vite-plugin-ssr/blob/abff8debc4c7cd6ab11e99e757379e5237a6c18c/boilerplates/boilerplate-vue/renderer/Link.vue#L2)
-   (accessing `pageContext` from any Vue component)
+   （`app.config.globalProperties.$pageContext = pageContext`）
+ - [/boilerplates/boilerplate-vue/renderer/Link.vue (@abff8de)](https://github.com/brillout/vite-plugin-ssr/blob/abff8debc4c7cd6ab11e99e757379e5237a6c18c/boilerplates/boilerplate-vue/renderer/Link.vue#L2)（让所有Vue组件都可访问 `pageContext`）
 
-If we use <Link href="/client-routing" noBreadcrumb={true} />, we make `$pageContext` reactive:
+如果使用 <Link href="/client-routing" noBreadcrumb={true} />，我们需要使 `$pageContext` 响应式：
  - [/examples/vue-full/renderer/app.ts (@aca560b)](https://github.com/brillout/vite-plugin-ssr/blob/aca560bd286b37524b4164555e5ab3f77e3688af/examples/vue-full/renderer/app.ts#L43-L47)
 
-## Vue 2
+{/* ## Vue 2 */}
 
-For Vue 2 we can use [Vue.prototype](https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example).
+Vue2 我们可以使用 [Vue.prototype](https://vuejs.org/v2/cookbook/adding-instance-properties.html#Base-Example)

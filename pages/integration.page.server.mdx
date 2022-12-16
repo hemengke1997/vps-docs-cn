@@ -1,31 +1,29 @@
-In general,
-thanks to the fact that we have control over how our pages are rendered,
-we can use whatever tool we want.
+由于我们可以控制页面的渲染方式，因此我们可以使用任何想要的工具
 
-In fact, `vite-plugin-ssr` is already being used with a high variety of tools within all kinds of diverse environments.
+事实上，`vite-plugin-ssr` 已经在各种不同的环境中与各种工具一起使用
 
-## View tools
+{/* ## 视图工具 */}
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-// This can be any UI framework (React, Vue, Svelte, ...)
-import renderToHtml from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+// 任意 UI 框架（React, Vue, Svelte, ...）
+import renderToHtml from "some-ui-framework";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  // `Page` is the `export { Page }` of our `*.page.js` files;
-  // `vite-plugin-ssr` doesn't do anything with `Page` and just makes it available as
-  // `pageContex.Page`; we can export any `Page` value we want and do whatever we want with it.
-  const { Page } = pageContext
+  // `Page` 是我们的 `*.page.js` 文件的 `export { Page }`；
+  // `vite-plugin-ssr` 不对 `Page` 做任何事情，只是让它作为 `pageContex.Page` 可用；
+  // 我们可以导出任何我们想要的“Page”值，并用它做任何我们想做的事。
+  const { Page } = pageContext;
 
-  // We have control over how we use our UI framework to render our pages to HTML
-  const pageHtml = await renderToHtml(Page)
+  // 我们可以控制如何使用 UI 框架将我们的页面渲染为 HTML
+  const pageHtml = await renderToHtml(Page);
 
-  // We have control over the entire HTML
+  // 我们控制整个HTML模板
   return escapeInject`<html>
     <body>
       <head>
@@ -36,7 +34,7 @@ async function render(pageContext) {
         ${dangerouslySkipEscape(pageHtml)}
       </div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
@@ -50,18 +48,19 @@ import { hydrateDom } from 'some-ui-framework'
 
 async render(pageContex) {
   const { Page } = pageContext
-  // We have control over how our pages are hydrated
+  // 我们控制页面如何 hydrate
   await hydrateDom(Page)
 }
 ```
 
-Since we control how our pages are render to HTML and hydrated, we can use:
-- Any UI framework (React 16, React 17, Vue 2, Vue 3, `petite-vue`, Svelte, Solid, Preact, ...)
-- Any view library (Vuex, Redux, Relay, Apollo GraphQL, PullState, Recoil, Vue Router, React Router, ...)
+由于我们控制我们的页面如何渲染为 HTML 和 hydrated，我们可以使用：
 
-And, more importantly, integrating a view tool is simply a matter of following its official installation guide.
+- 任何 UI 框架（React 16、React 17、Vue 2、Vue 3、`petite-vue`、Svelte、Solid、Preact 等）
+- 任何视图库（Vuex、Redux、Relay、Apollo GraphQL、PullState、Recoil、Vue Router、React Router，...）
 
-## Browser tools
+而且，更重要的是，集成视图工具只需遵循其官方安装指南即可。
+
+{/* ## 浏览器端工具 */}
 
 ```js
 // /renderer/_default.page.client.js
@@ -71,13 +70,13 @@ export { render }
 
 import { hydrateDom } from 'some-ui-framework'
 
-// This is a good place to initialize error tracking such as Sentry or Bugsnag.
+// 这是初始化错误跟踪（例如 Sentry 或 Bugsnag）的好地方
 Sentry.init()
-// And also for initializing a Service Worker.
+// 也是初始化 Service Worker 的好地方
 navigator.serviceWorker.register(/* ... */)
 
 async render(pageContex) {
-  // Here we can integrate performance measurement tools, e.g. to measure hydration performance
+  // 在这里我们可以集成性能测量工具，例如 测量 hydration 性能
   const { Page } = pageContex
   await hydrateDom(Page)
   init()
@@ -85,40 +84,43 @@ async render(pageContex) {
 
 function init() {
   // After hydration we usually initialize vanilla JS component libraries, for example tooltips
+  // hydration 后我们通常会初始化 vanilla JS 组件库，例如 tooltips
   tooltip.init(document.querySelectorAll('.tooltip')
-  // Or some vanilla JS modal library
+  // 或者一些 vanilla JS modal 库
   $('.my-modals').modal()
 }
 ```
 
-We can use:
- - Any CSS framework (Tailwind CSS, Bulma, Bootstrap, Material Design, ...)
- - Any browser library (Vanilla JS component libraries, Bugsnag, Sentry, jQuery, Google Analytics, ...)
- - Any browser technology (Service Workers, PWA, ...)
+我们可以用：
 
-Integrating a browser tool is only a matter of following its official installation guide.
+- 任何 CSS 框架（Tailwind CSS、Bulma、Bootstrap、Material Design 等）
+- 任何浏览器库（Vanilla JS 组件库、Bugsnag、Sentry、jQuery、Google Analytics，...）
+- 任何浏览器技术（Service Workers，PWA，...）
 
-## Server tools
+集成浏览器工具只需遵循其官方安装指南即可。
 
-From a server architecture perspective, `vite-plugin-ssr` is just a server middleware.
+{/* ## 服务端工具 */}
+
+从服务器架构的角度来看，`vite-plugin-ssr` 只是一个服务器中间件。
 
 ```js
-// `app` can be any server framework such as Express.js/Fastify/Koa/Hapi/...
-app.get('*', async (req, res) => {
-  // The `renderPage()` function, for a given URL, returns the result of our
-  // `render()` hook (usually an HTML string). It doesn't know anything about Express.js and
-  // can be used in any server environment, including serverless such as Cloudflare Workers
-  // or Vercel.
-  const pageContext = await renderPage({ urlOriginal: req.url })
-  res.send(pageContext.httpResponse.body)
-})
+// `app` 可以是任何服务器框架，例如 Express.js/Fastify/Koa/Hapi/...
+app.get("*", async (req, res) => {
+  // 对于给定的 URL，`renderPage()` 函数返回我们的
+  // `render()` hook 的结果（通常是 HTML 字符串）。
+  // 它可以在 Express.js 中使用，也可以在任何服务器环境中使用，包括无服务器环境，
+  // 例如 Cloudflare Workers 或 Vercel。
+  const pageContext = await renderPage({ urlOriginal: req.url });
+  res.send(pageContext.httpResponse.body);
+});
 ```
 
-By [pre-rendering](/pre-rendering) we can remove the need for a Node.js production server and deploy to any static host instead.
+通过 [预渲染](/pre-rendering) 我们可以消除对 Node.js 生产服务器的需求，而是部署到任何静态 host
 
-We can use:
-- Any server framework (Express, Koa, Fastify, Hapi, ...)
-- Any authentication strategy & tool (email/password, OAuth, NextAuth.js, Passport.js, Grant, Auth0, ...).
-- Any serverless environment (Cloudflare Workers, Vercel, Firebase, AWS Lambda, Google Cloud Functions, ...)
-- Any server environment (AWS EC2, Google Cloud, ...)
-- Any static host (Cloudflare Pages, GitHub Pages, Netlify, ...)
+我们可以用：
+
+- 任何服务器框架（Express, Koa, Fastify, Hapi, ...）
+- 任何鉴权策略和工具（电子邮件/密码、OAuth、NextAuth.js、Passport.js、Grant、Auth0 等）。
+- 任何无服务器环境（Cloudflare Workers、Vercel、Firebase、AWS Lambda、Google Cloud Functions，...）
+- 任何服务器环境（AWS EC2、谷歌云……）
+- 任何静态host（Cloudflare Pages、GitHub Pages、Netlify……）

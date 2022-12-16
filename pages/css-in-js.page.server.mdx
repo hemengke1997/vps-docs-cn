@@ -1,6 +1,6 @@
-import { CSSinJSTool } from '../components'
+import { CSSinJSTool } from "../components";
 
-<CSSinJSTool prefix="Some CSS-in-JS tools allows us to" />
+<CSSinJSTool prefix='一些 CSS-in-JS 工具允许我们' />
 
 ```jsx
 // renderer/_default.page.server.jsx
@@ -8,7 +8,7 @@ import { CSSinJSTool } from '../components'
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
-import { CssCollector } from 'some-css-in-js-tool'
+import { CssCollector } from "some-css-in-js-tool";
 
 export { render };
 
@@ -16,12 +16,12 @@ function render(pageContext) {
   const { Page } = pageContext;
   const page = <Page />;
 
-  const collect = new CssCollector()
+  const collect = new CssCollector();
 
   const pageHtml = ReactDOMServer.renderToString(collect(page));
 
-  // `vite-plugin-ssr` inserts the `<script>` tags at the end of the HTML; the
-  // browser will load the `<style>` tag first.
+  // `vite-plugin-ssr` 在 HTML 末尾插入 `<script>` 标签
+  // 浏览器将首先加载 `<style>` 标签
   return escapeInject`<!DOCTYPE html>
     <html>
       <head>

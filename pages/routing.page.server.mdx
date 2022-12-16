@@ -1,24 +1,27 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-With `vite-plugin-ssr` we have the choice between:
- - Server Routing and Client Routing.
- - Filesystem Routing, Route Strings and Route Functions.
+`vite-plugin-ssr` 中，我们可以选择：
 
-## Server Routing or Client Routing?
+- 服务端路由，客户端路由
+- 文件系统路由，路由字符串和路由函数
 
-`vite-plugin-ssr` has first-class support for both Server-side Routing (full HTML reload upon page navigation) and Client-side Routing (DOM mutations upon page navigation).
+{/* ## Server Routing or Client Routing? */}
+{/* ## 服务端路由或客户端路由？ */}
 
-<Link href="/server-routing-vs-client-routing" /> helps us choose which one to use.
+`vite-plugin-ssr` 对服务端路由（页面导航时 HTML 重新加载）和客户端路由（页面导航时 DOM 改变）都有一流的支持
 
-## React Router / Vue Router
+<Link href='/server-routing-vs-client-routing' /> 帮助我们选择使用哪种路由
 
-Instead of using React Router or Vue Router, we recommend to only use `vite-plugin-ssr`'s built-in router.
+{/* ## React Router / Vue Router */}
 
-That said, `vite-plugin-ssr` has support for both Vue Router and React Router, see <Link href="/vue-router-and-react-router" />.
+我们建议使用 `vite-plugin-ssr` 内置的路由，而非 React Router 或 Vue Router
 
-## Route Strings & Route Functions
+不过 `vite-plugin-ssr` 也支持 React Router 和 Vue Router，请参阅 <Link href="/vue-router-and-react-router" />
 
-By default, `vite-plugin-ssr` does Filesystem Routing:
+{/* ## Route Strings & Route Functions */}
+{/* ## 路由字符串 & 路由函数 */}
+
+默认情况下，`vite-plugin-ssr` 执行文件系统路由：
 
 ```
 FILESYSTEM                        URL
@@ -28,40 +31,41 @@ pages/faq/index.page.js           /faq
 pages/movie/@id/index.page.js     /movie/1, /movie/2, /movie/3, ...
 ```
 
-We can also define so-called "Route Strings" and "Route Functions".
+我们也可以定义 “路由字符串” 和 “路由函数”
 
 ```js
 // /pages/product.page.route.js
 
-// This file defines the route of `/pages/product.page.js`
+// 这个文件定义了 `/pages/product.page.js` 的路由
 
-// Route String
-export default '/product/@productId'
+// 路由字符串
+export default "/product/@productId";
 ```
 
-> The parameter `productId` is available at `pageContext.routeParams.productId`.
+> 参数 `productId` 传递到了 `pageContext.routeParams.productId`
 
-Route Functions give us full programmatic flexibility to implement advanced routing logic, for example route guards:
+路由函数为我们提供了完整且灵活的编程能力，来实现高级路由逻辑，例如路由守卫：
 
 ```js
 // /pages/product/edit.page.route.js
 
-// This file defines the route of `/pages/product/edit.page.js`
+// 这个文件定义了 `/pages/product/edit.page.js` 的路由
 
-import { resolveRoute } from 'vite-plugin-ssr/routing'
+import { resolveRoute } from "vite-plugin-ssr/routing";
 
 export default async (pageContext) => {
-  // Ensure that `/product/@id/edit` can be accessed only by admins
+  // 确保 `/product/@id/edit` 路由只能被管理员访问
   if (!pageContext.user.isAdmin) {
-    return false
+    return false;
   }
 
-  // We can use vite-plugin-ssr's Route String resolver
-  return resolveRoute('/product/@id/edit', pageContext.urlPathname)
-}
+  // 我们可以使用 `vite-plugin-ssr` 的路由字符串解析器
+  return resolveRoute("/product/@id/edit", pageContext.urlPathname);
+};
 ```
 
-See also:
- - <Link href="/filesystem-routing" />
- - <Link href="/route-string" />
- - <Link href="/route-function" />
+另请参阅:
+
+- <Link href='/filesystem-routing' />
+- <Link href='/route-string' />
+- <Link href='/route-function' />

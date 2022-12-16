@@ -1,18 +1,17 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-The `<head>` tags (e.g. `<title>` or `<meta name="description">`)
-are defined by our [server-side `render()` hook](/render).
+在 [服务端 `render()` hook](/render) 中定义 `head` 标签（如 `<title>` 或 `<meta name="description">`）
 
-> We can also define `<head>` tags on a page-by-page basis and on a component-by-component basis, see sections below.
+> 我们还可以按页和按组件地定义 head 标签，请参阅以下内容
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml } from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml } from "some-ui-framework";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
   return escapeInject`<html>
@@ -25,41 +24,42 @@ async function render(pageContext) {
         ${dangerouslySkipEscape(await renderToHtml(pageContext.Page))}
       </div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
+{/* ## 按页 （静态） */}
 
-## By page (static)
-
-To define `<head>` tags for a specific page, we can use a <Link href="/exports" text="Custom Export" />.
+我们可以使用 <Link href="/exports" text="Custom Export" /> 为指定页面定义 `head` 标签
 
 ```js
 // /pages/about.page.js
 
-// Custom Export
+// 自定义Exports
 export const documentProps = {
-  // This title and description will override the defaults
-  title: 'About SpaceX',
-  description: 'Our mission is to explore the galaxy.'
-}
+  // title 和 description 会覆盖默认值
+  title: "About SpaceX",
+  description: "Our mission is to explore the galaxy.",
+};
 ```
+
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml } from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml } from "some-ui-framework";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  // Our custom export is available here as `pageContext.exports.documentProps`
-  const { documentProps } = pageContext.exports
+  // 自定义Exports可在此处作为 `pageContext.exports.documentProps` 使用
+  const { documentProps } = pageContext.exports;
 
-  // Defaults
-  const title = documentProps.title || 'SpaceX'
-  const description = documentProps.description || 'We deliver payload to space.'
+  // 默认值
+  const title = documentProps.title || "SpaceX";
+  const description =
+    documentProps.description || "We deliver payload to space.";
 
   return escapeInject`<html>
     <head>
@@ -71,51 +71,51 @@ async function render(pageContext) {
         ${dangerouslySkipEscape(await renderToHtml(pageContext.Page))}
       </div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
+{/* ## 按页 （动态） */}
 
-## By page (dynamic)
-
-To define `<head>` tags that are dynamic (determined at run-time),
-we can also use a <Link href="/exports" text="Custom Export" />.
+我们可以使用 <Link href="/exports" text="Custom Export" /> 定义动态的 `head` 标签（运行时确定）
 
 ```js
 // /pages/rocket.page.route.js
 export const '/rocket/@rocketSlug'
 ```
+
 ```js
 // /pages/rocket.page.js
 
-// Custom Export
-export { getDocumentProps }
+// 自定义Exports
+export { getDocumentProps };
 
 function getDocumentProps(pageProps) {
   return {
     title: pageProps.product.name,
-    description: pageProps.product.description
-  }
+    description: pageProps.product.description,
+  };
 }
 ```
+
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-export { render }
+export { render };
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml } from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml } from "some-ui-framework";
 
 async function render(pageContext) {
-  // `pageProps` is provided by our data fetching mechanism, see the "Data Fetching" Guide.
-  const { Page, pageProps } = pageContext
+  // `pageProps` 由数据获取机制提供，参见 “数据获取” 指南
+  const { Page, pageProps } = pageContext;
 
-  // Our custom export is available as `pageContext.exports.getDocumentProps`
-  const { getDocumentProps } = pageContext.exports
+  // 自定义Exports可在此处作为 `pageContext.exports.documentProps` 使用
+  const { getDocumentProps } = pageContext.exports;
 
-  // `getDocumentProps()` can use the fetched data to provide the page's meta data
-  const { title, description } = getDocumentProps(pageProps)
+  // `getDocumentProps()` 可以使用获取的数据来提供页面的元数据
+  const { title, description } = getDocumentProps(pageProps);
 
   return escapeInject`<html>
     <head>
@@ -127,113 +127,112 @@ async function render(pageContext) {
         ${dangerouslySkipEscape(await renderToHtml(pageContext.Page))}
       </div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
+{/* ## 按组件 */}
 
-## By component
+通过一些深度嵌套的视图（React/Vue/...）组件：
 
-To define `<head>` tags by some deeply nested view (React/Vue/...) component:
- 1. We add `documentProps` to [`passToClient`](/passToClient).
- 2. We pass `pageContext.documentProps` to all components, see [Guides > Access `pageContext` anywhere](/pageContext-anywhere).
- 3. We modify `pageContext.documentProps` in the deeply nested component.
+1.  将`documentProps` 添加到 [`passToClient`](/passToClient)
+2.  将 `pageContext.documentProps` 传递给所有组件，请参考 [Guides > Access `pageContext` anywhere](/pageContext-anywhere)
+3.  在深度嵌套的组件中修改 `pageContext.documentProps`
 
-For example:
+例子：
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import renderToHtml from 'some-ui-framework'
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
+import renderToHtml from "some-ui-framework";
 
 export async function render(pageContext) {
-  // We use our UI framework to pass `pageContext.documentProps` to all components
-  // of our component tree. (E.g. React Context or Vue's `app.config.globalProperties`.)
+  // 使用 UI 框架将 `pageContext.documentProps` 传递给所有组件
+  //（如 React Context 或 Vue 的 `app.config.globalProperties`）
   const pageHtml = await renderToHtml(
-    <ContextProvider documentProps={pageContext.documentProps} >
+    <ContextProvider documentProps={pageContext.documentProps}>
       <Page />
     </ContextProvider>
-  )
+  );
 
-  // What happens here is:
-  // 1. Our UI framework passed `documentProps` to all our components
-  // 2. One of our (deeply nested) component modified `documentProps`
-  // 3. We now render `documentProps` to HTML meta tags
+  // 此处发生的是：
+  // 1. UI 框架将 `documentProps` 传递给所有组件
+  // 2. （深度嵌套的）组件修改了 `documentProps`
+  // 3. 将 `documentProps` 渲染到 HTML meta 标签中
   return escapeInject`<html>
     <head>
       <title>${pageContext.documentProps.title}</title>
-      <meta name="description" content="${pageContext.documentProps.description}">
+      <meta name="description" content="${
+        pageContext.documentProps.description
+      }">
     </head>
     <body>
       <div id="app">
         ${dangerouslySkipEscape(pageHtml)}
       </div>
     </body>
-  </html>`
+  </html>`;
 }
 ```
 
 ```js
-// Somewhere in a component deep inside our component tree
+// 在组件树深处的某个组件中
 
-// Thanks to our previous steps, `documentProps` is available here.
-documentProps.title = 'I was set by some deep component.'
-documentProps.description = 'Me too.'
+// 由于之前的步骤，使得我们可以在这里使用 `documentProps`
+documentProps.title = "I was set by some deep component.";
+documentProps.description = "Me too.";
 ```
 
+{/* ## 客户端路由 */}
 
-## Client Routing
-
-If we use Client Routing, we need to make sure to update `document.title` upon page navigation:
+若使用客户端路由，我们需要确保在页面导航时更新 `document.title`：
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-// We make `pageContext.documentProps` available in the browser.
-export const passToClient = ['documentProps', 'pageProps']
+// 使 `pageContext.documentProps` 在浏览器环境中可用
+export const passToClient = ["documentProps", "pageProps"];
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-export { render }
+export { render };
 
 function render(pageContext) {
   if (!pageContext.isHydration) {
-    // Page navigation — we update the website's title
-    document.title = pageContext.documentProps.title
+    // 页面导航 — 更新网页title
+    document.title = pageContext.documentProps.title;
   }
   // ...
 }
 ```
 
+{/* ## 第三方库 */}
 
-## Libraries
+我们也可以使用诸如 [@vueuse/head](https://github.com/vueuse/head) 或 [react-helmet](https://github.com/nfl/react-helmet) 之类的库
 
-We can also use libraries such as [@vueuse/head](https://github.com/vueuse/head) or [react-helmet](https://github.com/nfl/react-helmet).
+我们建议仅当你有以下理由时才使用此类库：
+上述解决方案更简单，适用于大多数用例
 
-We recommend to use such library only if you have a rationale:
-the aforementioned solutions are simpler and work for most use cases.
-
-Head libraries already sanitize the HTML `<head>`, this means we can skip `escapeInject` and wrap the overall result with `dangerouslySkipEscape()`.
+Head 库已经净化了 HTML `<head>`，这意味着我们可以跳过 `escapeInject` 并使用 `dangerouslySkipEscape()` 包装整个结果
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { renderToHtml } from 'some-ui-framework'
+import { dangerouslySkipEscape } from "vite-plugin-ssr";
+import { renderToHtml } from "some-ui-framework";
 
 export async function render(pageContext) {
-  return dangerouslySkipEscape(await renderToHtml(pageContext.Page))
+  return dangerouslySkipEscape(await renderToHtml(pageContext.Page));
 }
 ```
 
+{/* ## Markdown */}
 
-## Markdown
-
-For pages defined with markdown, see [Integration > Markdown > `<head>` (`pageContext.exports`)](/markdown#head-pagecontext-exports).
-
+对于使用 markdown 定义的页面，请参考 [Integration > Markdown > `<head>` (`pageContext.exports`)](/markdown#head-pagecontext-exports)

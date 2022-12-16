@@ -1,23 +1,19 @@
 import { RepoLink, Link } from '@brillout/docpress'
 
-> In general, we recommend defining `onBeforeRender()` hooks in `.page.server.js` instead of `.page.js`. (We elaborate below.)
+> 通常，我们建议在 `.page.server.js` 中定义 `onBeforeRender()` hook 而非 `.page.js` 中。（在下面详细说明）
 
-> Defining `onBeforeRender()` in `.page.js` only works when using Client Routing.
+> 在 `.page.js` 中定义 `onBeforeRender()` 仅在使用客户端路由时有效
 
-Usually, we define [`onBeforeRender()` in `.page.server.js`](/onBeforeRender)
-but, if we use [Client Routing](/clientRouting),
-then we also have the option to define `onBeforeRender()` in `.page.js` instead.
+通常，我们 [在 `.page.server.js` 中定义 `onBeforeRender()`](/onBeforeRender)，但是如果我们使用[客户端路由](/clientRouting)，那么我们也可以在 `.page.js` 中定义 `onBeforeRender()`
 
-When defined in `.page.server.js` the `onBeforeRender()` hook is only loaded & executed in Node.js,
-whereas if we define it in `.page.js` then `onBeforeRender()` is also loaded & executed in the browser:
-for the first page the user visits `onBeforeRender()` is called in Node.js
-while for any subsequent page navigation `onBeforeRender()` is called in the browser.
+当在 `.page.server.js` 中定义时，`onBeforeRender()` hook 仅在 Node.js 中加载和执行，而如果我们在 `.page.js` 中定义它，那么 `onBeforeRender()` 也会在浏览器中加载和执行：对于用户第一个访问的页面 `onBeforeRender()` 在 Node.js 中调用，而对于任何后续页面导航，`onBeforeRender()` 在浏览器中调用。
 
 Examples:
+
 - <RepoLink path='/examples/react-full/pages/star-wars/movie/index.page.tsx' />
 - <RepoLink path='/examples/vue-full/pages/star-wars/movie/index.page.vue' />
 
-## Recommendation
+{/* ## Recommendation */}
 
 In general, we recommend defining `onBeforeRender()` hooks in `.page.server.js` since it's easier to write code that only runs
 in Node.js.
@@ -25,7 +21,7 @@ in Node.js.
 That said, if we want to minimize requests made to our Node.js server, then we may want to define our `onBeforeRender()` hooks in `.page.js`.
 But then we need to ensure that our `onBeforeRender()` hook is isomorphic: it needs to be able to run in both Node.js and the browser.
 
-## Server Routing
+{/* ## Server Routing */}
 
 If we use <Link href="/server-routing" noBreadcrumb={true} /> we shouldn't define `onBeforeRender()` in `.page.js`
 (the browser loads `onBeforeRender()` but never calls it). We should always define [`onBeforeRender()` in `.page.server.js`](/onBeforeRender) instead.

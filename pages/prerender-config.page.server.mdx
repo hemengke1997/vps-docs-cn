@@ -1,8 +1,8 @@
 import { Link } from '@brillout/docpress'
 
-> See <Link href="/pre-rendering" /> for an overview of how to pre-render our app.
+> 请参阅 <Link href="/pre-rendering" /> 了解如何预渲染
 
-By default, pre-rendering is disabled. To enable it:
+默认情况下，预渲染是禁用的。要启用它：
 
 ```js
 // vite.config.js
@@ -12,9 +12,9 @@ import { ssr } from 'vite-plugin-ssr/plugin'
 export default {
   plugins: [
     ssr({
-      // Use the default pre-render config:
+      // 使用默认的预渲染配置
       prerender: true
-      // Deviate from the default pre-render config:
+      // 与默认的预渲染配置不同：
       prerender: {
         partial?: boolean
         noExtraDir?: boolean
@@ -26,53 +26,50 @@ export default {
 }
 ```
 
+{/* ## `partial` */}
 
-## `partial`
+可选，默认 `false`
 
-Optional, default value: `false`.
+允许只预渲染一些页面
 
-Allow only some of our pages to be pre-rendered.
+此设置不会影响预渲染过程：它只是在我们的某些页面无法预渲染时抑制警告
 
-This setting doesn't affect the pre-rendering process: it merely suppresses the warnings when some of our pages cannot be pre-rendered.
+> 如 <Link href="/pre-rendering" /> 中所述，如果我们不预渲染所有页面，那么我们需要一个生产服务器。通过使用 <Link text={<code>vite-plugin-vercel</code>} href="/vercel#vite-plugin-vercel" />，我们仍然可以静态部署我们的预渲染页面，同时为我们的非预渲染页面使用生产服务器。
 
-> As explained in <Link href="/pre-rendering" />, if we don't pre-render all pages, then we need a production server. By using <Link text={<code>vite-plugin-vercel</code>} href="/vercel#vite-plugin-vercel" />, we can still statically deploy our pre-rendered pages while using a production server for our non-pre-rendered pages.
+> 当页面有一个参数化的路由（例如 <Link text="Route String" href="/route-string" /> `/movie /@movieId` 或 <Link text="Route Function" href="/route-function" />) 且没有任何 <Link text={<><code>prerender()</code> hook</>} href="prerender" /> 提供至少一个与页面路由匹配的 URL（例如 `/movie/42`） 时，`vite-plugin-ssr` 会显示无法预渲染的警告
 
-> `vite-plugin-ssr` shows a warning that a page cannot be pre-rendered, when the page has a parameterized route (e.g. a  <Link text="Route String" href="/route-string" /> `/movie/@movieId`, or a <Link text="Route Function" href="/route-function" />), and there isn't any <Link text={<><code>prerender()</code> hook</>} href="prerender" /> that provides at least one URL matching the page's route (e.g. `/movie/42`).
+{/* ## `noExtraDir` */}
 
+可选，默认 `false`
 
-## `noExtraDir`
+不为每个 HTML 文件创建新目录。
 
-Optional, default value: `false`.
+例如，生成 `dist/client/about.html` 而不是 `dist/client/about/index.html`
 
-Don't create a new directory for each HTML file.
+> 为每个 HTML 文件生成一个目录是告诉静态 host 每个静态 HTML 的静态 URL 的最可靠方式。
+> 但是有些静态 host 更喜欢其他方式
 
-For example, generate `dist/client/about.html` instead of `dist/client/about/index.html`.
+{/* ## `parallel` */}
 
-> Generting a directory for each HTML file is the most reliable way for telling Static Hosts the static URL of each static HTML.
-> But some static hosts prefer the other way.
+可选，默认 [`os.cpus().length`](https://nodejs.org/api/os.html#os_os_cpus)
 
+并发预渲染的数量
 
-## `parallel`
+设置为 `false`（或 `1`）以禁用并发
 
-Optional, default value: [`os.cpus().length`](https://nodejs.org/api/os.html#os_os_cpus).
-
-Number of concurrent pre-render jobs.
-
-Set to `false` (or `1`) to disable concurrency.
-
-> The default value is the fastest, but it may induce high spikes of memory usage.
+> 默认值是最快的，但是它可能导致内存使用量激增
 >
-> Disable concurrency if:
-> - You encounter `JavaScript heap out of memory` errors.
-> - If pre-rendering takes an abnormal high amount of time. (Caused by the very slow process of memory swapping that kicks-in when memory starts to saturates).
+> 在以下情况下禁用并发
+>
+> - 你遇到 `JavaScript heap out of memory` 错误
+> - 如果预渲染花费异常多的时间。 （由于内存开始饱和时启动的内存交换过程非常缓慢）。
 
+{/* ## `disableAutoRun` */}
 
-## `disableAutoRun`
+可选，默认 `false`
 
-Optional, default value: `false`.
+在运行 `$ vite build` 时禁用预渲染自动启动
 
-Disable the automatic initiation of the pre-rendering process when running `$ vite build`.
+如果你想以编程方式启动预渲染，请使用它
 
-Use this if you want to programmatically initiate the pre-rendering process instead.
-
-See <Link href="/prerender-programmatic" />.
+请参考 <Link href="/prerender-programmatic" />

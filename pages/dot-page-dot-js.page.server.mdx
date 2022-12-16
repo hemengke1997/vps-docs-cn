@@ -1,12 +1,13 @@
 import { Link } from '@brillout/docpress'
 
-Environment: `Browser`, `Node.js`.
+环境：`Browser`、`Node.js`
 
-A `.page.js` file can export the following:
-- `export { Page }` (or `export default`)
+`.page.js` 文件可以导出以下内容：
+
+- `export { Page }`（或 `export default`）
 - `export { onBeforeRender }`
-- <Link href="/exports" />
+- <Link href='/exports' />
 
-The `.page.js` file is isomorphic: it can run in the browser as well as in Node.js.
+`.page.js` 文件是同构的：它既可以在浏览器中运行，也可以在 Node.js 中运行
 
-The `.page.js` file is lazy-loaded: it is loaded only when needed which means that if no URL request were to match the page's route then `.page.js` is never loaded in the browser nor in the Node.js process' memory.
+`.page.js` 文件是懒加载的：它只在需要时加载，这意味着如果没有 URL 请求匹配页面的路由，那么 `.page.js` 永远不会加载到浏览器中，也不会加载到 Node.js 进程的内存中

@@ -1,77 +1,75 @@
-import { RepoLink, Link } from '@brillout/docpress'
+import { RepoLink, Link } from "@brillout/docpress";
 
-> **What are layouts?**
-> Apps often have different layouts:
-> for example a landing page usually has a different layout than an admin panel.
-> *Layouts* are about defining different layouts for different pages.
+> **什么是 layouts？**
+> 应用程序通常具有不同的 layouts：
+> 例如，登录页面通常跟管理后台布局不同。
+> _Layouts_ 是指给不同的页面定义不同的布局
 
+{/* ## 简单的方法 */}
 
-## The simple way
-
-Import and use the right layout for each page:
+为每个页面导入并使用正确的 layout：
 
 ```jsx
 // /pages/index.page.js
 
-export { Page }
+export { Page };
 
-import { LayoutDefault } from '../layouts/LayoutDefault'
+import { LayoutDefault } from "../layouts/LayoutDefault";
 
 function Page() {
-  return <>
-    <LayoutDefault>
-      {/* ... */}
-    </LayoutDefault>
-  </>
+  return (
+    <>
+      <LayoutDefault>{/* ... */}</LayoutDefault>
+    </>
+  );
 }
 ```
 
 ```jsx
 // /pages/admin.page.js
 
-export { Page }
+export { Page };
 
-import { LayoutDashboard } from '../layouts/LayoutDashboard'
+import { LayoutDashboard } from "../layouts/LayoutDashboard";
 
 function Page() {
-  return <>
-    <LayoutDashboard>
-      {/* ... */}
-    </LayoutDashboard>
-  </>
+  return (
+    <>
+      <LayoutDashboard>{/* ... */}</LayoutDashboard>
+    </>
+  );
 }
 ```
 
+{/* ## Custom Export */}
 
-## Custom Export
-
-Alternatively, we can use a <Link href="/exports" text="Custom Export" />.
+或者，我们可以使用 <Link href="/exports" text="Custom Export" />
 
 ```js
 // /pages/admin.page.js
 
-// Set `pageContext.exports.Layout` to `LayoutDashboard`
-export { LayoutDashboard as Layout } from '../layouts/LayoutDashboard'
-export { Page }
+// 将 `pageContext.exports.Layout` 设置为 `LayoutDashboard`
+export { LayoutDashboard as Layout } from "../layouts/LayoutDashboard";
+export { Page };
 
 function Page() {
   // ...
 }
 ```
 
-Our renderer can then access `pageContext.exports.Layout` and render it accordningly:
+然后在 renderer 中访问 `pageContext.exports.Layout` 并相应渲染它：
 
 ```js
 // /renderer/_default.page.{server|client}.js
 
-export { render }
+export { render };
 
-import { LayoutDefault } from '../layouts/LayoutDefault'
+import { LayoutDefault } from "../layouts/LayoutDefault";
 
 function render() {
-  const Layout = pageContext.exports.Layout || LayoutDefault
-  const { Page } = pageContext
-  // We render `<Layout><Page/></Layout>`
+  const Layout = pageContext.exports.Layout || LayoutDefault;
+  const { Page } = pageContext;
+  // render `<Layout><Page/></Layout>`
   // ...
 }
 ```
@@ -79,8 +77,8 @@ function render() {
 ```js
 // /pages/index.page.js
 
-// We don't need to `export { Layout }` because the landing page uses `<LayoutDefault>`
-export { Page }
+// 不需要 `export { Layout }` 因为落地页使用 `<LayoutDefault>`
+export { Page };
 
 function Page() {
   // As usual
@@ -88,33 +86,35 @@ function Page() {
 }
 ```
 
-We can use `_default.page.js` to set the layout for several pages at once:
+可使用 `_default.page.js` 一次性设置多个页面的 layout 布局：
 
 ```js
 // /pages/product/_default.page.js
 
-// Set the Layout for all `/pages/product/**/*.page.js`
-export { LayoutProduct as Layout } from '../../layouts/LayoutProduct'
+// 设置所有 `/pages/product/**/*.page.js` 的layout
+export { LayoutProduct as Layout } from "../../layouts/LayoutProduct";
 ```
 
-Which fits well <Link text="Domain-driven file structure" href='/file-structure#domain-driven' />.
+这很适合 <Link text="Domain-driven file structure" href='/file-structure#domain-driven' />
 
-Examples:
- - <RepoLink path="/examples/layouts-react/" />
- - <RepoLink path="/examples/layouts-vue/" />
+例子：
 
+- <RepoLink path='/examples/layouts-react/' />
+- <RepoLink path='/examples/layouts-vue/' />
 
-## Nested Layouts
+{/* ## 嵌套 Layouts 布局 */}
 
-> **What are nested layouts?** A nested layout is, essentially, when a page has a route with multiple parameters.
+> **什么是嵌套 layouts** 嵌套 layout 布局本质上是一个页面有一个带有多个路由参数
 >
-> For example `/product/@productId/@productView`.
+> 比如 `/product/@productId/@productView`
+>
 > ```
 > URL                        productId     productView
 > /product/1337              1337          null
 > /product/1337/pricing      1337          pricing
 > /product/42/reviews        42            reviews
 > ```
+>
 > ```
 > /product/42/pricing                   /product/42/reviews
 > +------------------+                  +-----------------+
@@ -126,82 +126,93 @@ Examples:
 > +------------------+                  +-----------------+
 > ```
 
-> For a DX similar to Next.js's new Layout RFC, see [#346](https://github.com/brillout/vite-plugin-ssr/issues/346).
-> Add a comment if you need/want this and it will be implemented.
+> 对于类似于 Next.js 的 Layout RFC, 请参考 [#346](https://github.com/brillout/vite-plugin-ssr/issues/346)。
+> 如果你需要或想要这个功能，请添加评论，我们将实现它
 
-> If our nested layout doesn't need to be persisted/assigned to a URL (e.g. the "Product Pricing" page and the "Product Reviews" page share the same URL `/product/42`), then we can simply use a stateful component.
+> 如果嵌套 layout 布局不需要持久化或分配 URL（例如，“产品定价”页面和“产品评论”页面共享 URL `/product/42`），那么我们可以简单地使用有状态组件
 
-Until [#346](https://github.com/brillout/vite-plugin-ssr/issues/346) is implemented,
-a way to implement a nested layout is to use a Route Function:
+在 [#346](https://github.com/brillout/vite-plugin-ssr/issues/346) 完成之前，实现嵌套 layout 布局的一种方法是使用路由函数：
 
 ```js
 // /pages/product/index.page.route.js
 
-import { resolveRoute } from 'vite-plugin-ssr/routing'
+import { resolveRoute } from "vite-plugin-ssr/routing";
 
 export default (pageContext) => {
   {
-    const result = resolveRoute('/product/@id', pageContext.urlPathname)
+    const result = resolveRoute("/product/@id", pageContext.urlPathname);
     if (result.match) {
-      result.routeParams.view = 'overview'
-      return result
+      result.routeParams.view = "overview";
+      return result;
     }
   }
   {
-    const result = resolveRoute('/product/@id/reviews', pageContext.urlPathname)
+    const result = resolveRoute(
+      "/product/@id/reviews",
+      pageContext.urlPathname
+    );
     if (result.match) {
-      result.routeParams.view = 'reviews'
-      return result
+      result.routeParams.view = "reviews";
+      return result;
     }
   }
   {
-    const result = resolveRoute('/product/@id/pricing', pageContext.urlPathname)
+    const result = resolveRoute(
+      "/product/@id/pricing",
+      pageContext.urlPathname
+    );
     if (result.match) {
-      result.routeParams.view = 'pricing'
-      return result
+      result.routeParams.view = "pricing";
+      return result;
     }
   }
-  return false
-}
+  return false;
+};
 ```
 
 ```jsx
 // /pages/product/index.page.js
 
-export { Page }
+export { Page };
 
-import { usePageContext } from '../../renderer/usePageContext'
+import { usePageContext } from "../../renderer/usePageContext";
 
 function Page() {
-  const pageContext = usePageContext()
-  const { view } = pageContext.routeParams
-  const innerView = view === 'overview' ?
-      <Overview/> :
-      view === 'reviews' ?
-        <Reviews/> :
-        <Pricing/>
-  return <>
-     {/* ... */}
-       {/* Somewhere deep */ }
-       { innerView }
-     {/* ... */}
-  </>
+  const pageContext = usePageContext();
+  const { view } = pageContext.routeParams;
+  const innerView =
+    view === "overview" ? (
+      <Overview />
+    ) : view === "reviews" ? (
+      <Reviews />
+    ) : (
+      <Pricing />
+    );
+  return (
+    <>
+      {/* ... */}
+      {/* Somewhere deep */}
+      {innerView}
+      {/* ... */}
+    </>
+  );
 }
 ```
 
-> `usePageContext()` allows us to access `pageContext` in any component, see <Link href="/pageContext-anywhere" noBreadcrumb={true} />.
+> `usePageContext()` 使得所有组件都可访问 `pageContext`，请参阅 <Link href="/pageContext-anywhere" noBreadcrumb={true} />
 
-For smooth nested layout navigation, we recommend using <Link href="/client-routing" noBreadcrumb={true} />.
+对于平滑的嵌套 layout 导航，我们建议使用 <Link href="/client-routing" noBreadcrumb={true} />
 
 ```js
 // pages/product/index.page.client.js
 
-// We can omit this if our app already uses Client Routing.
-export const clientRouting = true
+// 如果应用程序已经使用客户端路由，则可以省略
+export const clientRouting = true;
 ```
 
-We use `<a href="/product/42/reviews" keep-scroll-position />` (or `navigate('/product/42/reviews', { keepScrollPosition: true })`) to avoid the browser to scroll to the top.
+使用 `<a href="/product/42/reviews" keep-scroll-position />` （或 `navigate('/product/42/reviews', { keepScrollPosition: true })`） 来避免浏览器滚动到顶部
 
-Examples (see the `/starship` page):
- - <RepoLink path="/examples/layouts-react/" />
- - <RepoLink path="/examples/layouts-vue/" />
+例子 （参考 `/starship` 页面）:
+
+- <RepoLink path='/examples/layouts-react/' />
+- <RepoLink path='/examples/layouts-vue/' />

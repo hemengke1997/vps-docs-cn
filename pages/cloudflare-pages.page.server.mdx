@@ -1,16 +1,23 @@
-import { Link } from '@brillout/docpress'
-import { StaticHostDocIntro, StaticHostDocOutro } from '../components/static-host'
+import { Link } from "@brillout/docpress";
+import {
+  StaticHostDocIntro,
+  StaticHostDocOutro,
+} from "../components/static-host";
 
 <StaticHostDocIntro
-  staticHostLink={<>, such as <a href="https://pages.cloudflare.com/">Cloudflare Pages</a></>}
+  staticHostLink={
+    <>
+      ， 比如 <a href='https://pages.cloudflare.com/'>Cloudflare Pages</a>
+    </>
+  }
 />
 
-If we want Cloudflare Pages to build our app for us, `vite-plugin-ssr` requires Node.js `>=12.19.0` and we may need to change <a href="https://developers.cloudflare.com/pages/platform/build-configuration#language-support-and-tools">Cloudflare Pages' default Node.js version</a>.
+如果我们希望 Cloudflare Pages 为我们构建应用，`vite-plugin-ssr` 需要 Node.js 版本 `>=12.19.0`，我们可能需要更改 <a href="https://developers.cloudflare.com/pages/platform/build-configuration#language-support-and-tools">Cloudflare Pages 的默认 Node.js 版本</a>
 
 <StaticHostDocOutro />
 
-## Wrangler 2 & Cloudflare Worker
+{/* ## Wrangler 2 & Cloudflare Worker */}
 
-With [wrangler v2](https://github.com/cloudflare/wrangler2), we can deploy a Cloudflare Worker (server code) along Cloudflare Pages.
+使用 [wrangler v2](https://github.com/cloudflare/wrangler2)，我们可以沿着 Cloudflare Pages 部署一个 Cloudflare Worker（服务器代码）
 
-See <Link href="/cloudflare-workers#cloudflare-pages" doNotInferSectionTitle={true} />.
+请参考 <Link href="/cloudflare-workers#cloudflare-pages" doNotInferSectionTitle={true} />

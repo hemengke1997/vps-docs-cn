@@ -1,12 +1,12 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-In general, a `vite-plugin-ssr` app is just a Node.js server, so we can use any Node.js Docker container.
+通常，`vite-plugin-ssr` 应用只是一个 Node.js 服务器，因此我们可以使用任何 Node.js Docker 容器。
 
-## Build
+{/* ## Build */}
 
-If we build our app in Docker, we may stumble upon out-of-memory errors.
+如果我们在 Docker 中构建我们的应用程序，我们可能会发现内存不足的错误
 
-If we do, we check whether our Docker container has enough memory, and we may also need to set [Node.js' `--max-old-space-size`](https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes).
+如果我们这样做，我们需要检查 Docker 容器是否有足够的内存，可能还需要设置 [Node.js 的 --max-old-space-size](https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes)
 
 ```json
 // package.json
@@ -18,14 +18,16 @@ If we do, we check whether our Docker container has enough memory, and we may al
   }
 }
 ```
-See also:
-   - <Link href="/debug" />
 
-## Dev
+另请参考：
 
-If we want to use Docker for development as well, we need to properly configure Docker for Vite's HMR port.
+- <Link href='/debug' />
 
-If we use Windows with [WSL](https://docs.microsoft.com/en-us/windows/wsl/), we need to to configure [`chokidar`](https://github.com/paulmillr/chokidar) to use polling. (Vite uses `chokidar`.)
+{/* ## Dev */}
+
+如果我们也想使用 Docker 进行开发，则需要为 Vite 的 HMR 端口配置 Docker
+
+如果我们使用带有 [WSL](https://docs.microsoft.com/en-us/windows/wsl/) 的 Windows，我们需要配置 [`chokidar`](https://github.com/paulmillr/chokidar) 以使用轮询。 （Vite 使用 chokidar。）
 
 ```json
 // package.json
@@ -36,7 +38,8 @@ If we use Windows with [WSL](https://docs.microsoft.com/en-us/windows/wsl/), we 
 }
 ```
 
-Note that [it has been reported](https://discord.com/channels/815937377888632913/815937377888632916/910110118375489567) that [vite.config.js#server.watch.usePolling](https://vitejs.dev/config/#server-watch) doesn't work.
+请注意，[据报告](https://discord.com/channels/815937377888632913/815937377888632916/910110118375489567) [vite.config.js#server.watch.usePolling](https://vitejs.dev/config/#server-watch) 不生效
 
-See also:
-   - [StackOverflow - Chokidar isn't picking up file changes inside docker container](https://stackoverflow.com/questions/38318188/chokidar-isnt-picking-up-file-changes-inside-docker-container/69166925#69166925).
+另请参考：
+
+- [StackOverflow - Chokidar isn't picking up file changes inside docker container](https://stackoverflow.com/questions/38318188/chokidar-isnt-picking-up-file-changes-inside-docker-container/69166925#69166925).

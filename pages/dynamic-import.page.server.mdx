@@ -1,52 +1,57 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-We can use a dynamic `import()` to lazy-load a component:
+我们可以使用动态 `import()` 来懒加载组件：
 
 ```diff
 - import SomeComponent from 'some-component'
 + const { SomeComponent } = await import('some-component')
 ```
 
-> Vite automatically code-splits at `import()` and the code of `some-component` is not included in the initial JavaScript bundle:
-> the code is loaded only if/when `import('some-component')` is executed.
+> Vite 在 `import()` 处自动进行代码拆分，`some-component` 的代码不会包含在初始的 JavaScript bundle 中：
+> 只有在执行 `import('some-component')` 时才会加载代码
 
-Common use cases:
- - **Performance**: we can use `import()` to defer loading a heavy component (e.g. an interactive map), so that the user can already interact with our page before even the browser started loading that heavy component.
- - **Client-side only components**: we can use `import()` to avoid loading/rendering a component on the server-side. (Some component libraries cannot be server-side rendered, see <Link href="/client-only-components" />.)
+常见用例：
 
-UI frameworks support for lazy components using `import()`:
- - [React Docs > Code-Splitting > `React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy)
- - [Vue 3 Docs > Async Components](https://v3.vuejs.org/guide/component-dynamic-async.html#async-components)
- - [Vue 2 Docs > Async Components](https://vuejs.org/v2/guide/components-dynamic-async.html)
+- **性能**: 我们可以使用 `import()` 来懒加载组件（例如交互式地图），这样用户就可以在浏览器开始加载该重组件之前与页面进行交互
+- **客户端组件**: 我们可以使用 `import()` 来避免在服务端加载/渲染组件。（有些组件库不能再服务端渲染，参考 <Link href="/client-only-components" />）
 
-> UI frameworks, such as React and Vue, execute the dynamic `import()` of lazy components only on the browser-side, i.e. the lazy compoment is never loaded on the server-side.
+UI 框架支持 `import()` 懒加载组件：
 
+- [React Docs > Code-Splitting > `React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy)
+- [Vue 3 Docs > Async Components](https://v3.vuejs.org/guide/component-dynamic-async.html#async-components)
+- [Vue 2 Docs > Async Components](https://vuejs.org/v2/guide/components-dynamic-async.html)
 
-## React Example
+> React 和 Vue 等 UI 框架仅在浏览器端动态 `import()` 组件。即懒组件不会在服务端渲染
 
-See: [Github > `arthurgailes/vite-plugin-ssr_dynamic-import-example`](https://github.com/arthurgailes/vite-plugin-ssr_dynamic-import-example).
+{/* ## React Example */}
+
+请参考： [Github > `arthurgailes/vite-plugin-ssr_dynamic-import-example`](https://github.com/arthurgailes/vite-plugin-ssr_dynamic-import-example).
 
 ```jsx
 // pages/pick-location.page.jsx
 
-import React from 'react'
+import React from "react";
 
 export function Page() {
-  // Users can see and interact with the "Please pick a location" button
-  // before the browser loads the code of <SomeHeavyMapComponent>.
-  return <>
-    <button>Please pick a location</button>
-    <Map />
-  </>
+  // 浏览器加载 <SomeHeavyMapComponent> 代码之前，
+  // 用户可以看到 "Please pick a location" 按钮并与之交互
+  return (
+    <>
+      <button>Please pick a location</button>
+      <Map />
+    </>
+  );
 }
 
 function Map() {
-  // We lazy-load the code of `<SomeHeavyMapComponent>`
-  const SomeHeavyMapComponent = React.lazy(() => import('some-heavy-map-component'))
+  // 懒加载 `<SomeHeavyMapComponent>`
+  const SomeHeavyMapComponent = React.lazy(() =>
+    import("some-heavy-map-component")
+  );
   return (
-    <React.Suspense fallback={'Loading Map...'}>
+    <React.Suspense fallback={"Loading Map..."}>
       <SomeHeavyMapComponent />
     </React.Suspense>
-  )
+  );
 }
 ```

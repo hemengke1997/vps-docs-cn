@@ -1,69 +1,67 @@
-import { ScaffoldCallToActionTour } from './index/ScaffoldCallToAction'
+import { ScaffoldCallToActionTour } from "./index/ScaffoldCallToAction";
 
-## Routing
+{/* ## 路由 */}
 
-Similarly to Nuxt,
-we define a new page by creating a new `.page.vue` file.
+跟 Nuxt 类似，
+我们通过创建一个 `.page.vue` 文件来定义一个新页面
 
 ```vue
 <!-- /pages/index.page.vue -->
 <!-- Environment: Browser, Node.js -->
 
-<template>
-  This page is rendered to HTML and interactive: <Counter />
-</template>
+<template>This page is rendered to HTML and interactive: <Counter /></template>
 
 <script setup>
-import Counter from '../components/Counter.vue'
+import Counter from "../components/Counter.vue";
 </script>
 ```
 
-By default, `vite-plugin-ssr` does Filesystem Routing.
+默认情况下，`vite-plugin-ssr` 执行文件系统路由
+
 ```
 FILESYSTEM                  URL
 /pages/index.page.vue        /
 /pages/about.page.vue        /about
 ```
 
-We can also define a page's route with a *Route String* (for parameterized routes such as `/movies/@id`) or a *Route Function* (for full programmatic flexibility).
+我们也可以使用 _路由字符串_（参数化路由，如`/movies/@id`）或 _路由函数_（灵活编程）来定义页面路由
 
 ```js
 // /pages/index.page.route.js
 // Environment: Node.js (and Browser if we choose Client Routing)
 
-// Note how the two files share the same base `/pages/index.page.`; this is how `vite-plugin-ssr`
-// knows that `/pages/index.page.route.js` defines the route of `/pages/index.page.vue`.
+// 请注意这两个文件是如何共享相同的base `/pages/index.page.`；
+// `vite-plugin-ssr` 知道 `/pages/index.page.route.js` 定义了 `/pages/index.page.vue` 的路由
 
-// Route Function
-export default pageContext => pageContext.urlPathname === '/'
+// 路由函数
+export default (pageContext) => pageContext.urlPathname === "/";
 
-// If we don't create a `.page.route.js` file then vite-plugin-ssr does Filesystem Routing
+// 如果我们不创建 `.page.route.js` 文件，那么 `vite-plugin-ssr` 会执行文件系统路由
 ```
 
+{/* ## 控制渲染 */}
 
-## Render Control
-
-Unlike Nuxt, we control how our pages are rendered.
+跟 Nuxt 不同的是，我们可以控制如何页面渲染
 
 ```js
 // /renderer/_default.page.server.js
 // Environment: Node.js
 
-import { createSSRApp, h } from 'vue'
-import { renderToString } from '@vue/server-renderer'
-import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
+import { createSSRApp, h } from "vue";
+import { renderToString } from "@vue/server-renderer";
+import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  const { Page, pageProps } = pageContext
+  const { Page, pageProps } = pageContext;
   const app = createSSRApp({
-    render: () => h(Page, pageProps)
-  })
+    render: () => h(Page, pageProps),
+  });
 
-  const appHtml = await renderToString(app)
+  const appHtml = await renderToString(app);
 
-  const title = 'Vite SSR'
+  const title = "Vite SSR";
 
   return escapeInject`<!DOCTYPE html>
     <html>
@@ -73,62 +71,62 @@ async function render(pageContext) {
       <body>
         <div id="app">${dangerouslySkipEscape(appHtml)}</div>
       </body>
-    </html>`
+    </html>`;
 }
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-import { createSSRApp, h } from 'vue'
+import { createSSRApp, h } from "vue";
 
-export { render }
+export { render };
 
 async function render(pageContext) {
-  const { Page, pageProps } = pageContext
+  const { Page, pageProps } = pageContext;
   const app = createSSRApp({
-    render: () => h(Page, pageProps)
-  })
-  app.mount('#app')
+    render: () => h(Page, pageProps),
+  });
+  app.mount("#app");
 }
 ```
 
-> You may see `import { createSSRApp, h } from 'vue'` for the first time,
-> but every SSR app actually uses `createSSRApp` and `h`.
+> 你可能第一次看到 `import { createSSRApp, h } from 'vue'`，
+> 但实际上每个 SSR 应用都使用 `createSSRApp` 和 `h`
 >
-> Nuxt abstracts this away from us and gives us a slightly faster getting started. But this also means that we
-> lose control over a central piece of our app architecture and
-> we'll eventually lose more time circumventing Nuxt's limiting black box.
+> Nuxt 将这一点抽象出来，让我们可以更快上手，但也意味着我们失去了对应用程序架构核心部分的控制，
+> 我们最终会在 Nuxt 限制性的黑盒上失去更多时间
 
-This control enables us to *easily* and *naturally* integrate any tool we want (Vuex, GraphQL, Service Worker, ...).
+这种级别的控制使我们 _轻松自然_ 地集成我们想要的任何工具（Vuex, GraphQL, Service Worker, ...）
 
-There are four page file suffixes:
- - `.page.js`: runs in the browser as well as in Node.js
- - `.page.client.js`: runs only in the browser
- - `.page.server.js`: runs only in Node.js
- - `.page.route.js`: defines the page's Route String or Route Function.
+页面文件后缀有四种：
 
-Instead of creating a `.page.client.js` and `.page.server.js` file for each page,
-we can create `/renderer/_default.page.client.js` and `/renderer/_default.page.server.js` which apply as default for all pages.
+- `.page.js`: 在浏览器和 Node.js 中运行
+- `.page.client.js`: 只在浏览器中运行
+- `.page.server.js`: 只在 Node.js 中运行
+- `.page.route.js`: 定义页面的路由字符串或路由函数
 
-The last two files we created are actually `/renderer/_default.page.client.js` and `/renderer/_default.page.server.js`,
-which means that we can now create a new page just by defining a new `.page.vue` file (the `.page.route.js` file is optional).
+我们不必为每个页面创建 `.page.client.js` 和 `.page.server.js`
+我们可以创建一个默认应用到所有页面的 `/renderer/_default.page.client.js` 和 `/renderer/_default.page.server.js`
 
-The `_default.page.` files can be overridden. For example, we can overriding our `render()` hooks for rendering some of our pages with a completely different UI framework such as React.
+实际上我们最后创建的两个文件是 `/renderer/_default.page.client.js` 和 `/renderer/_default.page.server.js`
+这意味着我们可以通过定义一个新的 `.page.vue` 文件来创建一个新的页面（`.page.route.js`文件是可选的）
 
+`_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 React）覆盖 `render()` hook
 
-## Data Fetching
+{/* ## 数据获取 */}
 
-Let's now have a look at how to fetch data.
+现在我们来看看如何获取数据
 
 ```vue
 <!-- /pages/star-wars/movie.page.vue -->
 <!-- Environment: Browser, Node.js -->
 
 <template>
-  <h1>{{movie.title}}</h1>
-  <p>Release Date: {{movie.release_date}}</p>
-  <p>Director: {{movie.director}}</p>
+  <h1>{{ movie.title }}</h1>
+  <p>Release Date: {{ movie.release_date }}</p>
+  <p>Director: {{ movie.director }}</p>
 </template>
 
 <script lang="js">
@@ -136,47 +134,49 @@ const pageProps = ['movie']
 export default { props: pageProps }
 </script>
 ```
+
 ```js
 // /pages/star-wars/movie.page.route.js
 // Environment: Node.js
 
-// Route String
-export default '/star-wars/@movieId'
+// 路由字符串
+export default "/star-wars/@movieId";
 ```
+
 ```js
 // /pages/star-wars/movie.page.server.js
 // Environment: Node.js
 
-import fetch from 'node-fetch'
+import fetch from "node-fetch";
 
 export async function onBeforeRender(pageContext) {
-  // The route parameter of `/star-wars/@movieId` is available at `pageContext.routeParams`
-  const { movieId } = pageContext.routeParams
+  // `/star-wars/@movieId` 的路由参数在 `pageContext.routeParams` 中
+  const { movieId } = pageContext.routeParams;
 
-  // `.page.server.js` files always run in Node.js; we could use SQL/ORM queries here.
-  const response = await fetch(`https://swapi.dev/api/films/${movieId}`)
-  let movie = await response.json()
+  // `.page.server.js` 文件总是运行在 Node.js 环境中；在这里我们可以使用 SQL/ORM 查询
+  const response = await fetch(`https://swapi.dev/api/films/${movieId}`);
+  let movie = await response.json();
 
-  // Our render and hydrate functions we defined earlier pass `pageContext.pageProps` to
-  // the root Vue component `Page`; this is where we define `pageProps`.
-  const pageProps = { movie }
+  // 我们之前定义的 render 和 hydrate 函数将 `pageContext.pageProps` 传递给Vue根组件 `Page`
+  // 这就是我们定义 `pageProps` 的地方
+  const pageProps = { movie };
 
-  // We make `pageProps` available as `pageContext.pageProps`
+  // 我们将 `pageProps` 作为 `pageContext.pageProps` 提供出去
   return {
     pageContext: {
-      pageProps
-    }
-  }
+      pageProps,
+    },
+  };
 }
 
-// By default `pageContext.*` are available only on the server. But our hydrate function
-// we defined earlier runs in the browser and needs `pageContext.pageProps`; we use
-// `passToClient` to tell `vite-plugin-ssr` to serialize and make `pageContext.pageProps`
-// available to the browser.
-export const passToClient = ['pageProps']
+// 默认情况下，`pageContext.*` 只能在服务器环境上使用，但我们之前定义的 hydrate 函数
+// 在浏览器中运行并且需要 `pageContext.pageProps`；
+// 我们使用 `passToClient` 序列化 `pageContext.pageProps`
+// 并让它在浏览器中可用
+export const passToClient = ["pageProps"];
 ```
 
-That's it for the tour and we have actually already seen most of the interface;
-not only is `vite-plugin-ssr` flexible but it's also simple to use!
+这就是教程的内容，实际上我们已经了解了大部分接口
+`vite-plugin-ssr` 不仅灵活，而且使用简单！
 
 <ScaffoldCallToActionTour />

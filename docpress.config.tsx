@@ -15,7 +15,7 @@ const config: Config = {
   tagline: 'Like Next.js/Nuxt but as do-one-thing-do-it-well Vite plugin.',
   titleNormalCase: false,
   twitterHandle: '@brillout',
-  websiteUrl: 'https://vite-plugin-ssr.com',
+  websiteUrl: 'https://cn.vite-plugin-ssr.com',
   algolia: {
     appId: 'MUXG1ZE9F6',
     apiKey: '8d5986fca9ba9110bcbbfc51263de88b',

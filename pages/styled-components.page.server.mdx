@@ -1,6 +1,16 @@
-import { Link } from '@brillout/docpress'
-import { CSSinJSTool } from '../components'
+import { Link } from "@brillout/docpress";
+import { CSSinJSTool } from "../components";
 
-<CSSinJSTool prefix={<>As explained in the <a href="https://styled-components.com/docs/advanced#server-side-rendering"><code>styled-components</code> SSR docs</a> we can</>}/>
+<CSSinJSTool
+  prefix={
+    <>
+      正如{" "}
+      <a href='https://styled-components.com/docs/advanced#server-side-rendering'>
+        <code>styled-components</code> SSR 文档
+      </a>
+      中所解释的那样，我们可以
+    </>
+  }
+/>
 
-See example at <Link href="/css-in-js" />.
+请参考：<Link href="/css-in-js" />.

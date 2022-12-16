@@ -1,14 +1,15 @@
-import { ViteLogo } from './ViteLogo'
+import { ViteLogo } from "./ViteLogo";
 
-### Fast HMR
+### 极速 HMR
 
-Blazing fast HMR powered by Vite <ViteLogo />.
+由 Vite 提供支持的极速 HMR <ViteLogo />
 
-HMR stays fast as you scale thanks to Vite's novel lazy-transpiling approach.
+得益于 Vite 新颖的懒编译，HMR 在项目规模增大时依然保持快速
 
-### Routing
+### 路由
 
-Pages are automatically routed:
+页面自动路由
+
 ```
 FILESYSTEM                        URL
 pages/index.page.js               /
@@ -17,29 +18,30 @@ pages/faq/index.page.js           /faq
 pages/movie/@id/index.page.js     /movie/1, /movie/2, /movie/3, ...
 ```
 
-You can also use so-called *Route Strings* and *Route Functions*.
+你也可以使用*路由字符串* 和 _路由函数_
+
 ```js
-// Route String
+// 路由字符串
 export default '/movie/@id'
 
-// Route Function — for full flexibility
+// 路由函数 — 完全灵活
 export default pageContext => pageContext.urlPathname === '/admin' && pageContext.isAdmin
 ```
 
-You can choose between:
+你可以选择:
 
-- Client Routing for a faster page navigation. (DOM mutation upon page navigation.)
-- Server Routing for a simpler app architecture. (Full HTML reload upon page navigation.)
+- 页面导航快的客户端路由 （页面导航时 DOM 发生改变）
+- 架构简单的服务端路由 （页面导航时重新加载 HTML）
 
-### Render Modes (SSR, SPA, SSG, HTML-only)
+### 渲染方式 (SSR, SPA, SSG, HTML-only)
 
-For each page, you can choose between:
- - SSR: the page's HTML is rendered at request-time.
- - SSG: the page's HTML is pre-rendered at build-time.
- - SPA: the page is not rendered to HTML; it's only loaded & rendered in the browser.
- - HTML-only: the page is rendered only to HTML with zero/minimal browser-side JavaScript.
+每个页面你都可以选择以下：
 
-For example, you can render an admin panel as an SPA while rendering marketing pages only to HTML with zero browser-side JavaScript.
+- SSR: 页面 HTML 在请求时渲染
+- SSG: 页面 HTML 在构建时预渲染
+- SPA: 页面不会渲染为 HTML；页面仅在浏览器中加载和渲染
+- HTML-only: 页面渲染为纯HTML 或 js 很少的HTML
 
-This very website, `https://vite-plugin-ssr.com`, is HTML-only and loads only few KBs of JavaScript (which implements the few bits of interactivity such as
-the collapsible `LEARN MORE` sections of this page).
+例如，你可以使用 SPA 渲染管理员面板页面，使用 HTML-only 渲染营销页面
+
+`https://cn.vite-plugin-ssr.com` 这个网页是HTML-only渲染，只加载了几kb的JavaScript。（它实现了一些交互性，例如本页的可折叠`learn more`部分）

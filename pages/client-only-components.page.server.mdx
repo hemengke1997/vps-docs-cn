@@ -1,14 +1,15 @@
-import { Link } from '@brillout/docpress'
+import { Link } from "@brillout/docpress";
 
-To avoid loading/rendering a client-only component on the server-side, we can:
- - Render our page as SPA, see <Link href="/render-modes" />.
- - Render our page with SSR while loading & rendering the component only on the browser-side, see <Link href="/dynamic-import" />.
+为了避免在服务端加载、渲染客户端组件，我们可以：
 
-> **Client-only components**
+- 使用 SPA 渲染，请参考 <Link href="/render-modes" />
+- 使用 SSR 渲染，同时仅在浏览器端加载渲染组件，请参考 <Link href="/dynamic-import" />
+
+> **客户端组件**
 >
-> Some component libraries are meant to work only in the browser,
-> such as [react-leaflet](https://github.com/PaulLeCam/react-leaflet) or [vue-leaflet](https://github.com/vue-leaflet/vue-leaflet).
+> 有一些组件库只能在浏览器中使用，
+> 例如 [react-leaflet](https://github.com/PaulLeCam/react-leaflet) 或 [vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
 >
-> Many such client-side only components support being server-side rendered. (Rendering an empty shell on the server-side while replacing that empty shell with the actual component on the browser-side.)
+> 许多客户端组件支持在服务端渲染（服务端渲染空壳，浏览器端实际渲染）
 >
-> But some client-only components don't support being server-side rendered, and some even crash when they are merely loaded on the server-side.
+> 但有一些客户端组件不支持服务端渲染，甚至可能会造成程序崩溃
