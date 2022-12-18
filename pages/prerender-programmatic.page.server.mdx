@@ -1,10 +1,10 @@
 import { Note, Link } from '@brillout/docpress'
 
-> See <Link href="/pre-rendering" /> for an overview of what pre-rendering is and how to enable it.
+> 有关什么是预渲染以及如何启用它，请参阅 <Link href="/pre-rendering" />
 
-Pre-rendering is automatically initiated when running `$ vite build`. (If <Link text="pre-rendering is enabled" href="/pre-rendering#how-to-pre-render" />.)
+运行 `$ vite build` 时会自动启动预渲染。 （如果 <Link text="开启了预渲染" href="/pre-rendering#how-to-pre-render" />。）
 
-Instead, we can programmatically initiate pre-rendering:
+相反，我们可以以编程方式启动预渲染：
 
 ```js
 // vite.config.js
@@ -12,89 +12,86 @@ Instead, we can programmatically initiate pre-rendering:
 import { ssr } from 'vite-plugin-ssr/plugin'
 
 export default {
-  plugins: [
-    ssr({
-      prerender: {
-        // Stop `$ vite build` from initiating pre-rendering
-        disableAutoRun: true
-      }
-    })
-  ]
+	plugins: [
+		ssr({
+			prerender: {
+				// 停止 `$ vite build` 启动预渲染
+				disableAutoRun: true,
+			},
+		}),
+	],
 }
 ```
+
 ```js
 // my-custom-build-script.js
 
 import { prerender } from 'vite-plugin-ssr/prerender'
 
-// Without options
+// 不带选项
 prerender()
 
-// All options are optional
+// 所有选项都是可选的
 prerender({
-  pageContextInit,
-  viteConfig,
-  onPagePrerender
+	pageContextInit,
+	viteConfig,
+	onPagePrerender,
 })
 ```
 
-
 ## `pageContextInit`
 
-The initial value of each page's `pageContext` object.
+每个页面的 `pageContext` 对象的初始值
 
 ```js
 prerender({
-  pageContextInit: {
-    someData: 42,
-    // ...
-  }
+	pageContextInit: {
+		someData: 42,
+		// ...
+	},
 })
 ```
 
 ## `viteConfig`
 
-The Vite config.
+Vite 配置
 
-It's optional: if omitted, Vite automatically loads our `vite.config.js`.
+它是可选的：如果省略，Vite 会自动加载我们的 `vite.config.js`
 
-We recommend to either omit this option or set it to `prerender({ viteConfig: { root }})`: the `vite.config.js` file living at `root` will be loaded.
+我们建议忽略此选项或将其设置为 `prerender({ viteConfig: { root }})`：将加载位于 `root` 的 `vite.config.js` 文件。
 
-Alternatively you can:
- - Set:
-   ```js
-   prerender({
-     viteConfig: {
-       configFile: require.resolve('./path/to/vite.config.js')
-     }
-   })
-   ```
- - Not load any `vite.config.js` file and, instead, use `prerender({ viteConfig: { configFile: false, ...myViteConfig }})` to programmatically define the entire Vite config.
+或者你可以：
 
-You can also load a `vite.config.js` file while overriding parts of the Vite config.
+- 设置：
+  ```js
+  prerender({
+  	viteConfig: {
+  		configFile: require.resolve('./path/to/vite.config.js'),
+  	},
+  })
+  ```
+- 不加载任何 `vite.config.js` 文件，而是使用 `prerender({ viteConfig: { configFile: false, ...myViteConfig }})` 以编程方式定义整个 Vite 配置
 
-See [Vite > JavaScript API > `InlineConfig`](https://vitejs.dev/guide/api-javascript.html#inlineconfig).
-
+请参考 [Vite > JavaScript API > `InlineConfig`](https://vitejs.dev/guide/api-javascript.html#inlineconfig).
 
 ## `onPagePrerender()`
 
-<Note type="warning">DON'T use this option without having contacted a `vite-plugin-ssr` maintainer: this functionality may be completely changed/removed at anytime if you don't.</Note>
+<Note type='warning'>不要在没有联系 `vite-plugin-ssr` 维护者的情况下使用这个选项：如果你不这样做，这个功能可能会在任何时候被完全改变/删除。</Note>
 
-<Note type="warning">This feature is experimental and may be changed in any minor version update.</Note>
+<Note type='warning'>此功能是实验性的，可能会在任何次要版本更新中更改。</Note>
 
-The `onPagePrerender` option allows us to override where the HTML is written.
+`onPagePrerender` 选项允许我们覆盖 HTML 的写入位置。
 
 ```js
 prerender({
-  // If we provide `onPagePrerender` then vite-plugin-ssr won't write the HTML to the filesystem
-  onPagePrerender(pageContext) {
-    // TODO: write the HTML to the filesystem.
-    // ...
-  }
+	// 如果我们提供 `onPagePrerender` 则 vite-plugin-ssr 不会将 HTML 写入文件系统
+	onPagePrerender(pageContext) {
+		// TODO: 将 HTML 写入文件系统
+		// ...
+	},
 })
 ```
 
+## 更多配置
 
-## More configs
-
-For more configurations, see the global config at <Link href="/prerender-config" />.
+有关更多配置，请参阅 <Link href="/prerender-config" /> 的全局配置

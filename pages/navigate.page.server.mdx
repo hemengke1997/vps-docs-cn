@@ -1,45 +1,52 @@
 import { RepoLink, Link, Note } from '@brillout/docpress'
 
-Environment: `Browser`, `Client Routing`.
+环境：`Browser`、 `Client Routing`
 
-We can use `navigate('/some/url')` to programmatically switch pages.
+我们可以使用 `navigate('/some/url')` 以编程方式切换页面。
 
-<Note type="warning">`navigate()` is only available if you use <Link text="Client Routing" href="/client-routing" />. If you use <Link text="Server Routing" href="/server-routing" />, then do `window.location.href = '/some/url'` instead.</Note>
+<Note type='warning'>`navigate()` is only available if you use `navigate()` 仅在你使用<Link
+    text='客户端路由'
+    href='/client-routing'
+  />
+  时可用。如果你使用<Link
+    text='服务端路由'
+    href='/server-routing'
+  />
+  ，则使用 `window.location.href = '/some/url'` 即可</Note>
 
-`navigate()` is useful when the navigation isn't triggered by the user clicking on an anchor tag `<a>`.
-For example, when redirecting a user after a successful form submission.
+当导航不是由用户点击锚点 `<a>` 触发时，`navigate()` 很有用。
+例如，在成功提交表单后重定向用户时
 
 ```jsx
-import { navigate } from "vite-plugin-ssr/client/router";
+import { navigate } from 'vite-plugin-ssr/client/router'
 
-// Some deeply nested view component
+// 一些深度嵌套的视图组件
 function Form() {
-   return (
-     <form onSubmit={onSubmit}>
-       {/* ... */}
-     </form>
-   );
+  return <form onSubmit={onSubmit}>...</form>
 }
 
 async function onSubmit() {
   /* ...  */
 
-  const navigationPromise = navigate('/form/success');
+  const navigationPromise = navigate('/form/success')
 
-  console.log("The URL changed but the new page hasn't rendered yet.");
+  console.log("The URL changed but the new page hasn't rendered yet.")
   await navigationPromise
-  console.log("The new page has finished rendering.");
+  console.log('The new page has finished rendering.')
 }
 ```
 
-If you want to redirect your user at page-load time, see the [Page Redirection](/page-redirection) guide instead.
+如果你想在页面加载时重定向你的用户，请参阅 [页面重定向](/page-redirection) 指南。
 
-Options:
- - `navigate('/some-url', { keepScrollPosition: true })`: Don't scroll to the top of the page; keep scroll position where it is instead. (Useful for <Link text="Nested Layouts" href="/layouts#nested-layouts" />.) (We can also use `<a href="/some-url" keep-scroll-position />`.)
- - `navigate('/some-url', { overwriteLastHistoryEntry: true })`: Don't create a new entry in the browser's history, instead let the new URL replace the current URL. (This effectively removes the current URL from the browser history).
+选项：
+
+- `navigate('/some-url', { keepScrollPosition: true })`：不要滚动到页面顶部； 将滚动位置保持在原处。（对于 <Link text="嵌套布局" href="/layouts#nested-layouts" /> 很有用。）（我们也可以使用`<a href="/some-url" keep-scroll-position />`。）
+- `navigate('/some-url', { overwriteLastHistoryEntry: true })`：不要在浏览器的历史记录中创建新条目，而是让新 URL 替换当前 URL。 （这有效地从浏览器历史记录中删除了当前 URL）。
 
 Vue example:
- - <RepoLink path='/examples/vue-full/pages/index.page.vue' />
+
+- <RepoLink path='/examples/vue-full/pages/index.page.vue' />
 
 React example:
- - <RepoLink path='/examples/react-full/pages/index.page.tsx' />
+
+- <RepoLink path='/examples/react-full/pages/index.page.tsx' />

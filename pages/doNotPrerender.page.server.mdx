@@ -1,9 +1,9 @@
 import { Link } from '@brillout/docpress'
 
-In some situations we don't want to pre-render a page.
-For example a news page that displays the latest news fetched from a database should be rendered at request-time and certainly not at build-time.
+在某些情况下，我们不想预渲染页面。
+例如，显示从数据库中获取的最新新闻的页面应该在请求时渲染，不应该在构建时渲染
 
-We can use `.page.server.js#noNoPrerender` to tell `vite-plugin-ssr` to skip a page from pre-rendering.
+我们可以使用 `.page.server.js#noNoPrerender` 告诉 `vite-plugin-ssr` 从预渲染中跳过一个页面
 
 ```js
 // /pages/news.page.server.js
@@ -11,45 +11,42 @@ We can use `.page.server.js#noNoPrerender` to tell `vite-plugin-ssr` to skip a p
 export const doNotPrerender = true
 ```
 
-> We can define `doNotPrerender` also in `.page.js` files, but not in `.page.client.js` files (because `.page.client.js` files are never loaded in Node.js).
-
+> 我们也可以在 `.page.js` 文件中定义 `doNotPrerender`，但不能在 `.page.client.js` 文件中定义（因为 `.page.client.js` 文件永远不会在 Node.js 中加载）
 
 ## `_default.page.`
 
-We can define `doNotPrerender` in `_default.page.` files.
+我们可以在 `_default.page.` 文件中定义 `doNotPrerender`
 
-For example, to make pre-rendering opt-in instead of opt-out:
+例如：
 
 ```js
 // /renderer/_default.page.server.js
 
-// By default, our pages are not pre-rendered
+// 默认情况下，我们的页面不会预渲染
 export const doNotPrerender = true
 ```
 
 ```js
 // /pages/about-us.page.js
 
-// Opt-in pre-rendering
+// 选择性开启预渲染
 export const doNotPrerender = false
 ```
 
-This is especially handy with <Link text="Domain-Driven File Structure" href='/file-structure#domain-driven' />:
+这对于 <Link text="Domain-Driven File Structure" href='/file-structure#domain-driven' /> 特别方便：
 
 ```js
 // /pages/mareting/_default.page.server.js
 
-// We use Domain-Driven File Structure and `_default.page.server.js` applies to
-// all our marketing pages.
+// 我们使用域名驱动文件系统，并且 `_default.page.server.js` 应用于我们所有的 marketing 页面
 
-// Enable pre-rendering for all our marketing pages
+// 为所有 marketing 页面开启预渲染
 export const doNotPrerender = false
 ```
 
+## 条件预渲染
 
-## Conditional pre-rendering
-
-We can pre-render pages conditionally:
+我们可以有条件地预渲染页面：
 
 ```js
 // /renderer/_default.page.server.js
@@ -57,9 +54,9 @@ We can pre-render pages conditionally:
 export const doNotPrerender = isCmsPreview() ? true : false
 ```
 
-> This is particularly usefull for previewing CMS pages (we don't want to pre-renderer a CMS preview deploy).
+> 这对于预览 CMS 页面特别有用（我们不想预渲染 CMS 预览部署）。
 
-Note that <Link text={<><code>prerender()</code> hooks</>} href="prerender" /> are always called, regardless of `doNotPrerender`. If we want to call `prerender()` hooks conditionally as well:
+请注意，<Link text={<><code>预渲染()</code> hook</>} href="prerender" /> 总是被调用，而不管 doNotPrerender 是什么。如果我们也想有条件地调用 `prerender()` hook：
 
 ```js
 export const doNotPrerender = someCondition() ? true : false

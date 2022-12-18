@@ -1,6 +1,6 @@
 import { RepoLink, Link } from "@brillout/docpress";
 
-{/* ## Examples & docs */}
+## Examples & docs
 
 Examples:
 
@@ -15,7 +15,7 @@ Stream 文档 & API:
 - [Node.js Streams](https://nodejs.org/api/stream.html)
 - [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
 
-{/* ## 基础 */}
+## 基础
 
 ```js
 // renderer/_deault.page.server.js
@@ -85,7 +85,7 @@ async function handleFetchEvent(event) {
 }
 ```
 
-{/* ## `pageContext.enableEagerStreaming` */}
+## `pageContext.enableEagerStreaming`
 
 默认情况下，HTML 模板（`render()` hook 中提供的）不会立即写入流：相反，`vite-plugin-ssr` 等待 UI 框架写入流
 
@@ -135,7 +135,7 @@ async function render(pageContext) {
 }
 ```
 
-{/* ## Stream 转 string */}
+## Stream 转 string
 
 我们可以将流转换为字符串：
 
@@ -151,7 +151,7 @@ assert(typeof body === "string");
 res.send(body);
 ```
 
-{/* ## Stream pipes */}
+## Stream pipes
 
 为了开启 stream pipes，我们需要使用 `stampPipe()`：
 
@@ -231,7 +231,7 @@ export function render(pageContext) {
 
 有关将管道包装器与 Vue 的 `pipeToWebWritable()`/`pipeToNodeWritable()`一起使用以及在 Cloudflare Workers 中使用 `new TransformStream()` 的例子，请参考 <RepoLink path='/examples/cloudflare-workers-vue' />
 
-{/* ## Initial data after streaming */}
+## Initial data after streaming
 
 一些数据获取工具，例如 <Link href="/relay" text="Relay">Relay</Link>，仅在流结束后才提供初始数据
 

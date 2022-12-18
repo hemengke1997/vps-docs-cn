@@ -26,7 +26,7 @@ export default {
 }
 ```
 
-{/* ## `partial` */}
+## `partial`
 
 可选，默认 `false`
 
@@ -38,7 +38,7 @@ export default {
 
 > 当页面有一个参数化的路由（例如 <Link text="Route String" href="/route-string" /> `/movie /@movieId` 或 <Link text="Route Function" href="/route-function" />) 且没有任何 <Link text={<><code>prerender()</code> hook</>} href="prerender" /> 提供至少一个与页面路由匹配的 URL（例如 `/movie/42`） 时，`vite-plugin-ssr` 会显示无法预渲染的警告
 
-{/* ## `noExtraDir` */}
+## `noExtraDir`
 
 可选，默认 `false`
 
@@ -49,7 +49,7 @@ export default {
 > 为每个 HTML 文件生成一个目录是告诉静态 host 每个静态 HTML 的静态 URL 的最可靠方式。
 > 但是有些静态 host 更喜欢其他方式
 
-{/* ## `parallel` */}
+## `parallel`
 
 可选，默认 [`os.cpus().length`](https://nodejs.org/api/os.html#os_os_cpus)
 
@@ -64,7 +64,7 @@ export default {
 > - 你遇到 `JavaScript heap out of memory` 错误
 > - 如果预渲染花费异常多的时间。 （由于内存开始饱和时启动的内存交换过程非常缓慢）。
 
-{/* ## `disableAutoRun` */}
+## `disableAutoRun`
 
 可选，默认 `false`
 

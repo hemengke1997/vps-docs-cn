@@ -5,7 +5,7 @@ import { RepoLink, Link } from "@brillout/docpress";
 > 例如，登录页面通常跟管理后台布局不同。
 > _Layouts_ 是指给不同的页面定义不同的布局
 
-{/* ## 简单的方法 */}
+## 简单的方法
 
 为每个页面导入并使用正确的 layout：
 
@@ -19,7 +19,7 @@ import { LayoutDefault } from "../layouts/LayoutDefault";
 function Page() {
   return (
     <>
-      <LayoutDefault>{/* ... */}</LayoutDefault>
+      <LayoutDefault>...</LayoutDefault>
     </>
   );
 }
@@ -35,13 +35,13 @@ import { LayoutDashboard } from "../layouts/LayoutDashboard";
 function Page() {
   return (
     <>
-      <LayoutDashboard>{/* ... */}</LayoutDashboard>
+      <LayoutDashboard>...</LayoutDashboard>
     </>
   );
 }
 ```
 
-{/* ## Custom Export */}
+## Custom Export
 
 或者，我们可以使用 <Link href="/exports" text="Custom Export" />
 
@@ -102,7 +102,7 @@ export { LayoutProduct as Layout } from "../../layouts/LayoutProduct";
 - <RepoLink path='/examples/layouts-react/' />
 - <RepoLink path='/examples/layouts-vue/' />
 
-{/* ## 嵌套 Layouts 布局 */}
+## 嵌套 Layouts 布局
 
 > **什么是嵌套 layouts** 嵌套 layout 布局本质上是一个页面有一个带有多个路由参数
 >
@@ -190,10 +190,10 @@ function Page() {
     );
   return (
     <>
-      {/* ... */}
-      {/* Somewhere deep */}
+      ...
+      Somewhere deep
       {innerView}
-      {/* ... */}
+      ...
     </>
   );
 }

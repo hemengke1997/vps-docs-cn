@@ -1,8 +1,6 @@
 import { Note, Link } from "@brillout/docpress";
 
-<Note type='warning'>
-  此文档正在完善中。如果你对此感兴趣，请联系 vite-plugin-ssr 的维护者
-</Note>
+<Note type='warning'>此文档正在完善中。如果你对此感兴趣，请联系 vite-plugin-ssr 的维护者</Note>
 
 使用 vite-plugin-ssr，你只需数百行代码即可创建属于自己的 Next.js / Nuxt
 
@@ -10,7 +8,7 @@ vite-plugin-ssr 框架使用跟普通 vite-plugin-ssr 应用一样的接口：�
 
 你的框架可以包含 vite-plugin-ssr 以外更多的功能，例如自定义服务器、CLI、部署等
 
-{/* ## 基础框架 */}
+## 基础框架
 
 一个基础的 vite-plugin-ssr 框架提供了一个 renderer，因此用户不必实现它：
 
@@ -30,7 +28,7 @@ pages/about.page.js
 
 > **Work-in-progress**：此页面将包含一个基本的 vite-plugin-ssr 框架示例
 
-{/* ## All-included 框架 */}
+## All-included 框架
 
 本质上，一个 vite-plugin-ssr 框架是一个包含页面文件（`.page.js`, `.page.server.js`, `.page.client.js`, and/or `.page.route.js`）的框架。除此之外，vite-plugin-ssr 框架没有什么特别的。你可以在框架中包含任何你想要的，比如自定义服务（如 Express.js）、数据库和 ORM（如 SQLite + Prisma）、部署（如 Cloudflare Workers）、错误跟踪（如 Sentry）、CLI 等
 
@@ -39,6 +37,6 @@ You can implement an [all-included framework](https://vike.land/#all-included) s
 
 > **Work-in-progress**：此页面将包含此类框架的示例
 
-{/* ## 更多工具 */}
+## 更多工具
 
 参考 [Vike > 起步](https://vike.land/#getting-started) 了解更多用于构建你自己的框架的工具

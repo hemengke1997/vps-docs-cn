@@ -1,6 +1,6 @@
 import { RepoLink, Link, Note } from "@brillout/docpress";
 
-{/* ## Examples */}
+## Examples
 
 - React: <RepoLink path='/examples/cloudflare-workers-react/' />
 - React + SSR Streaming: <RepoLink path='/examples/cloudflare-workers-react-full/' />
@@ -15,7 +15,7 @@ import { RepoLink, Link, Note } from "@brillout/docpress";
 >
 > 但是我们可以安全地忽略警告（唯一使用的 Node.js shims 是健壮的）。但是，Node.js shims 会使 worker 代码增加约 `200KB`-`300KB`，考虑到 `1MB` 的限制，这非常重要。消除对 Node.js shims 的需求的工作正在进行中，请参阅：[#445](https://github.com/brillout/vite-plugin-ssr/issues/445)
 
-{/* ## Wrangler */}
+## Wrangler
 
 Cloudflare Workers 要求我们将整个 worker 代码打包到一个文件中
 
@@ -23,29 +23,27 @@ Cloudflare Workers 要求我们将整个 worker 代码打包到一个文件中
 
 建议使用[Wrangler v2](https://github.com/cloudflare/wrangler2)（v2 底层使用[esbuild](https://esbuild.github.io/)）
 
-{/* ## vite-plugin-cloudflare */}
+## vite-plugin-cloudflare
 
 我们还可以使用 [vite-plugin-cloudflare](https://github.com/Aslemammad/vite-plugin-cloudflare)，它使我们能够简单地使用 `$ vite build` 和 `$ vite dev` 来构建和开发我们的 worker code（包括 HMR 支持！）
 
 Example: [GitHub > `Aslemammad/vite-plugin-cloudflare` > `examples/vite-plugin-ssr/`](https://github.com/Aslemammad/vite-plugin-cloudflare/tree/main/examples/vite-plugin-ssr).
 
-{/* ## 扩展 1MB 限制 */}
+## 扩展 1MB 限制
 
 我们的 worker 包大小不应超过 1MB，但是我们可以请求 100MB 及以上的大小：
 
 - [Cloudflare Workers > Larger Scripts](https://www.cloudflare.com/larger-scripts-on-workers-early-access/)
 - [Cloudflare Workers > Limits > Worker Size](https://developers.cloudflare.com/workers/platform/limits/#worker-size)
 
-{/* ## Cloudflare Pages */}
+## Cloudflare Pages
 
 我们还可以使用[Cloudflare Pages](https://developers.cloudflare.com/pages/) 来部署我们的 vite-plugin-ssr 应用程序
 
 为了部署我们的 SSR worker，我们使用 [Cloudflare Pages Function](https://developers.cloudflare.com/pages/platform/functions/)
 
-<Note type='warning'>
-  Cloudflare Pages Functions
-  [处于beta阶段](https://developers.cloudflare.com/pages/platform/functions/).
-</Note>
+<Note type='warning'>Cloudflare Pages Functions
+  [处于beta阶段](https://developers.cloudflare.com/pages/platform/functions/).</Note>
 
 Example：
 
@@ -55,7 +53,7 @@ Example：
 
 - [Wrangler 2.0 — a new developer experience for Cloudflare Workers](https://blog.cloudflare.com/wrangler-v2-beta/)
 
-{/* ## 开发 */}
+## 开发
 
 为了获得更快的开发体验，我们建议尽可能使用 Vite 的开发服务器而不是 wrangler（或 Express.js 服务）
 
@@ -68,7 +66,7 @@ This means:
 
   请参阅[示例](<(#examples)>)的设置。
 
-{/* ## 统一 `fetch()` */}
+## 统一 `fetch()`
 
 当使用 Node.js 进行开发并在生产环境中使用 Cloudflare Workers 时，我们可能需要一个可以在两种环境中工作的 `fetch()` 函数
 

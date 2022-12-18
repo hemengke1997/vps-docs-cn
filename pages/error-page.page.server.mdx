@@ -1,6 +1,6 @@
 import { Link } from '@brillout/docpress'
 
-We define `renderer/_error.page.tsx` for rendering a page when an error occurs.
+我们定义 `renderer/_error.page.tsx` 用于在发生错误时渲染页面
 
 ```js
 // renderer/_error.page.js
@@ -9,40 +9,41 @@ export { Page }
 
 function Page(pageProps) {
   if (pageProps.is404) {
-    // Return a UI component "Page Not Found."
+    // 返回 UI 组件 "Page Not Found"
   } else {
-    // Return a UI component "Our server is having problems. Sincere apologies. Try again later."
+    // 返回 UI 组件 "Our server is having problems. Sincere apologies. Try again later."
   }
 }
 ```
 
-> We can define hooks just like any other page, for example to define a <Link text="custom layout" href="/layouts#custom-export" />.
+> 我们可以像定义任何其他页面一样定义 hook，例如定义一个 <Link text="自定义 layout" href="/layouts#custom-export" />。
 
 
-## Pre-rendering
-
-If we enable <Link text="pre-rendering" href="/pre-rendering" />, then vite-plugin-ssr uses `_error.page.js` to generate `dist/client/404.html`.
-
-> Most Static Hosts automatically pick up `404.html` and use it to render a 404 page.
+## 预渲染
 
 
-## Details
+如果我们启用 <Link text="预渲染" href="/pre-rendering" />，那么 vite-plugin-ssr 使用 `_error.page.js` 生成 `dist/client/404.html`。
 
-The page `_error.page.js` is rendered when:
- 1. None of our pages matches the URL (`404 Page Not Found`).
- 2. One of our hooks (in `.page.js` / `.page.server.js` / `.page.route.js`) throws an error (`500 Internal Server Error`).
- 3. One of our hooks executes <Link href="/route-function#async" text={<code>throw RenderErrorPage()</code>}></Link>.
+> 大多数静态host会自动选择 `404.html` 并使用它来渲染 404 页面
 
-For `1.` and `3.`, `vite-plugin-ssr` automatically sets the following:
- - `pageContext.is404 === true`
- - `pageContext.pageProps.is404 === true`
 
-> We can `throw RenderErrorPage({ pageContext: { is404: false }})` to have `pageContext.is404 === false` as well as `pageContext.pageProps.is404 === false`.
+## 详情
 
-For `2.`:
- - `pageContext.is404 === false`
- - `pageContext.pageProps.is404 === false`
+页面 `_error.page.js` 在以下情况下渲染：
+  1. 我们的页面均不匹配 URL（`404 Page Not Found`）。
+  2. 我们的一个 hook（在 `.page.js` / `.page.server.js` / `.page.route.js` 中）抛出一个错误（`500 Internal Server Error`）。
+  3. 我们的一个 hook 执行 <Link href="/route-function#async" text={<code>throw RenderErrorPage()</code>}></Link>。
 
-> Normally, the `vite-plugin-ssr` source code doesn't know anything about `pageContext.pageProps` but this is the only exception.
+对于 `1.` 和 `3.`，`vite-plugin-ssr` 会自动设置以下内容：
+  - `pageContext.is404 === true`
+  - `pageContext.pageProps.is404 === true`
 
-That way, we can use `pageContext.pageProps.is404` to decide what error message to show our user.
+> 我们可以 `throw RenderErrorPage({ pageContext: { is404: false }})` 来得到 `pageContext.is404 === false` 以及 `pageContext.pageProps.is404 === false`。
+
+对于 `2.`：
+  -`pageContext.is404 === false`
+  -`pageContext.pageProps.is404 === false`
+
+> 通常，`vite-plugin-ssr` 源码对 `pageContext.pageProps` 一无所知，但这是唯一的例外
+
+这样，我们可以使用 `pageContext.pageProps.is404`` 来决定向我们的用户显示什么错误消息

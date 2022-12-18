@@ -1,6 +1,6 @@
 import { Link } from '@brillout/docpress'
 
-The client-side `render()` hook exported in `*.page.client.js` files (usually `/renderer/_default.page.client.js`) defines how a page is rendered/<Link text="hydrated" href="/hydration" /> on the browser-side.
+在 `*.page.client.js` 文件（通常是 `/renderer/_default.page.client.js`）中导出的客户端 `render()` hook 定义了页面是如何在浏览器端渲染/<Link text="hydrated " href="/hydration" />
 
 ```js
 // *.page.client.js
@@ -11,34 +11,33 @@ import { renderToDom, hydrateDom } from 'some-ui-framework'
 export { render }
 
 async function render(pageContext) {
-  const { Page } = pageContext
+	const { Page } = pageContext
 
-  // SPA:
-  await renderToDom(Page)
+	// SPA:
+	await renderToDom(Page)
 
-  // SSR:
-  await hydrateDom(Page)
+	// SSR:
+	await hydrateDom(Page)
 }
 ```
 
-Where:
- - `Page` is the <Link text={<>page's <code>{'export { Page }'}</code></>} href="/Page" />.
- - `pageContext` is a subset of the `pageContext` defined on the server-side.
+在此：
 
-We use [`passToClient`](/passToClient) to determine what subset of `pageContext` is sent to the browser.
+- `Page` 是 <Link text={<>page 的 <code>{'export { Page }'}</code></>} href="/Page" />
+- `pageContext` 是在服务端定义的 `pageContext` 的子集
 
+我们使用 [`passToClient`](/passToClient) 来确定将 `pageContext` 的哪个子集发送到浏览器
 
 ## SPA vs SSR
 
-When implementing SSR, the cient-side `render()` hook works in tandem with the <Link text={<>server-side <code>render()</code> hook</>} href="/render" />: the server-side `render()` hook renders the page to HTML and the client-side `render()` hook <Link text="hydrates" href="/hydration" /> the HTML.
+实现 SSR 时，客户端 `render()` hook 与 <Link text={<>服务端 <code>render()</code> hook</>} href="/render" /> 协同工作：服务器端 `render()` hook 将页面渲染为 HTML，客户端 `render()` hook <Link text="hydrates" href="/hydration" /> HTML
 
-When implementing an SPA, then the client-side `render()` hook is solely responsible for rendering the page. (There is still a server-side `render()` hook but it only renders the HTML shell; it doens't render `pageContext.Page` to HTML.)
+实现 SPA 时，客户端的 `render()` hook 仅负责渲染页面。（仍然有一个服务端的 `render()` hook，但它只渲染 HTML shell；它不会将 `pageContext.Page` 渲染为 HTML。）
 
-See <Link href='/render-modes' />.
+请参考 <Link href='/render-modes' />
 
+## 多个 `render()` hooks
 
-## Multiple `render()` hooks
+如果我们在 `/pages/star-wars.page.client.js` 中 `export { render }` 那么我们需要定义 `/pages/star-wars.page.js` 在覆盖 `/renderer/_default.page.client.js` 时如何渲染
 
-If we `export { render }` in `/pages/star-wars.page.client.js` then we define how `/pages/star-wars.page.js` is rendered while overriding `/renderer/_default.page.client.js`.
-
-And, defining multiple `render()` hooks, with multiple `_default.page.*` files, enables us to define different rendering for different pages. See <Link href='/multiple-renderer' />.
+并且，使用多个 `_default.page.*` 文件定义多个 render() 钩子，使我们能够为不同的页面定义不同的渲染。 请参阅 <Link href='/multiple-renderer' />

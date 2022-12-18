@@ -2,20 +2,18 @@ import { Link, Note } from "@brillout/docpress";
 
 我们可以简单地通过使用 Vercel API Routes 将 `vite-plugin-ssr` 部署到 [Vercel](https://vercel.com)，如果想要高级 Vercel 功能（例如 ISR 和 Edge 中间件），我们可以使用 `vite-plugin-vercel`。
 
-{/* ## API Routes */}
+## API Routes
 
 我们可以简单地通过创建 Vercel API Route `api/ssr.js` 服务端渲染应用程序，将我们的 `vite-plugin-ssr` 应用程序部署到 Vercel
 
 Example：[github.com/brillout/vite-plugin-ssr_vercel](https://github.com/brillout/vite-plugin-ssr_vercel).
 
-<Note type='warning'>
-  确保在你的 Vercel dashboard 中正确设置 `OUTPUT DIRECTORY`，请参考示例中的
-  `readme.md` 说明
-</Note>
+<Note type='warning'>确保在你的 Vercel dashboard 中正确设置 `OUTPUT DIRECTORY`，请参考示例中的
+  `readme.md` 说明</Note>
 
 > 使用 Vercel API Routes 是部署到 Vercel 的一种可靠方式，因为 API Routes 是 Vercel 的核心功能：它会一直存在，最重要的是，它非常稳定。 （而 Vercel 的 Build Output API 不断更新，偶尔会发生重大变化。）一旦我们设置了服务器端渲染 API Routes，我们就可以期待它在可预见的未来发挥作用
 
-{/* ## vite-plugin-vercel */}
+## vite-plugin-vercel
 
 [`vite-plugin-vercel`](https://github.com/magne4000/vite-plugin-vercel) 为所有 Vercel 功能提供零配置支持，包括 [Incremental Static Regeneration (ISR)](https://vercel.com/docs/concepts/incremental-static-regeneration/overview) 和 Edge 中间件
 
@@ -25,13 +23,13 @@ Example：[github.com/brillout/vite-plugin-ssr_vercel](https://github.com/brillo
 
 > `vite-plugin-vercel` 底层使用 Vercel 的 [Build Output API](https://vercel.com/docs/build-output-api/v3)
 
-{/* ## Build Output API */}
+## Build Output API
 
 为了获得最大的灵活性和配置选项，我们还可以直接使用 Build Output API](https://vercel.com/docs/build-output-api/v3)
 
 Example: [github.com/brillout/vite-plugin-ssr_vercel_build-output-api](https://github.com/brillout/vite-plugin-ssr_vercel_build-output-api).
 
-{/* ## 数据 APIs (GraphQL, RESTful, RPC) */}
+## 数据 APIs (GraphQL, RESTful, RPC)
 
 Vercel API Routes 仅适用于 Vercel 的平台；我们不能在本地运行它们。
 

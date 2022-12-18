@@ -1,4 +1,4 @@
-By default `pageContext` is available only on the server-side, but we can use `passToClient` to make some `pageContext` available in the browser.
+默认情况下 `pageContext` 仅在服务端可用，但我们可以使用 `passToClient` 使某些 `pageContext` 在浏览器中可用
 
 ```js
 // *.page.server.js
@@ -6,13 +6,13 @@ By default `pageContext` is available only on the server-side, but we can use `p
 
 export { passToClient }
 
-// Example of `pageContext` often passed to the browser
+// 传递给浏览器的 `pageContext` 示例
 const passToClient = [
-  'pageProps',
-  'routeParams',
-  // (Deep selection is not implemented yet; open a GitHub ticket if you want this.)
-  'user.id',
-  'user.name'
+	'pageProps',
+	'routeParams',
+	// （深选择还未实现，如果需要，请开一个 Github ticket）
+	'user.id',
+	'user.name',
 ]
 ```
 
@@ -23,39 +23,37 @@ const passToClient = [
 export { render }
 
 async function render(pageContext) {
-  // Thanks to `passToClient`, these `pageContext` are available here in the browser
-  pageContext.pageProps
-  pageContext.routeParams
-  pageContext.user.id
-  pageContext.user.name
+	// `passToClient` 使得这些 `pageContext` 在浏览器中可用
+	pageContext.pageProps
+	pageContext.routeParams
+	pageContext.user.id
+	pageContext.user.name
 
-  /* ... */
+	/* ... */
 }
 ```
 
-`passToClient` is usually used together with the `onBeforeRender()` hook:
-data is fetched in `async onBeforeRender()` and then made available to the browser with `passToClient`, see [Data Fetching](/data-fetching).
+`passToClient` 通常与 `onBeforeRender()` hook 一起使用：数据在`async onBeforeRender()` 中获取，然后通过 `passToClient` 提供给浏览器，请参阅[数据获取](/data-fetching)
 
-Serialization is done with [`@brillout/json-serializer`](https://github.com/brillout/json-serializer).
+序列化是使用 [`@brillout/json-serializer`](https://github.com/brillout/json-serializer) 实现
 
+## 用户定义的类
 
-## User-defined classes
-
-User-defined classes are lost during serialization:
+用户定义的类在序列化过程中会丢失：
 
 ```js
 class MyClass {
-  prop = 42
+	prop = 42
 }
 
-// On the server-side:
+// 在服务端：
 const obj = new MyClass()
 console.log(obj) // MyClass { prop: 42 }
 console.log(obj instanceof MyClass) // true
 
-// On the browser-side, after `obj` was (de)serialized:
+// `obj` 在浏览器端被序列化之后
 console.log(obj) // { prop: 42 }
 console.log(obj instanceof MyClass) // false
 ```
 
-See [GitHub > `brillout/json-serializer` > #3 Support user-defined classes](https://github.com/brillout/json-serializer/issues/3).
+请参考 [GitHub > `brillout/json-serializer` > #3 Support user-defined classes](https://github.com/brillout/json-serializer/issues/3).

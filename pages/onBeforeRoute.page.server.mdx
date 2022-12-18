@@ -1,12 +1,12 @@
 import { Link, Note } from '@brillout/docpress'
 
-The `onBeforeRoute()` hook provides full control over routing.
+`onBeforeRoute()` hook 提供了对路由的完全控制能力
 
-It is usually used for [internationalization](/i18n).
+它通常用于 [国际化](/i18n).
 
-We can also use it to [implement a custom router](https://github.com/brillout/vite-plugin-ssr/issues/140).
+我们也可以用它来[实现自定义路由器](https://github.com/brillout/vite-plugin-ssr/issues/140)
 
-<Note type="warning">For use cases other than i18n, open a GitHub ticket or reach out on Discord: `onBeforeRoute()` is purposely limited but the limitations can be lifted in order to unlock new capabilities.</Note>
+<Note type="warning">对于 i18n 以外的用例，请打开 GitHub ticket 或联系 Discord：`onBeforeRoute()` 是有意限制的，但可以解除限制以解锁新功能。</Note>
 
 Example:
 - <Link href='/examples/i18n/renderer/_default.page.route.js' />
