@@ -8,7 +8,7 @@
 <br/>
 社区用例: [examples/README.md](https://github.com/brillout/vite-plugin-ssr/tree/main/examples#community-examples)
 
-历史版本 & 重大更新: [CHANGELOG.md](/CHANGELOG.md)
+历史版本 & 重大更新: [CHANGELOG.md](https://github.com/brillout/vite-plugin-ssr/blob/main/CHANGELOG.md)
 
 关注：[Twitter > @brillout](https://twitter.com/brillout)
 <br/>
