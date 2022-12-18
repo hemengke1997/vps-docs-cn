@@ -10,11 +10,9 @@
 
 历史版本 & 重大更新: [CHANGELOG.md](/CHANGELOG.md)
 
-Follow: [Twitter > @brillout](https://twitter.com/brillout)
+关注：[Twitter > @brillout](https://twitter.com/brillout)
 <br/>
-Chat: <a href="https://discord.com/invite/dSDMGGJZQy">Discord > Cubes<img src="/docs/images/icons/hash.svg" height="17" width="23" valign="text-bottom" alt="hash"/>vite-plugin-ssr</a>
+聊天：<a href="https://discord.com/invite/dSDMGGJZQy">Discord > Cubes<img src="./images/icons/hash.svg" height="17" width="23" valign="text-bottom" alt="hash"/>vite-plugin-ssr</a>
 
 
-Have a question? Want a feature? A tool integration is not working?
-<a href="https://discord.com/invite/dSDMGGJZQy">Join our Discord</a> or
-<a href="https://github.com/brillout/vite-plugin-ssr/issues/new">open a GitHub ticket</a>.
+有问题？想要新功能？工具集成失败了？<a href="https://discord.com/invite/dSDMGGJZQy">加入我们的 Discord</a> 或 <a href="https://github.com/brillout/vite-plugin-ssr/issues/new">新开一个 GitHub ticket</a>
