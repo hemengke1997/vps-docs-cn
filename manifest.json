@@ -43,12 +43,6 @@
     "file": "assets/_default.page.client.fe26068d.css",
     "src": "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.css"
   },
-  "pages/banner.page.client.ts": {
-    "file": "assets/pages/banner.page.client.68c7153a.js",
-    "src": "pages/banner.page.client.ts",
-    "isEntry": true,
-    "isDynamicEntry": true
-  },
   "pages/react-tour.page.client.ts": {
     "file": "assets/pages/react-tour.page.client.2358e12a.js",
     "src": "pages/react-tour.page.client.ts",
@@ -57,9 +51,6 @@
     "imports": [
       "_chunk-4f63bb74.js"
     ]
-  },
-  "_chunk-a33cf6d6.js": {
-    "file": "assets/chunk-a33cf6d6.js"
   },
   "pages/vue-tour.page.client.ts": {
     "file": "assets/pages/vue-tour.page.client.2358e12a.js",
@@ -70,318 +61,14 @@
       "_chunk-4f63bb74.js"
     ]
   },
-  "pages/base-url.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-4ed993c7.js",
-    "src": "pages/base-url.page.server.mdx?extractAssets&lang.mdx",
+  "pages/banner.page.client.ts": {
+    "file": "assets/pages/banner.page.client.68c7153a.js",
+    "src": "pages/banner.page.client.ts",
+    "isEntry": true,
     "isDynamicEntry": true
   },
-  "pages/bootstrap.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-c42ce534.js",
-    "src": "pages/bootstrap.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/build-your-own-framework.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3f7a7dc7.js",
-    "src": "pages/build-your-own-framework.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/catch-all.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f5ef5fbf.js",
-    "src": "pages/catch-all.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/client-only-components.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-97e73ebb.js",
-    "src": "pages/client-only-components.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/client-routing.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-fbf88a6b.js",
-    "src": "pages/client-routing.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/clientRouting.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b5645bc0.js",
-    "src": "pages/clientRouting.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/cloudflare-pages.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b5a35c2a.js",
-    "src": "pages/cloudflare-pages.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/cloudflare-workers.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3250ff6a.js",
-    "src": "pages/cloudflare-workers.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/command-prerender.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8259b3ef.js",
-    "src": "pages/command-prerender.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/css-frameworks.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b186d937.js",
-    "src": "pages/css-frameworks.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/createPageRenderer.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-34dd89b8.js",
-    "src": "pages/createPageRenderer.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/content-vs-interactive.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-50b53bc0.js",
-    "src": "pages/content-vs-interactive.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/css-in-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-bfc5dcdf.js",
-    "src": "pages/css-in-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/data-fetching-tools.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f8805adc.js",
-    "src": "pages/data-fetching-tools.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/default-page-route-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-c7bd6e11.js",
-    "src": "pages/default-page-route-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/debug.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-7af320a4.js",
-    "src": "pages/debug.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/data-fetching.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-bdf6b15a.js",
-    "src": "pages/data-fetching.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/default-page.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6fd54ea8.js",
-    "src": "pages/default-page.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/deploy.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-342e332b.js",
-    "src": "pages/deploy.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/doNotPrerender.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3281bd49.js",
-    "src": "pages/doNotPrerender.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/disableAutoFullBuild.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-9f147a7c.js",
-    "src": "pages/disableAutoFullBuild.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/docker.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3a46639e.js",
-    "src": "pages/docker.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dot-env-files.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-467baea6.js",
-    "src": "pages/dot-env-files.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dot-page-dot-client-dot-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ff321b56.js",
-    "src": "pages/dot-page-dot-client-dot-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dot-page-dot-route-dot-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-df0b596c.js",
-    "src": "pages/dot-page-dot-route-dot-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/error-tracking.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-5e44522e.js",
-    "src": "pages/error-tracking.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dot-page-dot-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8faca762.js",
-    "src": "pages/dot-page-dot-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/escapeInject.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8edfc4e7.js",
-    "src": "pages/escapeInject.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/exports.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-415a8205.js",
-    "src": "pages/exports.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/file-structure.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-07437c05.js",
-    "src": "pages/file-structure.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/filesystemRoutingRoot.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-17c63ab7.js",
-    "src": "pages/filesystemRoutingRoot.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dynamic-import.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3fefd419.js",
-    "src": "pages/dynamic-import.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/github-pages.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-51338f9d.js",
-    "src": "pages/github-pages.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/dot-page-dot-server-dot-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b1aa239c.js",
-    "src": "pages/dot-page-dot-server-dot-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/html-streaming.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-57e15e79.js",
-    "src": "pages/html-streaming.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/https.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-177d629f.js",
-    "src": "pages/https.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/hydration-mismatch.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-022aaae1.js",
-    "src": "pages/hydration-mismatch.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/hydration.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-72718da7.js",
-    "src": "pages/hydration.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/i18n.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-25c6d0d4.js",
-    "src": "pages/i18n.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/importBuild-dot-cjs.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-edfce109.js",
-    "src": "pages/importBuild-dot-cjs.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/importBuild-dot-js.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-aed87d52.js",
-    "src": "pages/importBuild-dot-js.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/index/index.page.server.tsx?extractAssets&lang.tsx": {
-    "file": "assets/chunk-017e5d8c.js",
-    "src": "pages/index/index.page.server.tsx?extractAssets&lang.tsx",
-    "isDynamicEntry": true,
-    "css": [
-      "assets/Header.0bf08b19.css"
-    ]
-  },
-  "pages/includeAssetsImportedByServer.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-96916a25.js",
-    "src": "pages/includeAssetsImportedByServer.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/injectAssets.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8c007aa5.js",
-    "src": "pages/injectAssets.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/injectFilter.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-90632a57.js",
-    "src": "pages/injectFilter.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/layouts.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-5f3dfb11.js",
-    "src": "pages/layouts.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/integration.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-e272fc8e.js",
-    "src": "pages/integration.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/active-links.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ae085955.js",
-    "src": "pages/active-links.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/NextAuth.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-42dd3cfb.js",
-    "src": "pages/NextAuth.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/Page-client.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-0e763cb8.js",
-    "src": "pages/Page-client.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/Page-server.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-64991e42.js",
-    "src": "pages/Page-server.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/Page.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-2556757d.js",
-    "src": "pages/Page.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/SPA-vs-SSR-vs-HTML.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-a4133d01.js",
-    "src": "pages/SPA-vs-SSR-vs-HTML.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/SPA-vs-SSR.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8c042e33.js",
-    "src": "pages/SPA-vs-SSR.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/apollo-graphql.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-91e2b7d3.js",
-    "src": "pages/apollo-graphql.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/add.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-9be159cb.js",
-    "src": "pages/add.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/angular.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-d29e0548.js",
-    "src": "pages/angular.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/api-routes.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-1101dfc5.js",
-    "src": "pages/api-routes.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/SR-vs-CR.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ebe1715e.js",
-    "src": "pages/SR-vs-CR.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/auth.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-665e7b08.js",
-    "src": "pages/auth.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/aws-lambda.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6b61444e.js",
-    "src": "pages/aws-lambda.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
+  "_chunk-a33cf6d6.js": {
+    "file": "assets/chunk-a33cf6d6.js"
   },
   "node_modules/.pnpm/vite-plugin-ssr@0.4.62_@brillout+vite@4.0.1-fix/node_modules/vite-plugin-ssr/dist/esm/client/entry.js": {
     "file": "assets/entry-server-routing.884245ff.js",
@@ -535,265 +222,14 @@
       "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js"
     ]
   },
-  "pages/banner.page.server.tsx?extractAssets&lang.tsx": {
-    "file": "assets/chunk-db722f0b.js",
-    "src": "pages/banner.page.server.tsx?extractAssets&lang.tsx",
-    "isDynamicEntry": true,
-    "css": [
-      "assets/Header.0bf08b19.css"
-    ]
-  },
-  "_chunk-b41f6483.js": {
-    "file": "assets/chunk-b41f6483.js"
-  },
-  "pages/firebase.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-7a380d23.js",
-    "src": "pages/firebase.page.server.mdx?extractAssets&lang.mdx",
+  "pages/Page-client.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-4ed993c7.js",
+    "src": "pages/Page-client.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
-  "pages/hapi.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f4c7e2b5.js",
-    "src": "pages/hapi.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/netlify.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f6d0c2b6.js",
-    "src": "pages/netlify.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/grpc.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-805bad31.js",
-    "src": "pages/grpc.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/head.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6c5c4c14.js",
-    "src": "pages/head.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/netlify-functions.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-85bc4f04.js",
-    "src": "pages/netlify-functions.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/markdown.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-37206238.js",
-    "src": "pages/markdown.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/onBeforeRender-multiple.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-0dff25d6.js",
-    "src": "pages/onBeforeRender-multiple.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/onBeforeRender-isomorphic.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f61ca0b2.js",
-    "src": "pages/onBeforeRender-isomorphic.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/html-head.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-dd947ef5.js",
-    "src": "pages/html-head.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/nextauth-old.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-63cb9ec1.js",
-    "src": "pages/nextauth-old.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/migration-0.4.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8df926fd.js",
-    "src": "pages/migration-0.4.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/migration/0.4.23.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ea568cda.js",
-    "src": "pages/migration/0.4.23.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/onBeforeRender.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-83ae5fd9.js",
-    "src": "pages/onBeforeRender.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/onBeforeRoute.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f83823fc.js",
-    "src": "pages/onBeforeRoute.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/migration/0.4.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ba3fa109.js",
-    "src": "pages/migration/0.4.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/page-redirection.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-46af93b5.js",
-    "src": "pages/page-redirection.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pageContext-anywhere.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-70eaf270.js",
-    "src": "pages/pageContext-anywhere.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pageContext-manipulation.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-4c4077af.js",
-    "src": "pages/pageContext-manipulation.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pageContext.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8f3f68ec.js",
-    "src": "pages/pageContext.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/passToClient.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-c95ea664.js",
-    "src": "pages/passToClient.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pinia.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-c722ac3b.js",
-    "src": "pages/pinia.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pre-rendering.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6be4bcd0.js",
-    "src": "pages/pre-rendering.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/migration.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-9af6f81c.js",
-    "src": "pages/migration.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/preact.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-9aced16f.js",
-    "src": "pages/preact.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/multiple-renderer.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-c5a33b79.js",
-    "src": "pages/multiple-renderer.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/prerender.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-98c9a72e.js",
-    "src": "pages/prerender.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/redux.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-0893bd51.js",
-    "src": "pages/redux.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/react-tour.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3a2b3d5b.js",
-    "src": "pages/react-tour.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/navigate.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-9e687e8c.js",
-    "src": "pages/navigate.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/relay.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-78e037db.js",
-    "src": "pages/relay.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/render-client.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f630cd2d.js",
-    "src": "pages/render-client.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/render-modes.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-32901922.js",
-    "src": "pages/render-modes.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/render.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-62ded44f.js",
-    "src": "pages/render.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/route-function.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-418c2627.js",
-    "src": "pages/route-function.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/routing.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-0ed5a5f6.js",
-    "src": "pages/routing.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/routing-precedence.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8770d3c0.js",
-    "src": "pages/routing-precedence.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/static-directory.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-ef6ba711.js",
-    "src": "pages/static-directory.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/preload.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-991020ac.js",
-    "src": "pages/preload.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/prerender-programmatic.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-dcc9c6fb.js",
-    "src": "pages/prerender-programmatic.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/prerender-config.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-7fea3f02.js",
-    "src": "pages/prerender-config.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/path-aliases.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-fcd02d6b.js",
-    "src": "pages/path-aliases.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/typescript.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-678fe060.js",
-    "src": "pages/typescript.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/urql.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-49362805.js",
-    "src": "pages/urql.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vercel.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-8880ed2e.js",
-    "src": "pages/vercel.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vite-plugin.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-eb8ca8ce.js",
-    "src": "pages/vite-plugin.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vue-query.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-58259643.js",
-    "src": "pages/vue-query.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vue-router-and-react-router.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-707edfb3.js",
-    "src": "pages/vue-router-and-react-router.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vue-tour.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-7ebac312.js",
-    "src": "pages/vue-tour.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/vuetify.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b12fa062.js",
-    "src": "pages/vuetify.page.server.mdx?extractAssets&lang.mdx",
+  "pages/NextAuth.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-c42ce534.js",
+    "src": "pages/NextAuth.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
   "node_modules/.pnpm/vite-plugin-ssr@0.4.62_@brillout+vite@4.0.1-fix/node_modules/vite-plugin-ssr/dist/esm/client/router/entry.js": {
@@ -948,33 +384,679 @@
       "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js"
     ]
   },
-  "pages/vuex.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-bc298f18.js",
-    "src": "pages/vuex.page.server.mdx?extractAssets&lang.mdx",
+  "pages/migration/0.4.23.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3f7a7dc7.js",
+    "src": "pages/migration/0.4.23.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/nextauth-old.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f5ef5fbf.js",
+    "src": "pages/nextauth-old.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/banner.page.server.tsx?extractAssets&lang.tsx": {
+    "file": "assets/chunk-017e5d8c.js",
+    "src": "pages/banner.page.server.tsx?extractAssets&lang.tsx",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/Header.0bf08b19.css"
+    ]
+  },
+  "pages/base-url.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-97e73ebb.js",
+    "src": "pages/base-url.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "_chunk-b41f6483.js": {
+    "file": "assets/chunk-b41f6483.js"
+  },
+  "pages/escapeInject.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-fbf88a6b.js",
+    "src": "pages/escapeInject.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/bootstrap.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-b5645bc0.js",
+    "src": "pages/bootstrap.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/build-your-own-framework.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-b5a35c2a.js",
+    "src": "pages/build-your-own-framework.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/catch-all.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3250ff6a.js",
+    "src": "pages/catch-all.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/aws-lambda.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8259b3ef.js",
+    "src": "pages/aws-lambda.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/client-only-components.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-b186d937.js",
+    "src": "pages/client-only-components.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/client-routing.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-34dd89b8.js",
+    "src": "pages/client-routing.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/clientRouting.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-50b53bc0.js",
+    "src": "pages/clientRouting.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/cloudflare-pages.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-bfc5dcdf.js",
+    "src": "pages/cloudflare-pages.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/cloudflare-workers.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f8805adc.js",
+    "src": "pages/cloudflare-workers.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/command-prerender.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-c7bd6e11.js",
+    "src": "pages/command-prerender.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/content-vs-interactive.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-7af320a4.js",
+    "src": "pages/content-vs-interactive.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/SPA-vs-SSR-vs-HTML.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-bdf6b15a.js",
+    "src": "pages/SPA-vs-SSR-vs-HTML.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/css-frameworks.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6fd54ea8.js",
+    "src": "pages/css-frameworks.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/css-in-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-342e332b.js",
+    "src": "pages/css-in-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/data-fetching-tools.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3281bd49.js",
+    "src": "pages/data-fetching-tools.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/data-fetching.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-9f147a7c.js",
+    "src": "pages/data-fetching.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/debug.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3a46639e.js",
+    "src": "pages/debug.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/default-page-route-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-467baea6.js",
+    "src": "pages/default-page-route-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/default-page.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ff321b56.js",
+    "src": "pages/default-page.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/deploy.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-df0b596c.js",
+    "src": "pages/deploy.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/disableAutoFullBuild.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-5e44522e.js",
+    "src": "pages/disableAutoFullBuild.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/doNotPrerender.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8faca762.js",
+    "src": "pages/doNotPrerender.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/docker.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8edfc4e7.js",
+    "src": "pages/docker.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/SR-vs-CR.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-415a8205.js",
+    "src": "pages/SR-vs-CR.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dot-page-dot-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-07437c05.js",
+    "src": "pages/dot-page-dot-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/active-links.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-17c63ab7.js",
+    "src": "pages/active-links.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dot-page-dot-route-dot-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3fefd419.js",
+    "src": "pages/dot-page-dot-route-dot-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/add.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-51338f9d.js",
+    "src": "pages/add.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dot-page-dot-server-dot-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-b1aa239c.js",
+    "src": "pages/dot-page-dot-server-dot-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/angular.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-57e15e79.js",
+    "src": "pages/angular.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dynamic-import.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-177d629f.js",
+    "src": "pages/dynamic-import.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/api-routes.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-022aaae1.js",
+    "src": "pages/api-routes.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/error-page.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-72718da7.js",
+    "src": "pages/error-page.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/apollo-graphql.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-25c6d0d4.js",
+    "src": "pages/apollo-graphql.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/error-tracking.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-edfce109.js",
+    "src": "pages/error-tracking.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/auth.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-aed87d52.js",
+    "src": "pages/auth.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/exports.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-96916a25.js",
+    "src": "pages/exports.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/onBeforeRoute.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8c007aa5.js",
+    "src": "pages/onBeforeRoute.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/fastify.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-90632a57.js",
+    "src": "pages/fastify.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/page-redirection.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-5f3dfb11.js",
+    "src": "pages/page-redirection.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/createPageRenderer.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-e272fc8e.js",
+    "src": "pages/createPageRenderer.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pageContext-anywhere.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ae085955.js",
+    "src": "pages/pageContext-anywhere.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/filesystem-routing.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-42dd3cfb.js",
+    "src": "pages/filesystem-routing.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pageContext-manipulation.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-0e763cb8.js",
+    "src": "pages/pageContext-manipulation.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/filesystemRoutingRoot.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-64991e42.js",
+    "src": "pages/filesystemRoutingRoot.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pageContext.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-2556757d.js",
+    "src": "pages/pageContext.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/firebase.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-a4133d01.js",
+    "src": "pages/firebase.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/passToClient.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8c042e33.js",
+    "src": "pages/passToClient.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/github-pages.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-91e2b7d3.js",
+    "src": "pages/github-pages.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/path-aliases.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-9be159cb.js",
+    "src": "pages/path-aliases.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/grpc.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-d29e0548.js",
+    "src": "pages/grpc.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pinia.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-1101dfc5.js",
+    "src": "pages/pinia.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/hapi.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ebe1715e.js",
+    "src": "pages/hapi.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pre-rendering.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-665e7b08.js",
+    "src": "pages/pre-rendering.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/html-head.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6b61444e.js",
+    "src": "pages/html-head.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/preact.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-7a380d23.js",
+    "src": "pages/preact.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/html-streaming.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f4c7e2b5.js",
+    "src": "pages/html-streaming.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/preload.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f6d0c2b6.js",
+    "src": "pages/preload.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/prerender-config.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-805bad31.js",
+    "src": "pages/prerender-config.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/https.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6c5c4c14.js",
+    "src": "pages/https.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/prerender-programmatic.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-85bc4f04.js",
+    "src": "pages/prerender-programmatic.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/prerender.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-37206238.js",
+    "src": "pages/prerender.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/hydration-mismatch.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-0dff25d6.js",
+    "src": "pages/hydration-mismatch.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/pullstate.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f61ca0b2.js",
+    "src": "pages/pullstate.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/hydration.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-dd947ef5.js",
+    "src": "pages/hydration.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/react-tour.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-63cb9ec1.js",
+    "src": "pages/react-tour.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/i18n.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8df926fd.js",
+    "src": "pages/i18n.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/redux.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ea568cda.js",
+    "src": "pages/redux.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/importBuild-dot-cjs.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-83ae5fd9.js",
+    "src": "pages/importBuild-dot-cjs.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/relay.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f83823fc.js",
+    "src": "pages/relay.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/importBuild-dot-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ba3fa109.js",
+    "src": "pages/importBuild-dot-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/render-as-you-fetch.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-46af93b5.js",
+    "src": "pages/render-as-you-fetch.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/includeAssetsImportedByServer.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-70eaf270.js",
+    "src": "pages/includeAssetsImportedByServer.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/render-client.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-4c4077af.js",
+    "src": "pages/render-client.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/index/index.page.server.tsx?extractAssets&lang.tsx": {
+    "file": "assets/chunk-db722f0b.js",
+    "src": "pages/index/index.page.server.tsx?extractAssets&lang.tsx",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/Header.0bf08b19.css"
+    ]
+  },
+  "pages/render-modes.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8f3f68ec.js",
+    "src": "pages/render-modes.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/injectAssets.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-c95ea664.js",
+    "src": "pages/injectAssets.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/render.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-c722ac3b.js",
+    "src": "pages/render.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/injectFilter.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6be4bcd0.js",
+    "src": "pages/injectFilter.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/renderPage.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-9af6f81c.js",
+    "src": "pages/renderPage.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/integration.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-9aced16f.js",
+    "src": "pages/integration.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/route-function.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-c5a33b79.js",
+    "src": "pages/route-function.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/layouts.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-98c9a72e.js",
+    "src": "pages/layouts.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/route-string.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-0893bd51.js",
+    "src": "pages/route-string.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/markdown.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3a2b3d5b.js",
+    "src": "pages/markdown.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/routing-precedence.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-9e687e8c.js",
+    "src": "pages/routing-precedence.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/migration-0.4.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-78e037db.js",
+    "src": "pages/migration-0.4.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/routing.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f630cd2d.js",
+    "src": "pages/routing.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/migration.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-32901922.js",
+    "src": "pages/migration.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
   "pages/sass.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6b80d72a.js",
+    "file": "assets/chunk-62ded44f.js",
     "src": "pages/sass.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
-  "pages/solid.page.server.mdx?extractAssets&lang.mdx": {
+  "pages/migration/0.4.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-418c2627.js",
+    "src": "pages/migration/0.4.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/server-routing.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-0ed5a5f6.js",
+    "src": "pages/server-routing.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/head.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8770d3c0.js",
+    "src": "pages/head.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/multiple-renderer.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-ef6ba711.js",
+    "src": "pages/multiple-renderer.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/navigate.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-991020ac.js",
+    "src": "pages/navigate.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/netlify-functions.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-dcc9c6fb.js",
+    "src": "pages/netlify-functions.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/netlify.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-7fea3f02.js",
+    "src": "pages/netlify.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/onBeforeRender-isomorphic.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-fcd02d6b.js",
+    "src": "pages/onBeforeRender-isomorphic.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/onBeforeRender-multiple.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-678fe060.js",
+    "src": "pages/onBeforeRender-multiple.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/onBeforeRender.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-49362805.js",
+    "src": "pages/onBeforeRender.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dot-env-files.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-8880ed2e.js",
+    "src": "pages/dot-env-files.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/file-structure.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-eb8ca8ce.js",
+    "src": "pages/file-structure.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/server-routing-vs-client-routing.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-58259643.js",
+    "src": "pages/server-routing-vs-client-routing.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/dot-page-dot-client-dot-js.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-707edfb3.js",
+    "src": "pages/dot-page-dot-client-dot-js.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/Page-server.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-7ebac312.js",
+    "src": "pages/Page-server.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/scaffold.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-bc298f18.js",
+    "src": "pages/scaffold.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/vue-tour.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6b80d72a.js",
+    "src": "pages/vue-tour.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/ssr.page.server.mdx?extractAssets&lang.mdx": {
     "file": "assets/chunk-d00a4d40.js",
+    "src": "pages/ssr.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/static-directory.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-41ece777.js",
+    "src": "pages/static-directory.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/static-hosts.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f528850c.js",
+    "src": "pages/static-hosts.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/store.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-3e4d4c56.js",
+    "src": "pages/store.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/stream.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-13f71f2f.js",
+    "src": "pages/stream.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/styled-components.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-b6730b95.js",
+    "src": "pages/styled-components.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/svelte.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-15974cf5.js",
+    "src": "pages/svelte.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/tailwind-css.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-dada6ed3.js",
+    "src": "pages/tailwind-css.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/typescript.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-6dcc4bb5.js",
+    "src": "pages/typescript.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/ui-framework.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-f13d34bd.js",
+    "src": "pages/ui-framework.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/urql.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-e7114807.js",
+    "src": "pages/urql.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/solid.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-2785cd18.js",
     "src": "pages/solid.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
+  "pages/useClientRouter.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-11ad5578.js",
+    "src": "pages/useClientRouter.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
   "pages/windi-css.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-41ece777.js",
+    "file": "assets/chunk-494b2f85.js",
     "src": "pages/windi-css.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
-  "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js": {
-    "file": "assets/chunk-ecc2c4eb.js",
-    "src": "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "_chunk-a33cf6d6.js"
-    ]
+  "pages/vercel.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-636e420b.js",
+    "src": "pages/vercel.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/vite-plugin.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-25f6a983.js",
+    "src": "pages/vite-plugin.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/Page.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-26643ed0.js",
+    "src": "pages/Page.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/vue-query.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-1e99bbb2.js",
+    "src": "pages/vue-query.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/vue-router-and-react-router.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-1a2813b3.js",
+    "src": "pages/vue-router-and-react-router.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/SPA-vs-SSR.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-4ab2480c.js",
+    "src": "pages/SPA-vs-SSR.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/vuex.page.server.mdx?extractAssets&lang.mdx": {
+    "file": "assets/chunk-a8bcfd5f.js",
+    "src": "pages/vuex.page.server.mdx?extractAssets&lang.mdx",
+    "isDynamicEntry": true
   },
   "_chunk-4f63bb74.js": {
     "file": "assets/chunk-4f63bb74.js",
@@ -982,79 +1064,9 @@
       "assets/ScaffoldCallToAction.d2502774.css"
     ]
   },
-  "pages/error-page.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-3e4d4c56.js",
-    "src": "pages/error-page.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/pullstate.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-13f71f2f.js",
-    "src": "pages/pullstate.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/tailwind-css.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b6730b95.js",
-    "src": "pages/tailwind-css.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/styled-components.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-15974cf5.js",
-    "src": "pages/styled-components.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/fastify.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-dada6ed3.js",
-    "src": "pages/fastify.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/render-as-you-fetch.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-6dcc4bb5.js",
-    "src": "pages/render-as-you-fetch.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/renderPage.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-f13d34bd.js",
-    "src": "pages/renderPage.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/ui-framework.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-e7114807.js",
-    "src": "pages/ui-framework.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/useClientRouter.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-2785cd18.js",
-    "src": "pages/useClientRouter.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/server-routing.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-11ad5578.js",
-    "src": "pages/server-routing.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/server-routing-vs-client-routing.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-494b2f85.js",
-    "src": "pages/server-routing-vs-client-routing.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
   "pages/wildcard-api.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-636e420b.js",
+    "file": "assets/chunk-b6ae7ed4.js",
     "src": "pages/wildcard-api.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/store.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-25f6a983.js",
-    "src": "pages/store.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/ssr.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-26643ed0.js",
-    "src": "pages/ssr.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/static-hosts.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-1e99bbb2.js",
-    "src": "pages/static-hosts.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
   },
   "pages/index/index.page.client.ts": {
@@ -1070,29 +1082,17 @@
       "assets/index.page.client.a95a6883.css"
     ]
   },
-  "pages/route-string.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-1a2813b3.js",
-    "src": "pages/route-string.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/scaffold.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-4ab2480c.js",
-    "src": "pages/scaffold.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/filesystem-routing.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-a8bcfd5f.js",
-    "src": "pages/filesystem-routing.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/svelte.page.server.mdx?extractAssets&lang.mdx": {
-    "file": "assets/chunk-b6ae7ed4.js",
-    "src": "pages/svelte.page.server.mdx?extractAssets&lang.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/stream.page.server.mdx?extractAssets&lang.mdx": {
+  "pages/vuetify.page.server.mdx?extractAssets&lang.mdx": {
     "file": "assets/chunk-e60c325d.js",
-    "src": "pages/stream.page.server.mdx?extractAssets&lang.mdx",
+    "src": "pages/vuetify.page.server.mdx?extractAssets&lang.mdx",
     "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js": {
+    "file": "assets/chunk-ecc2c4eb.js",
+    "src": "node_modules/.pnpm/@brillout+docpress@0.2.2_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_chunk-a33cf6d6.js"
+    ]
   }
 }
