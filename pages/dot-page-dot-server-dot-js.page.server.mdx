@@ -1,16 +1,17 @@
 import { Link } from '@brillout/docpress'
 
-Environment: `Node.js`.
+环境： `Node.js`
 
-A `.page.server.js` file can export the following:
+`.page.server.js` 文件可以导入以下：
+
 - `export { Page }`
 - `export { onBeforeRender }`
 - `export { passToClient }`
 - `export { render }`
 - `export { prerender }`
 - `export { doNoPrerender }`
-- <Link href="/exports" />
+- <Link href='/exports' />
 
-The `.page.server.js` file is lazy-loaded: it is loaded only when needed which means that if no URL request were to match the page's route then `.page.server.js` is never loaded in our Node.js process' memory.
+`.page.server.js` 文件是懒加载的：它只在需要时加载，这意味着如果没有 URL 请求匹配页面的路由，那么 `.page.server.js` 永远不会加载到我们的 Node.js 进程的内存中
 
-The `.page.server.js` file is always loaded & executed in Node.js.
+`.page.server.js` 文件总是在 Node.js 中加载和执行

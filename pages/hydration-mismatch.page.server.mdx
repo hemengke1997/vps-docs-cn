@@ -1,6 +1,6 @@
 SSR 经常出现的问题就是 _hydration mismatches_
 
-{/* ## Hydration mismatch */}
+## Hydration mismatch
 
 > 要了解什么是 Hydration，请参考 [What is hydration?](/hydration) 指南
 
@@ -8,7 +8,7 @@ hydration mismatch 指的是 HTML 在 Node.js 和浏览器中渲染的内容不�
 
 Hydration mismatches 会导致性能下降和错误，因此应该避免
 
-{/* ## Example */}
+## Example
 
 假设我们渲染当前日期的毫秒数：
 
@@ -39,7 +39,7 @@ async function onBeforeRender() {
 
 这里发生的是：`pageContext.milliseconds` 会被设置一次，相同的毫秒值将在 Node.js 中渲染到 HTML 中，并在浏览器端 hydrate。（我们使用[`export passToClient = ['milliseconds']`](/passToClient) 将 `pageContext.milliseconds` 传递给浏览器端）
 
-{/* ## Common causes & solutions */}
+## Common causes & solutions
 
 常见原因：
 
@@ -51,7 +51,7 @@ React 中:
 
 - **老 React 版本** 在拼接文本段时存在错误，导致 `Warning: Text content did not match.`。确保使用最新的 React 版本
 
-{/* ## Suppress Hydration Mismatch */}
+## Suppress Hydration Mismatch
 
 在某些情况下，hydration mismatches 不可避免，阻止 hydration mismatch 警告：
 

@@ -7,7 +7,7 @@ import { Link } from "@brillout/docpress";
 
 它有内置属性，我们可以使用自定义属性对其扩展
 
-{/* ## 内置 */}
+## 内置
 
 - **`pageContext.Page`**: 页面 `.page.js` 文件的 `export { Page }` 或 `export default`
 - **`pageContext.routeParams`**: 路由参数（例如 带路由字符串 `/movie/@movieId` 的页面的 `pageContext.routeParams.movieId`）
@@ -68,7 +68,7 @@ import { Link } from "@brillout/docpress";
 - **`pageContext.isBackwardNavigation`**: 用户是否正在返回历史记录。当用户点击浏览器的后退导航按钮或调用 `history.back()` 时，该值为 `true`。`isBackwardNavigation` 属性仅适用于客户端路由。 （使用服务端路由时，该值始终为 `null`）
 - **`pageContext.is404`**: 发生了错误，不论错误是 `404 Page Not Found` 还是 `500 Internal Server Error`。请参考 <Link href="/error-page" />
 
-{/* ## 自定义 */}
+## 自定义
 
 除了 `vite-plugin-ssr` 内置的 `pageContext` 值之外，我们还可以在以下位置自定义 `pageContext` 值：
 
@@ -105,7 +105,7 @@ import { Link } from "@brillout/docpress";
   });
   ```
 
-{/* ## 浏览器 */}
+## 浏览器
 
 虽然一些 `pageContext` 值在客户端也可用，但大多数值仅在 Node.js 中可用，我们必须使用 [`passToClient`](/passToClient) 使它们在浏览器中可用
 
@@ -125,7 +125,7 @@ import { Link } from "@brillout/docpress";
 - `pageContext.urlPathname`
 - `pageContext.urlParsed`
 
-{/* ## TypeScript */}
+## TypeScript
 
 TypeScript 工具类型：
 

@@ -1,11 +1,11 @@
-Environment: `Browser`.
+环境：`Browser`
 
-The `.page.client.js` file defines the page's browser-side code.
+`.page.client.js` 文件定义页面的浏览器端代码
 
-It represents the entire browser-side code. This means that if don't create any `.page.client.js` file, then our app has zero browser-side JavaScript.
-(Except of Vite's dev code when not in production.)
+它代表了整个浏览器端代码。 这意味着如果不创建任何 `.page.client.js` 文件，那么我们的应用程序的浏览器端 JavaScript 为零。
+（不在生产环境中的 Vite 开发代码除外。）
 
-This also means that we have full control over the browser-side code. Not only can we render/hydrate our pages as we wish, but we can also easily & naturally integrate browser libraries.
+这也意味着我们可以完全控制浏览器端代码。 我们不仅可以按照我们的意愿渲染/hydrate 我们的页面，而且我们还可以轻松自然地集成浏览器库。
 
 ```js
 // _default.page.client.js
@@ -15,12 +15,12 @@ export { render }
 import { hydrate } from 'some-ui-framework'
 
 async function render(pageContext) {
-  const { Page } = pageContext
-  await hydrate(Page)
+	const { Page } = pageContext
+	await hydrate(Page)
 }
 ```
 
-The browser-side is usually about [hydrating](/hydration) the page,
-but we can also do partial/island hydration,
-only install a couple of JavaScript event handlers,
-etc.
+浏览器端通常是关于 [hydrating](/hydration) 页面，
+但我们也可以做 partial/island hydration，
+只安装几个 JavaScript 事件处理程序，
+等等

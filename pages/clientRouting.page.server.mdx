@@ -1,24 +1,26 @@
 import { Link, RepoLink, ReadingRecommendation } from '@brillout/docpress'
 
-Environment: `Browser`.
+环境：`Browser`
 
-By default, `vite-plugin-ssr` does <Link text="Server Routing" href="/server-routing" />.
+默认情况下，`vite-plugin-ssr` 执行 <Link text="服务端路由" href="/server-routing" />
 
-We opt into <Link text="Client Routing" href="/client-routing" /> by modifying `/renderer/_default.client.js` to:
- 1. Set `export const clientRouting = true`.
- 2. Update and adapt the <Link text={<>client-side <code>render()</code> hook</>} href="/render-client" />.
+我们可以通过修改 `/renderer/_default.client.js` 来选择 <Link text="客户端路由" href="/client-routing" />
+
+1. 设置 `export const clientRouting = true`
+2. 更新并适配 <Link text={<>客户端 <code>render()</code> hook</>} href="/render-client" />.
 
 React example:
- - <RepoLink path='/examples/react-full/renderer/_default.page.client.tsx' />
- - <RepoLink path='/examples/react-full/pages/index.page.tsx' /> (example of using <code>navigate()</code>)
+
+- <RepoLink path='/examples/react-full/renderer/_default.page.client.tsx' />
+- <RepoLink path='/examples/react-full/pages/index.page.tsx' /> (使用<code>navigate()</code>的示例)
 
 Vue example:
- - <RepoLink path='/examples/vue-full/renderer/_default.page.client.ts' />
- - <RepoLink path='/examples/vue-full/renderer/app.ts' />
- - <RepoLink path='/examples/vue-full/pages/index.page.vue' /> (example of using <code>navigate()</code>)
 
+- <RepoLink path='/examples/vue-full/renderer/_default.page.client.ts' />
+- <RepoLink path='/examples/vue-full/renderer/app.ts' />
+- <RepoLink path='/examples/vue-full/pages/index.page.vue' /> (使用<code>navigate()</code>的示例)
 
-## Usage & options
+## 用例和选项
 
 ```js
 // /renderer/_default.page.client.js
@@ -26,33 +28,33 @@ Vue example:
 
 export { render }
 
-// Enable Client Routing
+// 开启客户端路由
 export const clientRouting = true
 
-// See `Link prefetching` section below. Default value: `{ when: 'HOVER' }`.
+// 请参阅下面的 `Link prefetching` 部分。 默认值：`{ when: 'HOVER' }`。
 export const prefetchStaticAssets = { when: 'VIEWPORT' }
 
-// Whether your UI framework allows the hydration to be aborted. (Allowing vite-plugin-ssr
-// to abort the hydration if the user clicks on a link before the hydration finished.)
-// Only React users should set `hydrationCanBeAborted` to `true`. (Other frameworks,
-// such as Vue, throw an error if the hydration is aborted.)
+// 你的 UI 框架是否允许 hydration 被中止
+// （允许 vite-plugin-ssr 在用户点击链接完成之前中止 hydration）
+// 只有 React 用户应该将 `hydrationCanBeAborted` 设置为 `true`
+// （其他框架，如 Vue，会在 hydration 中止时抛出错误）
 export const hydrationCanBeAborted = true
 
-// Create custom page transition animations
+// 自定义页面过渡动画
 export { onPageTransitionStart }
 export { onPageTransitionEnd }
 
 import { renderToDom, hydrateDom } from 'some-ui-framework'
 
 async function render(pageContext) {
-    // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
-    // is already rendered to HTML.
+    // `pageContext.isHydration` 由 `vite-plugin-ssr` 设置，
+    // 当页面已经渲染为 HTML 时为 `true`
     if (pageContext.isHydration) {
-      // We hydrate the first page. (Since we do SSR, the first page is already
-      // rendered to HTML and we merely have to hydrate it.)
+      // 我们给第一个页面 hydrate（由于我们做首屏 SSR，
+      // 第一个页面已经渲染为 HTML，我们只需要对其 hydrate）
       await hydrate(pageContext.Page)
     } else {
-      // We render a new page. (When the user navigates to a new page.)
+      // 我们渲染一个新页面。 （当用户导航到新页面时。）
       await renderToDom(pageContext.Page)
     }
   }
@@ -60,44 +62,47 @@ async function render(pageContext) {
 
 function onPageTransitionStart(pageContext) {
   console.log('Page transition start')
-  // `pageContext.isBackwardNavigation` is also set at `render(pageContext)`
-  // and `onPageTransitionEnd(pageContext)`.
+  // `pageContext.isBackwardNavigation` 也在 `render(pageContext)`
+  // 和 `onPageTransitionEnd(pageContext)` 中设置。
   console.log('Is backwards navigation?', pageContext.isBackwardNavigation)
-  // For example:
+  // 例如：
   document.body.classList.add('page-transition')
 }
 function onPageTransitionEnd(pageContext) {
   console.log('Page transition end')
-  // For example:
+  // 例如：
   document.body.classList.remove('page-transition')
 }
 ```
 
-> Note that `pageContext` is completely discarded and created anew upon page navigation.
-> That's why it's called *page*Context (and not *app*Context).
+> 请注意，`pageContext` 在页面导航时被完全丢弃并重新创建。
+> 这就是它被称为 *page*Context（而不是 *app*Context）的原因
 
-We can keep using `<a href="/some-url">` links: the Client Router automatically intercepts clicks on `<a>` elements.
+我们可以继续使用 `<a href="/some-url">` 链接：客户端路由器自动拦截对 `<a>` 元素的点击。
 
-We can skip the Client Router by adding the `rel="external"` attribute, e.g. `<a rel="external" href="/some/url">The Client Router won't intercept me</a>`.
+我们可以通过添加 `rel="external"` 属性来跳过客户端路由器，例如 `<a rel="external" href="/some/url">客户端路由器不会拦截我</a>`。
 
-We can use <Link text={<code>navigate('/some/url')</code>} href="/navigate"/> to programmatically navigate the user to a new page.
+我们可以使用 <Link text={<code>navigate('/some/url')</code>} href="/navigate"/> 以编程方式将用户导航到新页面。
 
-By default, the Client-side Router scrolls to the top of the page upon page change;
-we can use `<a keep-scroll-position />` / `navigate('/some/url', { keepScrollPosition: true })`
-if we want to preserve the scroll position instead. (Useful for <Link text="Nested Layouts" href="/layouts#nested-layouts" />.)
+默认情况下，客户端路由器在页面更改时滚动到页面顶部；
 
+如果我们想保留滚动位置，可以使用`<a keep-scroll-position />` / `navigate('/some/url', { keepScrollPosition: true })` （对于 <Link text="嵌套布局" href="/layouts#nested-layouts" /> 很有用）
 
-## State initialization
+## 状态初始化
 
-Usually, when using tools such as Apollo GraphQL, Redux or Vuex, we determine the initial state of our UI on the server-side while rendering HTML, and then initialize the client-side with that initial state.
+通常，在使用 Apollo GraphQL、Redux 或 Vuex 等工具时，我们会在渲染 HTML 时确定服务端 UI 的初始状态，然后使用该初始状态初始化客户端
 
-Depending on the tool, we do either one of the following:
- - We initialize the state once.
- - We re-initialize the state on every page navigation.
+根据工具，我们执行以下操作之一：
 
-<ReadingRecommendation tour={true} links={['/data-fetching', '/data-fetching-tools', '/store']} />
+- 初始化状态一次
+- 重新初始化每个页面导航的状态
 
-To initialize once:
+<ReadingRecommendation
+	tour={true}
+	links={['/data-fetching', '/data-fetching-tools', '/store']}
+/>
+
+初始化一次：
 
 ```js
 // /renderer/_default.page.server.js
@@ -112,30 +117,31 @@ import { getInitialState } from './getInitialState'
 
 const passToClient = ['initialState']
 
-// The `render()` hook is called only for the first page.
-// (Whereas `onBeforeRender()` is called as well upon page navigation.)
+// `render()` hook 只在第一个页面被调用。
+// （而在页面导航时也会调用 `onBeforeRender()`。）
 async function render(pageContext) {
-  const initialState = await getInitialState()
+	const initialState = await getInitialState()
 
-  // We use `initialState` for rendering the HTML, so that the HTML contains
-  // the content of `initialState`.
-  const pageHtml = await renderToHtml(pageContext.Page, initialState)
+	// 我们使用 `initialState` 来渲染 HTML，
+	// 因此 HTML 包含 `initialState` 的内容。
+	const pageHtml = await renderToHtml(pageContext.Page, initialState)
 
-  const documentHtml = escapeInject`<!DOCTYPE html>
+	const documentHtml = escapeInject`<!DOCTYPE html>
     <html>
       <body>
         <div>${dangerouslySkipEscape(pageHtml)}</div>
       </body>
     </html>`
 
-  return {
-    documentHtml,
-    pageContext: {
-      initialState
-    }
-  }
+	return {
+		documentHtml,
+		pageContext: {
+			initialState,
+		},
+	}
 }
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
@@ -145,20 +151,20 @@ export { render }
 import { initClientSide } from './initClientSide'
 
 async function render(pageContext) {
-  // The first page is rendered to HTML and `pageContext.isHydration === true`
-  if (pageContext.isHydration) {
-    // `pageContext.initialState` is available here
-    initClientSide(pageContext.initialState)
-  } else {
-    // Note that `pageContext.initialState` is not available here,
-    // since our `render()` hook is only called for the first page.
-  }
+	// 第一个页面渲染为 HTML，并且 `pageContext.isHydration === true`
+	if (pageContext.isHydration) {
+		// `pageContext.initialState` is available here
+		initClientSide(pageContext.initialState)
+	} else {
+		// 请注意，`pageContext.initialState` 在这里不可用，
+		// 因为我们的 `render()` hook 只在第一个页面被调用
+	}
 
-  // ...
+	// ...
 }
 ```
 
-To initialize on every page navigation:
+在每个页面导航上初始化：
 
 ```js
 // /renderer/_default.page.server.js
@@ -171,17 +177,18 @@ import { getInitialState } from './getInitialState'
 
 const passToClient = ['initialState']
 
-// The `onBeforeRender()` hook is called for the first page as well as upon page navigation.
-// (Whereas `render()` is called only for the first page.)
+// `onBeforeRender()` hook 在第一个页面和页面导航时被调用
+// （而 `render()` 只在第一个页面被调用。）
 async function onBeforeRender() {
-  const initialState = await getInitialState()
-  return {
-    pageContext: {
-      initialState
-    }
-  }
+	const initialState = await getInitialState()
+	return {
+		pageContext: {
+			initialState,
+		},
+	}
 }
 ```
+
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
@@ -191,58 +198,60 @@ export { render }
 import { initClientSide } from './initClientSide'
 
 async function render(pageContext) {
-  // We initialize the state for every page rendering. So not only
-  // the first page but also any subsequent page navigation.
-  initClientSide(pageContext.initialState)
+	// 我们为每个页面渲染初始化状态。
+	// 因此，不仅是第一个页面，还有任何后续页面导航。
+	initClientSide(pageContext.initialState)
 
-  // ...
+	// ...
 }
 ```
 
 ## Link prefetching
 
-By default,
-the static assets of `/some-url` are loaded as soon as the user hovers his mouse over a link `<a href="/some-url">`.
-This means that static assets are often already loaded before even the user clicks on the link.
+默认情况下，只要用户将鼠标悬停在链接 `<a href="/some-url">` 上，就会加载 `/some-url` 的静态资源。
+这意味着静态资源通常在用户点击链接之前就已加载。
 
-We can prefetch even more eagerly by using viewport prefetching: the links are then prefetched as soon as they appear in the viewport of the user's browser.
+我们可以通过使用视图窗口预获取来更快地获取资源：链接一旦出现在用户浏览器的视图窗口中就会被预获取。
 
 ```js
 // /renderer/_default.page.client.js
 // Environment: Browser
 
-// Prefetch links as soon as they enter the viewport
+// 一进入视图窗口就预获取链接
 export const prefetchStaticAssets = { when: 'VIEWPORT' }
 
-// Prefetch links when the user's mouse hovers a link
+// 当用户的鼠标悬停在链接上时预获取链接
 export const prefetchStaticAssets = { when: 'HOVER' }
 
-// Disable prefetching
+// 禁用预获取
 export const prefetchStaticAssets = false
 ```
 
-> Viewport prefetching is disabled in development. (Because it would make Vite transpile all preloaded pages and thus siginficantly slow down development.)
+> 视图窗口预获取在开发中被禁用。（因为它会使 Vite 转换所有预加载的页面，从而明显减慢开发速度）
 
-We can override the link prefetching behavior for individual links by setting `<a data-prefetch="true" href="/some-url" />`.
+我们可以通过设置 `<a data-prefetch="true" href="/some-url" />` 来覆盖单个链接的链接预获取行为
 
-> Only static assets are prefetched; the pages' `pageContext` is currently not prefetched, see [#246](https://github.com/brillout/vite-plugin-ssr/issues/246).
+> 仅预获取静态资源；页面的 `pageContext` 不会被预获取，请参阅 [#246](https://github.com/brillout/vite-plugin-ssr/issues/246)
 
 We can also have viewport prefetching for mobile users while having hover prefetching for desktop users:
+我们还可以为移动用户开启视图窗口预获取，而为桌面用户开启 hover 预获取：
 
 ```js
-// For small screens, such as mobile, viewport prefetching can be a sensible strategy
+// 对于小屏幕，例如移动设备，视图窗口预获取可能是一个明智的策略
 export const prefetchStaticAssets = window.matchMedia('(max-width: 600px)').matches
-  ? { when: "VIEWPORT" }
-  : { when: "HOVER" };
-```
-```js
-// Or we enable viewport prefetching for any device without a mouse: mobile and tablets (but
-// not laptops that have a touch display).
-export const prefetchStaticAssets = window.matchMedia('(any-hover: none)').matches
-  ? { when: "VIEWPORT" }
-  : { when: "HOVER" };
+	? { when: 'VIEWPORT' }
+	: { when: 'HOVER' }
 ```
 
-See also:
- - [MDN > Web API > Window > matchMedia()](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
- - [Stack Overflow > Detecting that the browser has no mouse and is touch-only](https://stackoverflow.com/questions/7838680/detecting-that-the-browser-has-no-mouse-and-is-touch-only/52854585#52854585)
+```js
+// 或者我们为任何没有鼠标的设备启用视图窗口预获取：移动设备和平板电脑
+// （但不包括具有触摸屏的笔记本电脑）。
+export const prefetchStaticAssets = window.matchMedia('(any-hover: none)').matches
+	? { when: 'VIEWPORT' }
+	: { when: 'HOVER' }
+```
+
+另请参考：
+
+- [MDN > Web API > Window > matchMedia()](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
+- [Stack Overflow > Detecting that the browser has no mouse and is touch-only](https://stackoverflow.com/questions/7838680/detecting-that-the-browser-has-no-mouse-and-is-touch-only/52854585#52854585)

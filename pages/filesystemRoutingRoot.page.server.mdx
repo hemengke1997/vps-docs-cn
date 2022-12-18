@@ -1,17 +1,17 @@
 import { Link } from '@brillout/docpress'
 
-The `export { filesystemRoutingRoot }` of `_default.page.route.js` allows us to change the URL root of Filesystem Routing.
+`_default.page.route.js` 的 `export { filesystemRoutingRoot }` 允许我们更改文件系统路由的 URL 根目录。
 
-> **Don't use `filesystemRoutingRoot` to change the base URL**, see <Link href="/base-url" /> instead.
+> **不要使用 `filesystemRoutingRoot` 来更改 base URL**，请参考 <Link href="/base-url" />
 
-> `filesystemRoutingRoot` is usually used for [domain-driven file structure](/file-structure#domain-driven).
+> `filesystemRoutingRoot` 通常用于 [域名驱动的文件系统](/file-structure#domain-driven).
 
 ## Example
 
 ```js
 // /marketing/_default.page.route.js
 
-// We route our marketing pages to `/*` instead of `/marketing/*`
+// 我们将 marketing 页面路由到 `/*` 而不是 `/marketing/*`
 export const filesystemRoutingRoot = '/'
 ```
 
@@ -22,7 +22,7 @@ export const filesystemRoutingRoot = '/'
 /marketing/pages/jobs/index.page.js
 ```
 
-Result:
+结果：
 
 ```
 PROJECT FILES                                    URL

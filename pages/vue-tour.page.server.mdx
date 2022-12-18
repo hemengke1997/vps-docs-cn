@@ -1,6 +1,6 @@
 import { ScaffoldCallToActionTour } from "./index/ScaffoldCallToAction";
 
-{/* ## 路由 */}
+## 路由
 
 跟 Nuxt 类似，
 我们通过创建一个 `.page.vue` 文件来定义一个新页面
@@ -39,7 +39,7 @@ export default (pageContext) => pageContext.urlPathname === "/";
 // 如果我们不创建 `.page.route.js` 文件，那么 `vite-plugin-ssr` 会执行文件系统路由
 ```
 
-{/* ## 控制渲染 */}
+## 控制渲染
 
 跟 Nuxt 不同的是，我们可以控制如何页面渲染
 
@@ -115,7 +115,7 @@ async function render(pageContext) {
 
 `_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 React）覆盖 `render()` hook
 
-{/* ## 数据获取 */}
+## 数据获取
 
 现在我们来看看如何获取数据
 

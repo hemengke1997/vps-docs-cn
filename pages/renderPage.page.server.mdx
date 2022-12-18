@@ -1,14 +1,15 @@
 import { RepoLink, Link } from '@brillout/docpress'
 
-Environment: `Node.js`.
+环境： `Node.js`
 
-We use `renderPage()` to server-side render a page:
+我们使用 `renderPage()` 在服务端渲染页面：
 
 ```js
 // server.js
 // Environment: Node.js server
 
-// In this example we use Express.js but we could use any other server framework
+// 在此例子中我们使用 Express.js，
+// 但我们也可使用任意其他服务端框架
 import express from 'express'
 import { renderPage } from 'vite-plugin-ssr'
 
@@ -18,43 +19,52 @@ const root = `${__dirname}/..`
 startServer()
 
 async function startServer() {
-  const app = express()
+	const app = express()
 
-  if (isProduction) {
-    app.use(express.static(`${root}/${outDir}/client`))
-  } else {
-    const vite = await import('vite')
-    viteDevMiddleware = (await vite.createServer({
-      root,
-      server: { middlewareMode: true }
-    })).middlewares
-    app.use(viteDevMiddleware)
-  }
+	if (isProduction) {
+		app.use(express.static(`${root}/${outDir}/client`))
+	} else {
+		const vite = await import('vite')
+		viteDevMiddleware = (
+			await vite.createServer({
+				root,
+				server: { middlewareMode: true },
+			})
+		).middlewares
+		app.use(viteDevMiddleware)
+	}
 
-  app.get('*', async (req, res, next) => {
-    const pageContextInit = { urlOriginal: req.originalUrl }
-    const pageContext = await renderPage(pageContextInit)
-    if (pageContext.httpResponse === null) return next()
-    const { body, statusCode, contentType } = pageContext.httpResponse
-    res.status(statusCode).type(contentType).send(body)
-  })
+	app.get('*', async (req, res, next) => {
+		const pageContextInit = { urlOriginal: req.originalUrl }
+		const pageContext = await renderPage(pageContextInit)
+		if (pageContext.httpResponse === null) return next()
+		const { body, statusCode, contentType } = pageContext.httpResponse
+		res.status(statusCode).type(contentType).send(body)
+	})
 
-  const port = 3000
-  app.listen(port)
-  console.log(`Server running at http://localhost:${port}`)
+	const port = 3000
+	app.listen(port)
+	console.log(`Server running at http://localhost:${port}`)
 }
 ```
 
-- `pageContext.httpResponse.statusCode` is either `200`, `404`, or `500`.
-- `pageContext.httpResponse.contentType` is either `text/html;charset=utf-8` or `application/json`. (The `Content-Type` is `application/json` when <Link text="Client Routing" href="/client-routing" /> fetches the `pageContext` of the newly navigated page.)
-- `pageContext.httpResponse.body` is the HTML string returned by the <Link text={<><code>render()</code> hook</>} href="/render" /> with additional `<script>` and `<style>` tags automatically injected by `vite-plugin-ssr`.
-- `pageContext.httpResponse` is `null` if:
-   - An error occurs while rendering the page and you didn't create an `_error.page.js` file.
-   - An error occurs while rendering `_error.page.js`.
-   - The URL is skipped: `vite-plugin-ssr` doesn't render certain URLs. (E.g. `pageContext.urlOriginal === '/favicon.ico'` because browsers automatically make favicon requests).
+- `pageContext.httpResponse.statusCode` 是 `200`、`404` 或 `500`
+- `pageContext.httpResponse.contentType` 是 `text/html;charset=utf-8` 或 `application/json`。（当 <Link text="客户端路由" href="/client-routing" /> 获取新页面的 `pageContext` 时，`Content-Type` 为 `application/json`）
+- `pageContext.httpResponse.body` 是 <Link text={<><code>render()</code> hook</>} href="/render" /> 返回的 HTML 字符串，带有由 `vite-plugin-ssr` 注入的额外的 `<script>` 和 `<style>` 标签
+- `pageContext.httpResponse` 在以下情况下为 `null`：
+  - 页面发生错误，而你没有创建 `_error.page.js` 文件
+  - 渲染 `_error.page.js` 时发生错误
+  - URL 被跳过：`vite-plugin-ssr` 不渲染某些 URL。 （例如，`pageContext.urlOriginal === '/favicon.ico'` 因为浏览器会自动发出 favicon 请求）。
 
-`renderPage()` is framework agnostic: we can use `vite-plugin-ssr` with any server framework (Koa, Hapi, Fastify, vanilla Node.js, ...) and any deploy environment (AWS, Cloudflare Workers, Vercel, ...).
+`renderPage()` 与框架无关：我们可以将 `vite-plugin-ssr` 与任何服务器框架（Koa、Hapi、Fastify、vanilla Node.js 等）和任何部署环境（AWS、Cloudflare Workers、Vercel）一起使用 ，...）。
 
 Examples:
- - <RepoLink text='With JavaScript' path='/boilerplates/boilerplate-vue/server/index.js' />
- - <RepoLink text='With TypeScript' path='/boilerplates/boilerplate-vue-ts/server/index.ts' />
+
+- <RepoLink
+  	text='With JavaScript'
+  	path='/boilerplates/boilerplate-vue/server/index.js'
+  />
+- <RepoLink
+  	text='With TypeScript'
+  	path='/boilerplates/boilerplate-vue-ts/server/index.ts'
+  />

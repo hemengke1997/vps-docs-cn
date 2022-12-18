@@ -227,8 +227,7 @@ const headings: HeadingDefinition[] = [
 		title: 'Render Modes (SPA, SSR, SSG, HTML-only)',
 		titleInNav: 'SPA, SSR, SSG, HTML-only',
 		url: '/render-modes',
-		// TODO: 解开comment
-		// sectionTitles: ['HTML-only', 'SPA', 'SSR']
+		sectionTitles: ['HTML-only', 'SPA', 'SSR']
 	},
 	{
 		level: 2,
@@ -388,8 +387,7 @@ const headings: HeadingDefinition[] = [
 		level: 2,
 		title: 'Cloudflare Workers',
 		url: '/cloudflare-workers',
-		// TODO
-		// sectionTitles: ["Cloudflare Pages"],
+		sectionTitles: ["Cloudflare Pages"],
 	},
 	{
 		level: 2,

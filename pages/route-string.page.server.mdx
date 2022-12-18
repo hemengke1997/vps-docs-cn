@@ -11,7 +11,7 @@ export default "/film/@filmId";
 
 `filmId` 的值在 `pageContext.routeParams.filmId` 中可用
 
-{/* ## 多参数 */}
+## 多参数
 
 我们可以定义多个参数
 
@@ -24,20 +24,20 @@ export default "/film/@filmId";
 export default "/news/@year/@slug";
 ```
 
-{/* ## Catch-All */}
+## Catch-All
 
 我们可以使用路由字符串实现 [catch-all 路由](/catch-all)
 
-{/* ## 优先级 */}
+## 优先级
 
 当路由字符串冲突时，`vite-plugin-ssr` 选择优先级最高的路由
 
 请参考 <Link href="/routing-precedence" />
 
-{/* ## 转义符 `@` */}
+## 转义符 `@`
 
 特殊字符 `@` 无法转义，请使用 [路由函数](/route-function) 代替
 
-{/* ## 更多 */}
+## 更多
 
 对于更高级的路由，我们可以使用 [路由函数](/route-function)，它比路由字符串更强大
