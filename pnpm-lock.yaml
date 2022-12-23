@@ -10,7 +10,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   typescript: ^4.9.3
-  vite-plugin-ssr: ^0.4.62
+  vite-plugin-ssr: ^0.4.65
 
 dependencies:
   '@brillout/docpress': 0.2.3_6bdbsu2yzpeczxw5qylih75b3i
@@ -20,7 +20,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   typescript: 4.9.4
-  vite-plugin-ssr: 0.4.62
+  vite-plugin-ssr: 0.4.65
 
 packages:
 
@@ -44,7 +44,7 @@ packages:
       shiki: 0.10.1
       twemoji: 13.1.1
       vite: /@brillout/vite/4.0.1-fix_@types+node@15.14.9
-      vite-plugin-ssr: 0.4.62_@brillout+vite@4.0.1-fix
+      vite-plugin-ssr: 0.4.65_@brillout+vite@4.0.1-fix
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -2225,8 +2225,8 @@ packages:
       vfile-message: 3.1.3
     dev: false
 
-  /vite-plugin-ssr/0.4.62:
-    resolution: {integrity: sha512-tyzU8V8wDcFbo4uEQ+A6gL0gDo93HucdLtGo/JKStR9mpzz95i5l9yWxfrSlh+QLeqBiGMQlVIjK29L9xXOj+Q==}
+  /vite-plugin-ssr/0.4.65:
+    resolution: {integrity: sha512-6EmFUR/o/ZjjWFL7Ko3x1f8BCyGvLFU3TOCSsL65yq8WvgRJIjv94ixnD92fBOWfis9NeuTSW9dbBKX+Squejw==}
     engines: {node: '>=12.19.0'}
     hasBin: true
     peerDependencies:
@@ -2246,8 +2246,8 @@ packages:
       sirv: 2.0.2
     dev: false
 
-  /vite-plugin-ssr/0.4.62_@brillout+vite@4.0.1-fix:
-    resolution: {integrity: sha512-tyzU8V8wDcFbo4uEQ+A6gL0gDo93HucdLtGo/JKStR9mpzz95i5l9yWxfrSlh+QLeqBiGMQlVIjK29L9xXOj+Q==}
+  /vite-plugin-ssr/0.4.65_@brillout+vite@4.0.1-fix:
+    resolution: {integrity: sha512-6EmFUR/o/ZjjWFL7Ko3x1f8BCyGvLFU3TOCSsL65yq8WvgRJIjv94ixnD92fBOWfis9NeuTSW9dbBKX+Squejw==}
     engines: {node: '>=12.19.0'}
     hasBin: true
     peerDependencies:
