@@ -123,6 +123,10 @@ const headingsWithoutLink: HeadingWithoutLink[] = [
 		title: 'SPA vs SSR (and more)',
 		url: '/SPA-vs-SSR',
 	},
+	{
+		title: 'Languages',
+		url: '/languages',
+	},
 ]
 
 const headings: HeadingDefinition[] = [
