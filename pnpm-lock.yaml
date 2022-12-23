@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 packageExtensionsChecksum: f050d50401848e89704474c6985d439e
 
 specifiers:
-  '@brillout/docpress': ^0.2.2
+  '@brillout/docpress': ^0.2.3
   '@types/node': ^15.12.1
   '@types/react': ^17.0.45
   '@types/react-dom': ^17.0.6
@@ -13,7 +13,7 @@ specifiers:
   vite-plugin-ssr: ^0.4.62
 
 dependencies:
-  '@brillout/docpress': 0.2.2_6bdbsu2yzpeczxw5qylih75b3i
+  '@brillout/docpress': 0.2.3_6bdbsu2yzpeczxw5qylih75b3i
   '@types/node': 15.14.9
   '@types/react': 17.0.52
   '@types/react-dom': 17.0.18
@@ -24,8 +24,8 @@ dependencies:
 
 packages:
 
-  /@brillout/docpress/0.2.2_6bdbsu2yzpeczxw5qylih75b3i:
-    resolution: {integrity: sha512-RHF1bQ/CGoVdCsAMrM4P6ZaLlk1pA+PwqqiPI84Vnec9sOqBElVb6FRS/F/j40LdVAGxXF09lT9/lg9zPFv2BQ==}
+  /@brillout/docpress/0.2.3_6bdbsu2yzpeczxw5qylih75b3i:
+    resolution: {integrity: sha512-jp0dbAI5S0b2D+0wi5xmBmEHHWYBMH2PjPG2PGna5IXQaParRuU/1jhjF+CYOw36kNbju5GUHwUAAwkJq6orjA==}
     hasBin: true
     peerDependencies:
       react: '18'
@@ -593,7 +593,7 @@ packages:
     dev: false
 
   /array-flatten/1.1.1:
-    resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=}
+    resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
     dev: false
 
   /astring/1.8.3:
@@ -690,7 +690,7 @@ packages:
     dev: false
 
   /cookie-signature/1.0.6:
-    resolution: {integrity: sha1-4wOogrNCzD7oylE6eZmXNNqzriw=}
+    resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
     dev: false
 
   /cookie/0.5.0:
@@ -752,7 +752,7 @@ packages:
     dev: false
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
+    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
   /encodeurl/1.0.2:
@@ -1326,12 +1326,12 @@ packages:
     dev: false
 
   /media-typer/0.3.0:
-    resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
+    resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
     dev: false
 
   /merge-descriptors/1.0.1:
-    resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=}
+    resolution: {integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w==}
     dev: false
 
   /merge2/1.4.1:
@@ -2182,7 +2182,7 @@ packages:
     dev: false
 
   /utils-merge/1.0.1:
-    resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}
+    resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
     dev: false
 
