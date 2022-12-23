@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 packageExtensionsChecksum: f050d50401848e89704474c6985d439e
 
 specifiers:
-  '@brillout/docpress': ^0.2.4
+  '@brillout/docpress': ^0.3.0
   '@types/node': ^15.12.1
   '@types/react': ^17.0.45
   '@types/react-dom': ^17.0.6
@@ -13,7 +13,7 @@ specifiers:
   vite-plugin-ssr: ^0.4.65
 
 dependencies:
-  '@brillout/docpress': 0.2.4_6bdbsu2yzpeczxw5qylih75b3i
+  '@brillout/docpress': 0.3.0_6bdbsu2yzpeczxw5qylih75b3i
   '@types/node': 15.14.9
   '@types/react': 17.0.52
   '@types/react-dom': 17.0.18
@@ -24,8 +24,8 @@ dependencies:
 
 packages:
 
-  /@brillout/docpress/0.2.4_6bdbsu2yzpeczxw5qylih75b3i:
-    resolution: {integrity: sha512-Ijy7V+93a4OtZ2RdbTuTmNP+273bMDJY3VcuOlR7w9u0YJsK7N2q+wSPy90GeWNYvUlRamkZ4B3Ayy9rW4pp3Q==}
+  /@brillout/docpress/0.3.0_6bdbsu2yzpeczxw5qylih75b3i:
+    resolution: {integrity: sha512-ujQZYnoAUtNHxIwhDmCZ+bsSuSVx1RR6oNY5hAzpCL5eF3cnB4WQEKfcUXR0rHK6D5YY6Wb1fRjIM56jsWNdOg==}
     hasBin: true
     peerDependencies:
       react: '18'
