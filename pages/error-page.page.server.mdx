@@ -19,7 +19,7 @@ function Page(pageProps) {
 > 我们可以像定义任何其他页面一样定义 hook，例如定义一个 <Link text="自定义 layout" href="/layouts#custom-export" />。
 
 
-## 预渲染
+## 预渲染{#pre-rendering}
 
 
 如果我们启用 <Link text="预渲染" href="/pre-rendering" />，那么 vite-plugin-ssr 使用 `_error.page.js` 生成 `dist/client/404.html`。
@@ -27,7 +27,7 @@ function Page(pageProps) {
 > 大多数静态host会自动选择 `404.html` 并使用它来渲染 404 页面
 
 
-## 详情
+## 详情{#details}
 
 页面 `_error.page.js` 在以下情况下渲染：
   1. 我们的页面均不匹配 URL（`404 Page Not Found`）。

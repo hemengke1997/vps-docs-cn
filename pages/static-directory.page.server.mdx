@@ -1,4 +1,4 @@
-## `public/`
+## `public/`{#public}
 
 Vite 内置了对 `public/` 目录文件的静态资源服务支持
 
@@ -6,7 +6,7 @@ Vite 内置了对 `public/` 目录文件的静态资源服务支持
 
 官方文档：[Vite - `public/` 目录](https://vitejs.dev/guide/assets.html#the-public-directory).
 
-## `dist/client/`
+## `dist/client/`{#dist-client}
 
 `$ vite build` 之后，所有的静态资源都在 `dist/client/` 中
 
@@ -22,7 +22,7 @@ dist/client/robots.txt
 - 添加 content hash `b0c3b30b` 增强缓存能力
 - 将 `public/` 下的所有文件复制到 `dist/client/`
 
-## Server static middleware
+## Server static middleware{#server-static-middleware}
 
 如果我们使用 Node.js 服务器（即不[pre-render](/pre-rendering)应用程序），则可以选择服务静态中间件，例如 [`express.static()`](https://expressjs.com/en/starter/static-files.html)
 

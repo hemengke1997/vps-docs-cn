@@ -29,7 +29,7 @@ Cloudflare Workers 要求我们将整个 worker 代码打包到一个文件中
 
 Example: [GitHub > `Aslemammad/vite-plugin-cloudflare` > `examples/vite-plugin-ssr/`](https://github.com/Aslemammad/vite-plugin-cloudflare/tree/main/examples/vite-plugin-ssr).
 
-## 扩展 1MB 限制
+## 扩展 1MB 限制{#extend-1mb-limit}
 
 我们的 worker 包大小不应超过 1MB，但是我们可以请求 100MB 及以上的大小：
 
@@ -53,7 +53,7 @@ Example：
 
 - [Wrangler 2.0 — a new developer experience for Cloudflare Workers](https://blog.cloudflare.com/wrangler-v2-beta/)
 
-## 开发
+## 开发{#development}
 
 为了获得更快的开发体验，我们建议尽可能使用 Vite 的开发服务器而不是 wrangler（或 Express.js 服务）
 
@@ -66,7 +66,7 @@ This means:
 
   请参阅[示例](<(#examples)>)的设置。
 
-## 统一 `fetch()`
+## 统一 `fetch()`{#universal-fetch}
 
 当使用 Node.js 进行开发并在生产环境中使用 Cloudflare Workers 时，我们可能需要一个可以在两种环境中工作的 `fetch()` 函数
 

@@ -20,7 +20,7 @@ Vue example:
 - <RepoLink path='/examples/vue-full/renderer/app.ts' />
 - <RepoLink path='/examples/vue-full/pages/index.page.vue' /> (使用<code>navigate()</code>的示例)
 
-## 用例和选项
+## 用例和选项{#usage-options}
 
 ```js
 // /renderer/_default.page.client.js
@@ -88,7 +88,7 @@ function onPageTransitionEnd(pageContext) {
 
 如果我们想保留滚动位置，可以使用`<a keep-scroll-position />` / `navigate('/some/url', { keepScrollPosition: true })` （对于 <Link text="嵌套布局" href="/layouts#nested-layouts" /> 很有用）
 
-## 状态初始化
+## 状态初始化{#state-initialization}
 
 通常，在使用 Apollo GraphQL、Redux 或 Vuex 等工具时，我们会在渲染 HTML 时确定服务端 UI 的初始状态，然后使用该初始状态初始化客户端
 

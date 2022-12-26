@@ -3,7 +3,7 @@ import { Link } from "@brillout/docpress";
 > vite-plugin-ssr 没有内置的重定向机制。
 > 不过可以使用 vite-plugin-ssr 提供的控件来实现重定向
 
-## 鉴权重定向
+## 鉴权重定向{#auth-redirection}
 
 URL 重定向通常是为了保护 URL 免受未鉴权的用户的访问：
 如果用户未通过鉴权并进入“/admin”，那么我们将用户重定向到“/login”。
@@ -47,7 +47,7 @@ function userIsLoggedIn(pageContext) {
 
 除了这种方法，我们还可以使用更传统的方式来重定向页面。请参阅以下部分
 
-## 服务端
+## 服务端{#server-side}
 
 我们可以使用 `pageContext` 执行 URL 重定向：
 
@@ -134,7 +134,7 @@ function render(pageContext) {
 }
 ```
 
-## 客户端
+## 客户端{client-side}
 
 如果我们使用客户端路由，也可在客户端重定向
 
@@ -164,7 +164,7 @@ export function render(pageContext) {
 }
 ```
 
-## Hydration Mismatch
+## Hydration Mismatch{#hydration-mismatch}
 
 如果我们使用客户端路由，可能会遇到 [hydration mismatch](/hydration-mismatch)
 

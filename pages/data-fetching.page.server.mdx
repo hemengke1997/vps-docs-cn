@@ -3,7 +3,7 @@ import { RepoLink, Link } from "@brillout/docpress";
 > 阅读此指南之前，我们推荐先看看 <Link text="React 教程" href="/react-tour" /> 或 <Link text="Vue 教程" href="/vue-tour" />。
 > 教程里解释了什么是 `/renderer/_default.page.*` 文件
 
-## `onBeforeRender()`
+## `onBeforeRender()`{#onbeforerender}
 
 获取数据常用的方法是使用 `onBeforeRender()` hook函数
 
@@ -103,7 +103,7 @@ function Page(pageProps) {
 
 > 需要注意的是，`vite-plugin-ssr` 并不知道 `pageProps` 是什么：它只是我们创建的一个普通对象，其目的是为了方便地一次性传递所有页面所需的 props
 
-## 自定义Exports
+## 自定义Exports{#custom-exports}
 
 为了使用更加方便，我们可以使用<Link text="Custom Export/Hook" href="/exports" />，然后在 `/renderer/_default.page.server.js` 定义一次 `onBeforeRender()`，而不必在每个页面都定义一个 `onBeforeRender()` hook
 
@@ -137,7 +137,7 @@ async function onBeforeRender(pageContext) {
 }
 ```
 
-## 客户端路由
+## 客户端路由{#client-routing}
 
 `.page.server.js` 文件仅在 Node.js 中加载执行；
 所以获取数据的代码始终在 Node.js 环境中执行。这样做很方便，因为它使得我们写获取数据的代码更容易了
@@ -149,7 +149,7 @@ This is convenient as it makes writing data fetching code easier.
 
 通常，[我们建议在 `.page.server.js` 中定义 `onBeforeRender()`](/onBeforeRender-isomorphic#recommendation)（即使是客户端路由）。但是如果我们想要最小化对 Node.js 服务的请求压力，可以在 `.page.js` 中定义 `onBeforeRender()`
 
-## GraphQL
+## GraphQL{#graphql}
 
 使用 GraphQL 时，我们在组件级别定义 GraphQL queries/fragments，同时在单独全局的 `onBeforeRender()` hook中获取 GraphQL 数据
 
@@ -159,7 +159,7 @@ This is convenient as it makes writing data fetching code easier.
 - <Link href='/urql' />
 - <Link href='/relay' />
 
-## 状态管理 (Vuex/Redux...)
+## 状态管理 (Vuex/Redux...){#store-vuex-redux}
 
 使用全局状态管理方案（[Vuex](https://vuex.vuejs.org/), [Redux](https://redux.js.org/), [PullState](https://lostpebble.github.io/pullstate/), 等）时，我们的组件不会直接访问获取到的数据。相反，组件只访问 Store，获取到的数据仅确定 Store 的初始状态
 

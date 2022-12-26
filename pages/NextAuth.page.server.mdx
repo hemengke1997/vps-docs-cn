@@ -19,7 +19,7 @@ import { Link } from "@brillout/docpress";
 
 > 我们可以像往常一样在服务器（例如 Express.js）代码使用 `process.env`。 （因为服务器代码不被 Vite 处理。）
 
-## `getSession()` 的 fetch polyfill
+## `getSession()` 的 fetch polyfill{#fetch-polyfill-for-getsession}
 
 为了在服务器端使用 NextAuth.js 的 [`getSession()`](https://next-auth.js.org/getting-started/client#getsession)，我们需要全局安装一个 fetch polyfill。
 
@@ -45,6 +45,6 @@ if (!globalThis.fetch) {
 }
 ```
 
-## 另请参考
+## 另请参考{#see-also}
 
 - <Link href='/auth' />

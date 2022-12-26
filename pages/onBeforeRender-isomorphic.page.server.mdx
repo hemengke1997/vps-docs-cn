@@ -13,12 +13,12 @@ Examples:
 - <RepoLink path='/examples/react-full/pages/star-wars/movie/index.page.tsx' />
 - <RepoLink path='/examples/vue-full/pages/star-wars/movie/index.page.vue' />
 
-## 建议
+## 建议{#recommendation}
 
 通常，我们建议在 `.page.server.js` 中定义 `onBeforeRender()` hook，因为编写仅在 Node.js 中运行的代码更容易。
 
 也就是说，如果我们想要最小化对 Node.js 服务器的请求，那么可能需要在 `.page.js` 中定义我们的 `onBeforeRender()` hook。同时我们需要确保我们的 `onBeforeRender()` hook 是同构的：它需要能够在 Node.js 和浏览器中运行。
 
-## 服务端路由
+## 服务端路由{#server-routing}
 
 如果我们使用 <Link href="/server-routing" noBreadcrumb={true} />，我们不应该在 `.page.js` 中定义 `onBeforeRender()`（浏览器加载 `onBeforeRender()` 但从不调用它）。 我们应该始终在 [ `.page.server.js` 中定义 `onBeforeRender()`](/onBeforeRender)

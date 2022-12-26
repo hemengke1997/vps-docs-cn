@@ -35,7 +35,7 @@ export default (pageContext) => {
 - [`resolveRoute()`](#resolveroute)
 - [partRegex](https://github.com/brillout/part-regex)
 
-## `resolveRoute()`
+## `resolveRoute()`{#resolveroute}
 
 路由函数可以使用 `vite-plugin-ssr` 内置的路由解析器
 
@@ -74,7 +74,7 @@ export default (pageContext) => {
 };
 ```
 
-## 始终运行
+## 始终运行{#always-run}
 
 每次渲染页面时（即每次[`renderPage()`](/renderPage)调用时），`vite-plugin-ssr` 都会执行 _所有_ 路由函数
 
@@ -109,7 +109,7 @@ function userIsLoggedIn(pageContext) {
 
 > [Guides > Page Redirection > Auth Redirection](/page-redirection#auth-redirection) 中进一步解释了这个技巧
 
-## 异步
+## 异步{#async}
 
 异步路由函数可能会明显降低我们的应用程序的速度：正如我们在上一节中看到的那样，每次渲染页面时，我们所有页面的路由函数都会被调用并等待
 

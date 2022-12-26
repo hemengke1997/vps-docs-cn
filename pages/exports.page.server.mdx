@@ -60,7 +60,7 @@ function render(pageContext) {
 
 我们称这项技术为 _Custom Exports_ / _Custom Hooks_
 
-## Example: Page Layout
+## Example: Page Layout{#example-page-layout}
 
 一种常见的用法是使用自定义 export `pageContext.exports.Layout` 来定义页面的 layout 布局
 
@@ -127,7 +127,7 @@ export function render(pageContext) {
 
 > 注意我们使用 `pageContext.exports.Page` 而不是 `pageContext.Page`：因为 `pageContext.Page` 实际上只是 `pageContext.exports.Page ?? pageContext.exports.default` 的别名
 
-## Example: 数据查询
+## Example: 数据查询{#example-data-query}
 
 另一个常见的例子是使用自定义 export `pageContext.exports.query` 来定义页面的数据查询
 
@@ -186,7 +186,7 @@ function render(pageContext) {
 }
 ```
 
-## Example: Meta 数据
+## Example: Meta 数据{#example-meta-data}
 
 我们还可以使用自定义 export `pageContext.export.meta` 来定义页面的 meta 数据
 

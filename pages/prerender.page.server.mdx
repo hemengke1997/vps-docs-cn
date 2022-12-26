@@ -2,7 +2,7 @@ import { RepoLink, Link } from '@brillout/docpress'
 
 > 有关如何预渲染应用程序，请参阅 <Link href="/pre-rendering" />
 
-## 提供 URL
+## 提供 URL{#for-providing-urls}
 
 大多数时候，我们使用 `prerender()` hook 来提供参数化路由的 URL。
 
@@ -32,7 +32,7 @@ async function prerender() {
 > `prerender()` hook 在我们运行 <code>$ vite build</code> 时被调用。
 > （在开发中永远不会调用 `prerender()` hook）
 
-## 提供 `pageContext`
+## 提供 `pageContext`{#for-providing-pagecontext}
 
 如果我们有大量要预渲染的页面，那么运行命令 <code>$ vite build</code> 可能会变慢
 
