@@ -39,7 +39,7 @@ async function onBeforeRender() {
 
 这里发生的是：`pageContext.milliseconds` 会被设置一次，相同的毫秒值将在 Node.js 中渲染到 HTML 中，并在浏览器端 hydrate。（我们使用[`export passToClient = ['milliseconds']`](/passToClient) 将 `pageContext.milliseconds` 传递给浏览器端）
 
-## Common causes & solutions
+## 常见原因 & 解决方案
 
 常见原因：
 
@@ -51,7 +51,7 @@ React 中:
 
 - **老 React 版本** 在拼接文本段时存在错误，导致 `Warning: Text content did not match.`。确保使用最新的 React 版本
 
-## Suppress Hydration Mismatch
+## 阻止 Hydration Mismatch
 
 在某些情况下，hydration mismatches 不可避免，阻止 hydration mismatch 警告：
 

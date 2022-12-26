@@ -380,7 +380,7 @@ const headings: HeadingDefinition[] = [
 	{
 		level: 2,
 		title: '静态 Hosts',
-		titleInNav: 'Other',
+		titleInNav: '其他',
 		url: '/static-hosts',
 	},
 	{
@@ -415,7 +415,7 @@ const headings: HeadingDefinition[] = [
 	},
 	{
 		level: 4,
-		title: 'Other',
+		title: '其他',
 	},
 	{
 		level: 2,
@@ -425,7 +425,7 @@ const headings: HeadingDefinition[] = [
 	{
 		level: 2,
 		title: '部署',
-		titleInNav: 'Other',
+		titleInNav: '其他',
 		url: '/deploy',
 	},
 	{
@@ -469,7 +469,7 @@ const headings: HeadingDefinition[] = [
 	},
 	{
 		level: 2,
-		titleInNav: 'Other',
+		titleInNav: '其他',
 		title: 'Data Fetching Tools',
 		url: '/data-fetching-tools',
 	},
@@ -560,7 +560,7 @@ const headings: HeadingDefinition[] = [
 	},
 	{
 		level: 2,
-		titleInNav: 'Other',
+		titleInNav: '其他',
 		title: 'CSS 框架',
 		url: '/css-frameworks',
 	},
@@ -590,7 +590,7 @@ const headings: HeadingDefinition[] = [
 	},
 	{
 		level: 2,
-		titleInNav: 'Other',
+		titleInNav: '其他',
 		title: 'UI 框架',
 		url: '/ui-framework',
 	},
@@ -615,7 +615,7 @@ const headings: HeadingDefinition[] = [
 	},
 	{
 		level: 4,
-		title: 'Other',
+		title: '其他',
 	},
 	{
 		level: 2,

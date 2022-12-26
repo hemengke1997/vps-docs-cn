@@ -103,7 +103,6 @@ function Page(pageProps) {
 
 > 需要注意的是，`vite-plugin-ssr` 并不知道 `pageProps` 是什么：它只是我们创建的一个普通对象，其目的是为了方便地一次性传递所有页面所需的 props
 
-## Custom Exports
 ## 自定义Exports
 
 为了使用更加方便，我们可以使用<Link text="Custom Export/Hook" href="/exports" />，然后在 `/renderer/_default.page.server.js` 定义一次 `onBeforeRender()`，而不必在每个页面都定义一个 `onBeforeRender()` hook
@@ -138,7 +137,6 @@ async function onBeforeRender(pageContext) {
 }
 ```
 
-## Client Routing
 ## 客户端路由
 
 `.page.server.js` 文件仅在 Node.js 中加载执行；
