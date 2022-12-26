@@ -2,10 +2,10 @@
   "version": "0.4.65",
   "usesClientRouter": false,
   "manifestKeyMap": {
-    "@brillout/docpress/renderer/_default.page.server.js": "node_modules/.pnpm/@brillout+docpress@0.3.0_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.server.js",
-    "@brillout/docpress/renderer/_default.page.server.css": "node_modules/.pnpm/@brillout+docpress@0.3.0_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.server.css",
-    "@brillout/docpress/renderer/_default.page.client.js": "node_modules/.pnpm/@brillout+docpress@0.3.0_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js",
-    "@brillout/docpress/renderer/_default.page.client.css": "node_modules/.pnpm/@brillout+docpress@0.3.0_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.css"
+    "@brillout/docpress/renderer/_default.page.server.js": "node_modules/.pnpm/@brillout+docpress@0.3.3_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.server.js",
+    "@brillout/docpress/renderer/_default.page.server.css": "node_modules/.pnpm/@brillout+docpress@0.3.3_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.server.css",
+    "@brillout/docpress/renderer/_default.page.client.js": "node_modules/.pnpm/@brillout+docpress@0.3.3_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.js",
+    "@brillout/docpress/renderer/_default.page.client.css": "node_modules/.pnpm/@brillout+docpress@0.3.3_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.client.css"
   },
   "baseServer": "/",
   "baseAssets": "/",
