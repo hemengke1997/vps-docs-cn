@@ -1,0 +1,89 @@
+import { Note } from '@brillout/docpress'
+
+第三方库中经常发布无效的 ESM 代码，使 Node.js 抛出以下错误之一：
+
+请参阅下面的 [解决方案](#solution)
+
+## 常见的 ESM 错误
+
+```
+(node:30335) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+node_modules/some-library/dist/esm/index.js:1
+SyntaxError: Cannot use import statement outside a module
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1033:15)
+    at Module._compile (node:internal/modules/cjs/loader:1069:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:170:29)
+    at ModuleJob.run (node:internal/modules/esm/module_job:198:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:409:24)
+
+Node.js v18.0.0
+```
+
+> Node.js 的报错信息 `set "type": "module" in package.json or use the .mjs extension` 误导了我们，因为它是指第三方库的 `node_modules/some-library/package.json`，而非我们的 `package.json`。这其实是无法操作的（除非我们给第三方库打补丁，例如用 [pnpm.packageExtensions](https://pnpm.io/package_json#pnpmpackageextensions) 或 [pnpm patch](https://pnpm.io/cli/patch)）
+
+```
+import { SomeImport } from "some-library";
+         ^^^^^^^^^^
+SyntaxError: Named export 'SomeImport' not found. The requested module 'some-library' is a CommonJS module, which may not support all module.exports as named exports.
+CommonJS modules can always be imported via the default export, for example using:
+
+import pkg from 'some-library';
+const { SomeImport } = pkg;
+
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:124:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:190:5)
+
+Node.js v18.0.0
+```
+
+> Node.js 提出的解决方案往往不起作用。（因为，服务端导入的 CJS 总是包含一个默认的导出，而浏览器端导入的 ESM 通常没有默认的导出）
+
+```
+node:internal/process/esm_loader:91
+    internalBinding('errors').triggerUncaughtException(
+                              ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'node_modules/some-library/dist/esm/some-file' imported from node_modules/some-library/dist/esm/index.js
+Did you mean to import some-file.js?
+    at new NodeError (node:internal/errors:372:5)
+    at finalizeResolution (node:internal/modules/esm/resolve:405:11)
+    at moduleResolve (node:internal/modules/esm/resolve:966:10)
+    at defaultResolve (node:internal/modules/esm/resolve:1176:11)
+    at ESMLoader.resolve (node:internal/modules/esm/loader:605:30)
+    at ESMLoader.getModuleJob (node:internal/modules/esm/loader:318:18)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:80:40)
+    at link (node:internal/modules/esm/module_job:78:36) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v18.0.0
+```
+
+> 当第三方库的 ESM 代码包含 `import './some-file'` 时，通常会出现这个错误。（应该使用 `import './some-file.js'` 代替，因为 ESM 代码中的导入需要包含文件的扩展名）
+
+## 解决方案
+
+最简单、最稳健的解决方案是将包含无效 ESM 的库添加到 [`vite.config.js > ssr.noExternal`](https://vitejs.dev/config/ssr-options.html#ssr-noexternal)
+
+```js
+// vite.config.js
+
+export default {
+  ssr: {
+    // 在此添加含有无效ESM的库
+    noExternal: ['some-library'],
+  },
+}
+```
+
+> 之所以有这么多的库抛出了错误的 ESM 代码，是因为 Next.js 等框架打包了库的服务器端代码，而 Vite 让 Node.js 直接导入库。我们通过将库添加到 [`vite.config.js > ssr.noExternal`]（https://vitejs.dev/config/ssr-options.html#ssr-noexternal），复制了 Next.js 等框架的行为
+
+<Note type='warning'>
+  虽然使用 `vite.config.js > ssr.noExternal` 可以解决这个问题，但我们建议联系库的作者，例如[GitHub > `aws-amplify/amplify-ui` >
+  `#3155`](https://github.com/aws-amplify/amplify-ui/issues/3155)。Vite之所以快，是因为它只转译严格需要的内容。为了保持Vite的速度，库的作者应该提供有效的 ESM 代码
+</Note>

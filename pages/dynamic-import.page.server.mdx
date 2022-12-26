@@ -1,4 +1,4 @@
-import { Link } from "@brillout/docpress";
+import { Link } from '@brillout/docpress'
 
 我们可以使用动态 `import()` 来懒加载组件：
 
@@ -21,16 +21,12 @@ UI 框架支持 `import()` 懒加载组件：
 - [Vue 3 Docs > Async Components](https://v3.vuejs.org/guide/component-dynamic-async.html#async-components)
 - [Vue 2 Docs > Async Components](https://vuejs.org/v2/guide/components-dynamic-async.html)
 
-> React 和 Vue 等 UI 框架仅在浏览器端动态 `import()` 组件。即懒组件不会在服务端渲染
-
 ## React Example
 
-请参考： [Github > `arthurgailes/vite-plugin-ssr_dynamic-import-example`](https://github.com/arthurgailes/vite-plugin-ssr_dynamic-import-example).
-
 ```jsx
-// pages/pick-location.page.jsx
+// ages/location/pick.page.jsx
 
-import React from "react";
+import React from 'react'
 
 export function Page() {
   // 浏览器加载 <SomeHeavyMapComponent> 代码之前，
@@ -40,18 +36,63 @@ export function Page() {
       <button>Please pick a location</button>
       <Map />
     </>
-  );
+  )
 }
 
+// <Map> 是：
+//  - 懒加载的
+//  - 仅在浏览器中加载渲染
 function Map() {
-  // 懒加载 `<SomeHeavyMapComponent>`
-  const SomeHeavyMapComponent = React.lazy(() =>
-    import("some-heavy-map-component")
-  );
+  const [Component, setComponent] = React.useState(() => Loading)
+
+  // useEffect() 回调仅在浏览器中运行
+  // 因此 map 组件也仅在浏览器中加载和渲染
+  React.useEffect(() => {
+    setComponent(() => React.lazy(() => import('some-heavy-map-component')))
+  }, [])
+
   return (
-    <React.Suspense fallback={"Loading Map..."}>
-      <SomeHeavyMapComponent />
+    <React.Suspense fallback={<Loading />}>
+      <Component />
     </React.Suspense>
-  );
+  )
+}
+
+function Loading() {
+  return <div>Loading map...</div>
 }
 ```
+
+我们可以将逻辑提取到通用的 `<ClientOnly>` 组件中：
+
+```jsx
+import React from 'react'
+
+function Map() {
+  return (
+    <ClientOnly
+      load={() => import('some-heavy-map-component')}
+      fallback={<Loading />}
+    />
+  )
+}
+
+function ClientOnly({ load, fallback }) {
+  const [Component, setComponent] = React.useState(() => fallback)
+
+  React.useEffect(() => {
+    setComponent(() => React.lazy(load))
+  }, [])
+
+  return (
+    <React.Suspense fallback={fallback}>
+      <Component />
+    </React.Suspense>
+  )
+}
+```
+
+另请参考：
+
+- [Github > `arthurgailes/vite-plugin-ssr_dynamic-import-example`](https://github.com/arthurgailes/vite-plugin-ssr_dynamic-import-example)
+- [Github > `arthurgailes/vite-plugin-ssr_dynamic-import-example` > `/pages/index/index.page.jsx`](https://github.com/arthurgailes/vite-plugin-ssr_dynamic-import-example/blob/ecf7cda9beac5cae7b0eb642bd77d25f71e0f2e5/pages/index/index.page.jsx#L20-L35)

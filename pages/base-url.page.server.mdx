@@ -1,8 +1,10 @@
-import { RepoLink } from "@brillout/docpress";
-import { ImportMeta } from "@brillout/docpress";
+import { RepoLink } from '@brillout/docpress'
+import { ImportMeta } from '@brillout/docpress'
 
 > **什么是 Base URL?** 更改 Base URL (也称为 Public Path) 也就是更改 URL root。
 > 例如，我们可以把 Base URL 改为 `/some-base/` 从而部署到 `https://example.org/some-base/*`
+
+## `base`
 
 要更改 Base URL，我们：
 
@@ -10,41 +12,102 @@ import { ImportMeta } from "@brillout/docpress";
    ```js
    // vite.config.js
    export default {
-     base: "/some-base/",
-   };
+     base: '/some-base/',
+   }
    ```
 2. 使用 [<ImportMeta prop='env.BASE_URL' />](https://vitejs.dev/guide/build.html#public-base-path) 来构造一个 `<Link>` 组件，把 BaseURL 添加为其前缀。 Example: <RepoLink path='/examples/base-url/components/Link.jsx' />.
 3. 使用 <ImportMeta prop='env.BASE_URL' /> 来引用 [`public/`](/static-directory#public) 中的静态资源。Example: <RepoLink path='/examples/base-url/renderer/_default.page.server.jsx' />.
+
+```html
+<!-- 视图来源：https://my-website.com/some-base/ -->
+
+<!-- 请注意，我们的网站在 https://my-website.com/some-base/ 上服务，并且资源的URL以Base URL /some-base/ 作为前缀 -->
+
+<html>
+  <head>
+    <link
+      href="/some-base/logo.svg"
+      rel="icon" />
+    <link
+      href="/some-base/style.css"
+      rel="stylesheet"
+      type="text/css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/some-base/">Landing Page</a>
+      <a href="/some-base/about">About Page</a>
+    </nav>
+    <script
+      src="/some-base/script.js"
+      type="module"></script>
+  </body>
+</html>
+```
 
 Example：
 
 - <RepoLink path='/examples/base-url/' />
 
-## CDN
+## `baseAssets`
 
 我们可以使用 `baseAssets` 配置，将静态资源部署到 CDN
+我们可以通过使用 `baseAssets` 配置来*只*改变我们资源的 Base URL。我们的页面 URL 的 Base URL 是不变的
+
+> 使用 `baseAssets` 的最常见的情况是将资源部署到 CDN
 
 ```js
 // vite.config.js
 
-import { ssr } from "vite-plugin-ssr/plugin";
+import { ssr } from 'vite-plugin-ssr/plugin'
 
 export default {
   plugins: [
     ssr({
-      baseAssets: "https://cdn.example.org/my-website-assets/",
+      baseAssets: 'https://cdn.example.org/my-website-assets/',
     }),
   ],
-};
+}
 ```
+
+Note how the Base URL of our page URLs isn't changed: our app is still served at `https://my-website.com/*` (the Base URL is still `/`).
+请注意我们的页面 URL 的 Base URL 并没有改变：我们的应用程序仍然在 `https://my-website.com/*`（Base URL 是`/`）上服务
+
+```html
+<!-- 视图来源：https://my-website.com/ -->
+
+<html>
+  <head>
+    <!-- 请注意 Base URL 是 'https://cdn.example.org/my-website-assets/' -->
+    <link
+      href="https://cdn.example.org/my-website-assets/logo.svg"
+      rel="icon"
+    >
+    <link
+      href="https://cdn.example.org/my-website-assets/style.css"
+      rel="stylesheet"
+      type="text/css"
+    >
+  </head>
+  <body>
+    <nav>
+      <!-- 请注意 Base URL 是 '/' -->
+      <a href="/">Landing Page</a>
+      <a href="/about">About Page</a>
+    </nav>
+    <!-- 请注意 Base URL 是 'https://cdn.example.org/my-website-assets/' -->
+    <script src="https://cdn.example.org/my-website-assets/script.js" type="module">
+  </body>
+</html>
+```
+
+> 我们可以使用 `process.env.BASE_ASSETS` 和 <ImportMeta prop='env.BASE_ASSETS' /> 来访问代码中的 `baseAssets` 值
 
 Example:
 
 - <RepoLink path='/examples/base-url-cdn/' />
 
-> 我们可以在代码中使用 `process.env.BASE_ASSETS` 和 <ImportMeta prop='env.BASE_ASSETS' /> 访问 base 的值
-
-## CDN + Server
+## `baseServer`
 
 我们可以同时：
 
@@ -54,20 +117,48 @@ Example:
 ```js
 // vite.config.js
 
-import { ssr } from "vite-plugin-ssr/plugin";
+import { ssr } from 'vite-plugin-ssr/plugin'
 
 export default {
   plugins: [
     ssr({
-      baseAssets: "https://cdn.example.org/my-website-assets/",
-      baseServer: "/some-base/",
+      baseAssets: 'https://cdn.example.org/my-website-assets/',
+      baseServer: '/some-base/',
     }),
   ],
-};
+}
 ```
+
+```html
+<!-- 视图来源：https://my-website.com/ -->
+
+<html>
+  <head>
+    <!-- 请注意 Base URL 是 'https://cdn.example.org/my-website-assets/' -->
+    <link
+      href="https://cdn.example.org/my-website-assets/logo.svg"
+      rel="icon"
+    >
+    <link
+      href="https://cdn.example.org/my-website-assets/style.css"
+      rel="stylesheet"
+      type="text/css"
+    >
+  </head>
+  <body>
+    <nav>
+      <!-- 请注意 Base URL 是 '/some-base/' -->
+      <a href="/some-base/">Landing Page</a>
+      <a href="/some-base/about">About Page</a>
+    </nav>
+    <!-- 请注意 Base URL 是 'https://cdn.example.org/my-website-assets/' -->
+    <script src="https://cdn.example.org/my-website-assets/script.js" type="module">
+  </body>
+</html>
+```
+
+> 我们可以在代码中使用 `process.env.BASE_ASSETS`/`process.env.BASE_SERVER` 和 <ImportMeta prop='env.BASE_ASSETS' /> / <ImportMeta prop='env.BASE_SERVER' /> 访问 base 的值
 
 Example：
 
 - <RepoLink path='/examples/base-url-server/' />
-
-> 我们可以在代码中使用 `process.env.BASE_ASSETS`/`process.env.BASE_SERVER` 和 <ImportMeta prop='env.BASE_ASSETS' /> / <ImportMeta prop='env.BASE_SERVER' /> 访问 base 的值
