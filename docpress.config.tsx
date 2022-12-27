@@ -17,9 +17,10 @@ const config: Config = {
   twitterHandle: '@brillout',
   websiteUrl: 'https://cn.vite-plugin-ssr.com',
   algolia: {
-    appId: 'MUXG1ZE9F6',
-    apiKey: '8d5986fca9ba9110bcbbfc51263de88b',
-    indexName: 'vite-pluginssr'
+    appId: 'U280Q1VRUH',
+    // TODO: waiting for Algolia email...
+    apiKey: 'cd644548e876ea3f03eb6aee23ce03c4',
+    indexName: 'cn-vite-plugin-ssr'
   },
   bannerUrl: 'https://vite-plugin-ssr.com/banner.png',
   i18n: true
