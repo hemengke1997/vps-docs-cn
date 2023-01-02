@@ -33,11 +33,11 @@ function Design2() {
             </div>
             <div style={{ fontSize: '2.0em', paddingLeft: 4, paddingTop: 26, paddingBottom: 0 }}>
               <p id="header-tagline">
-                Like Next.js/Nuxt but as
-                <br />
-                do-one-thing-do-it-well
-                <br />
-                Vite plugin.
+                <span style={{ fontSize: '0.92em' }}>
+                  类似Next.js/Nuxt的vite插件
+                  <br />
+                  但只做一件事并把它做到最好
+                </span>
               </p>
             </div>
           </div>
