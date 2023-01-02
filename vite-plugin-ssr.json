@@ -1,5 +1,5 @@
 {
-  "version": "0.4.65",
+  "version": "0.4.69",
   "usesClientRouter": false,
   "manifestKeyMap": {
     "@brillout/docpress/renderer/_default.page.server.js": "node_modules/.pnpm/@brillout+docpress@0.3.3_6bdbsu2yzpeczxw5qylih75b3i/node_modules/@brillout/docpress/dist/renderer/_default.page.server.js",
