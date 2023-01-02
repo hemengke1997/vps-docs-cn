@@ -12,7 +12,7 @@ const config: Config = {
   navHeaderMobile: <NavHeaderMobile />,
   headings,
   headingsWithoutLink,
-  tagline: 'Like Next.js/Nuxt but as do-one-thing-do-it-well Vite plugin.',
+  tagline: '类似Next.js/Nuxt的vite插件但只做一件事并把它做到最好',
   titleNormalCase: false,
   twitterHandle: '@brillout',
   websiteUrl: 'https://cn.vite-plugin-ssr.com',
