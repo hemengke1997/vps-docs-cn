@@ -1,7 +1,7 @@
 import React from 'react'
-import type { HeadingDefinition, HeadingWithoutLink } from '@brillout/docpress'
+import type { HeadingDefinition, HeadingDetachedDefinition } from '@brillout/docpress'
 
-export { headingsWithoutLink }
+export { headingsDetached }
 export { headings }
 
 const redirections = [
@@ -43,7 +43,7 @@ const redirections = [
   },
 ]
 
-const headingsWithoutLink: HeadingWithoutLink[] = [
+const headingsDetached: HeadingDetachedDefinition[] = [
   ...redirections,
   {
     title: (
