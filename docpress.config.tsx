@@ -1,17 +1,17 @@
 import type { Config } from '@brillout/docpress'
-import { headings, headingsWithoutLink } from './headings'
+import { headings, headingsDetached } from './headings'
 import { projectInfo } from './utils'
 import faviconUrl from './images/icons/vite-plugin-ssr.svg'
 import React from 'react'
 import { NavHeader, NavHeaderMobile } from './NavHeader'
 
-const config: Config = {
+export default {
   projectInfo,
   faviconUrl,
   navHeader: <NavHeader />,
   navHeaderMobile: <NavHeaderMobile />,
   headings,
-  headingsWithoutLink,
+  headingsDetached,
   tagline: '类似Next.js/Nuxt的vite插件但只做一件事并把它做到最好',
   titleNormalCase: false,
   twitterHandle: '@brillout',
@@ -24,5 +24,4 @@ const config: Config = {
   },
   bannerUrl: 'https://cn.vite-plugin-ssr.com/banner.png',
   i18n: true
-}
-export default config
+} satisfies Config
