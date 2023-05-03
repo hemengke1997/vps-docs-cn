@@ -109,7 +109,7 @@ async function render(pageContext) {
 我们可以创建一个默认应用到所有页面的 `/renderer/_default.page.client.js` 和 `/renderer/_default.page.server.js`
 
 实际上我们最后创建的两个文件是 `/renderer/_default.page.client.js` 和 `/renderer/_default.page.server.js`
-这意味着我们可以通过定义一个新的 `.page.vue` 文件来创建一个新的页面（`.page.route.js`文件是可选的）
+这意味着我们可以通过定义一个新的 `.page.jsx` 文件来创建一个新的页面（`.page.route.js`文件是可选的）
 
 `_default.page.` 文件可以被覆盖。比如，我们可以在一些页面中使用不同的 UI 框架（如 Vue）覆盖 `render()` hook
 
